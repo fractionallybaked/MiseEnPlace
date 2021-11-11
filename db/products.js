@@ -44,7 +44,7 @@ async function getAllProductsByUser() {
     //join cart and user
 }
 
-async function addProduct({ name, description, price, photo, typeId }) {
+async function createProduct({ name, description, price, photo, typeId }) {
     try {
         const { rows: [product] } = await client.query(`
         INSERT INTO products (name, description, price, photo, "typeId")
@@ -104,7 +104,7 @@ async function destoryProduct(id) {
         getAllProducts,
         getProductById,
         getProductByType,
-        addProduct,
+        createProduct,
         editProduct,
         destoryProduct,
     }
