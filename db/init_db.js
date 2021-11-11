@@ -71,14 +71,11 @@ async function buildTables() {
   try {
     client.connect();
     await dropTables();
-    // drop tables in correct order
-
-    // build tables in correct order
-
+    await createTables();
   } catch (error) {
     throw error;
   }
-}
+} 
 
 async function populateInitialData() {
   try {
