@@ -1,5 +1,4 @@
-const client = require("./client");
+const express = require("express");
+const productsRouter = express.Router(); 
 
-module.exports = {
-    
-}
+module.exports = productsRouter
