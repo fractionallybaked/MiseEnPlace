@@ -1,12 +1,9 @@
-
-const client = require("./client");
-const { getProductById } = require("./products");
+const { client } = require("./client");
+const { getProductsById } = require("./products");
 
 async function getCartByUser(userId) {
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
+    const { rows: cart } = await client.query(
       `
             SELECT *
             FROM cart
@@ -14,13 +11,14 @@ async function getCartByUser(userId) {
             `,
       [userId]
     );
+    console.log(cart);
     return cart;
   } catch (err) {
     throw err;
   }
 }
 
-//Need to add up total
+//
 
 async function updateCart({ id, productId, quantity }) {
   try {
@@ -62,10 +60,10 @@ async function deleteCartItem({ userId, productId, id }) {
   }
 }
 
-//Need to add up total
+//
 
-async function addItemtoCart({ id, productId, userId, quantity, purchased }) {
-  const newProd = await getProductById(productId);
+async function addItemToCart({ productId, userId, quantity, purchased }) {
+  const newProd = await getProductsById(productId);
   const prodPrice = newProd.price;
 
   try {
@@ -73,11 +71,11 @@ async function addItemtoCart({ id, productId, userId, quantity, purchased }) {
       rows: [cart],
     } = await client.query(
       `
-            INSERT INTO cart(id, "productId", "userId", quantity, purchased, "itemTotal")
-            VALUES($1, $2, $3, $4, $5, $6)
+            INSERT INTO cart("productId", "userId", quantity, purchased, "itemTotal")
+            VALUES($1, $2, $3, $4, $5)
             RETURNING *;
             `,
-      [id, productId, userId, quantity, purchased, prodPrice]
+      [productId, userId, quantity, purchased, prodPrice]
     );
     return cart;
   } catch (err) {
@@ -114,7 +112,6 @@ module.exports = {
   getCartByUser,
   updateCart,
   deleteCartItem,
-  addItemtoCart,
+  addItemToCart,
   checkoutCart,
 };
-

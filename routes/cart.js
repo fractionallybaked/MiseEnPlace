@@ -6,15 +6,15 @@ const {
   getCartByUser,
   updateCart,
   deleteCartItem,
-  addItemtoCart,
+  addItemToCart,
   checkoutCart,
 } = require("../db");
 
 //
 
-cartRouter.get("/cart/:userId", requireUser, async (req, res, next) => {
+cartRouter.get("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-
+  console.log(userId);
   try {
     const userCart = await getCartByUser(userId);
     res.send(userCart);
@@ -25,14 +25,11 @@ cartRouter.get("/cart/:userId", requireUser, async (req, res, next) => {
 
 //
 
-cartRouter.post("/cart/:userId", requireUser, async (req, res, next) => {
+cartRouter.post("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  const userCart = await getCartByUser(userId);
-  const cartId = userCart.id;
   const { productId, quantity, isPurchased } = req.body;
   try {
-    const updatedCart = await addItemtoCart({
-      cartId,
+    const updatedCart = await addItemToCart({
       productId,
       userId,
       quantity,
@@ -46,7 +43,7 @@ cartRouter.post("/cart/:userId", requireUser, async (req, res, next) => {
 
 //
 
-cartRouter.patch("/cart/:userId", requireUser, async (req, res, next) => {
+cartRouter.patch("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const userCart = await getCartByUser(userId);
   const cartId = userCart.id;
@@ -67,7 +64,7 @@ cartRouter.patch("/cart/:userId", requireUser, async (req, res, next) => {
 
 //
 
-cartRouter.delete("/cart/:userId", requireUser, async (req, res, next) => {
+cartRouter.delete("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const userCart = await getCartByUser(userId);
   const cartId = userCart.id;
@@ -83,19 +80,15 @@ cartRouter.delete("/cart/:userId", requireUser, async (req, res, next) => {
 
 //
 
-cartRouter.patch(
-  "/cart/:userId/checkout",
-  requireUser,
-  async (req, res, next) => {
-    const userId = req.params.userId;
-    try {
-      const boughtCart = await checkoutCart(userId);
-      res.send(boughtCart);
-    } catch (err) {
-      next(err);
-    }
+cartRouter.patch("/:userId/checkout", async (req, res, next) => {
+  const userId = req.params.userId;
+  try {
+    const boughtCart = await checkoutCart(userId);
+    res.send(boughtCart);
+  } catch (err) {
+    next(err);
   }
-);
+});
 
 //
 
