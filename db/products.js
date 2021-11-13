@@ -12,36 +12,32 @@ async function getAllProducts() {
     }
 }
 
-async function getProductById(id) {
+async function getProductsById(id) {
     try {
-        const { rows: [product] } = await client.query(`
+        const { rows: products } = await client.query(`
         SELECT *
         FROM products
         WHERE id = $1;
         `, [id]);
 
-        return product;
+        return products;
     } catch (error) {
         console.error(error);
     }
 }
 
-async function getProductByType(typeId) {
+async function getProductsByType(typeId) {
     try {
-        const { rows: [product] } = await client.query(`
+        const { rows: products } = await client.query(`
         SELECT *
         FROM products
         WHERE "typeId" = $1;
         `, [typeId]);
 
-        return product;
+        return products;
     } catch (error) {
         console.error(error);
     }
-}
-
-async function getAllProductsByUser() {
-    //join cart and user
 }
 
 async function createProduct({ name, description, price, photo, typeId }) {
@@ -102,8 +98,8 @@ async function destoryProduct(id) {
 
     module.exports = {
         getAllProducts,
-        getProductById,
-        getProductByType,
+        getProductsById,
+        getProductsByType,
         createProduct,
         editProduct,
         destoryProduct,
