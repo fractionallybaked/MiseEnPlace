@@ -142,6 +142,7 @@ async function createInitialProducts() {
         name: "Angel's Food Cake",
         description: "If you eat it, you'll grow wings",
         price: 1500, 
+        quantity: 5,
         photo: "../angelsfood.jpeg", 
         typeId: 1
       },
@@ -149,6 +150,7 @@ async function createInitialProducts() {
         name: "Chai Tea Set",
         description: "Chai Tea.  Tea tea.",
         price: 1200,
+        quantity: 10,
         photo: "../chaiteaset.jpeg",
         typeId: 3
       },
@@ -156,6 +158,7 @@ async function createInitialProducts() {
         name: "Chocolate Chip Cookies",
         description: "Would you like some cookie with your chocolate?",
         price: 700, 
+        quantity: 2,
         photo: "../chocolatechipcookie.jpeg", 
         typeId: 2
       },
@@ -163,6 +166,7 @@ async function createInitialProducts() {
         name: "Cheesecake",
         description: "Is it cheese or is it cake?",
         price: 900,
+        quantity: 4,
         photo: "../cheesecake.jpeg",
         typeId: 1
       }
@@ -207,7 +211,7 @@ async function populateInitialData() {
 
     await createInitialUsers()
     await createInitialTypes()
-    //await createInitialProducts()
+    await createInitialProducts()
     //await createInitialCarts()
 
   } catch (error) {
