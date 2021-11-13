@@ -78,7 +78,10 @@ async function editProduct({ id, ...fields }) {
         `, vals);
 
         return updatedProduct;
+    } catch (error) {
+        throw error;
     }
+}
 
 async function destoryProduct(id) {
         try {
