@@ -55,6 +55,6 @@ apiRouter.use(async (req, res, next) => {
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/products', productsRouter);
 apiRouter.use('/types', typesRouter);
-apiRouter.use('/cart', cartRouter);
+//apiRouter.use('/cart', cartRouter);
 
 module.exports = apiRouter;

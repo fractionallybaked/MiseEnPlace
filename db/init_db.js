@@ -206,7 +206,7 @@ async function populateInitialData() {
   try {
 
     await createInitialUsers()
-    //await createInitialTypes()
+    await createInitialTypes()
     //await createInitialProducts()
     //await createInitialCarts()
 
