@@ -1,7 +1,5 @@
 // code to build and initialize DB goes here
-const {
-  client
-} = require('./client');
+const { client } = require("./client");
 
 const {
   createUser,
@@ -68,8 +66,6 @@ async function createTables() {
   }
 }
 
-
-
 async function buildTables() {
   try {
     client.connect();
@@ -78,7 +74,7 @@ async function buildTables() {
   } catch (error) {
     throw error;
   }
-} 
+}
 
 async function createInitialUsers() {
   console.log("Starting to create users...");
