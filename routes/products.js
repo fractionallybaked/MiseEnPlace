@@ -32,14 +32,14 @@ productsRouter.get("/:productId", async (req, res, next) => {
 });
 
 productsRouter.post("/", requireUser, async (req, res, next) => {
-    const { name, description, price, photo, typeId } = req.body;
+    const { name, description, price, quantity, photo, typeId} = req.body;
     const { id } = req.user;
 
     try {
         const user = await getUserById(id);
 
         if (user.isAdmin) {
-            const newProduct = await createProduct({ name, description, price, photo, typeId });
+            const newProduct = await createProduct({ name, description, price, quantity, photo, typeId });
             res.send(newProduct);
         } else {
             next({
