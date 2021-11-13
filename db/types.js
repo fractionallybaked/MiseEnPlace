@@ -1,5 +1,4 @@
 const { client } = require("./client");
-const { getProductsById } = require("./products");
 
 async function getAllTypes() {
     try {
@@ -12,7 +11,6 @@ async function getAllTypes() {
         console.error(error);
     }
 }
-
 
 async function getTypeById(id) {
     try {
@@ -28,39 +26,13 @@ async function getTypeById(id) {
     }
 }
 
-async function createType({ name }) {
-    try {
-        const { rows: [type] } = await client.query(`
-        INSERT INTO types (name)
-        VALUES ($1)
-        RETURNING *;
-        `, [name]);
-
-        return type;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
 async function createProductType(productId, typeId) {
     try {
         await client.query(`
-INSERT INTO product_type("productId", "typeId")
-VALUES ($1, $2)
-ON CONFLICT ("productId", "typeId") DO NOTHING;
+        INSERT INTO product_type("productId", "typeId")
+        VALUES ($1, $2)
+        ON CONFLICT ("productId", "typeId") DO NOTHING;
 `, [productId, typeId]);
-
-    } catch (error) {
-        throw error;
-    }
-}
-async function addTypeToProduct(productId, productList) {
-    try {
-        const createProductTypePromises = productList.map(
-            type => createProductType(productId, type.id)
-        );
-        await Promise.all(createProductTypePromises);
-        return await getProductsById(productId);
 
     } catch (error) {
         throw error;
@@ -68,11 +40,31 @@ async function addTypeToProduct(productId, productList) {
 }
 
 async function destroyType(id) {
+    try {
+        await client.query(`
+            DELETE
+            FROM product_type
+            WHERE "typeId" = $1
+            `, [id]);
 
+        const { rows: [deletedType] } = await client.query(`
+            DELETE 
+            FROM types
+            WHERE id=$1
+            RETURNING *;
+            `, [id]);
+
+        return deletedProduct;
+    } catch (error) {
+        throw error;
+    }
 }
 
 module.exports = {
     getAllTypes,
     getTypeById,
-    createType
+   
+    createProductType,
+    
+    destroyType
 }

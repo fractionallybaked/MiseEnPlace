@@ -1,12 +1,12 @@
 const express = require("express");
 const apiRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const {JWT_SECRET } = process.env
+const {JWT_SECRET } = process.env;
 
 // attach other routers from files in this api directory (users, activities...)
 const usersRouter = require("./users");
-const productsRouter = require("./products")
-// const typesRouter = require("./types")
+const productsRouter = require("./products");
+const typesRouter = require("./types");
 // const cartRouter = require("./cart")
 
 apiRouter.get("/", (req, res, next) => {
@@ -54,7 +54,7 @@ apiRouter.use(async (req, res, next) => {
 
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/products', productsRouter);
-// apiRouter.use('/types', typesRouter);
+apiRouter.use('/types', typesRouter);
 // apiRouter.use('/cart', cartRouter);
 
 module.exports = apiRouter;

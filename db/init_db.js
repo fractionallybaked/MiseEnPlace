@@ -16,8 +16,9 @@ async function dropTables() {
     // drop all tables, in the correct order
     client.query(`
       DROP TABLE IF EXISTS cart;
-      DROP TABLE IF EXISTS products;
+      DROP TABLE IF EXISTS product_type;
       DROP TABLE IF EXISTS types;
+      DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
     `);
   } catch (error) {
@@ -38,18 +39,23 @@ async function createTables() {
         password varchar(255) NOT NULL,
         "isAdmin" boolean default false
       ); 
-      CREATE TABLE types (
-        id SERIAL PRIMARY KEY,
-        name varchar(255) UNIQUE NOT NULL
-      );
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
         description TEXT NOT NULL,
         price INTEGER NOT NULL,
         quantity INTEGER NOT NULL,
-        photo varchar(255) NOT NULL,
-        "typeId" INTEGER REFERENCES types(id)
+        photo varchar(255) NOT NULL
+        
+      );
+      CREATE TABLE types (
+        id SERIAL PRIMARY KEY,
+        name varchar(255) UNIQUE NOT NULL
+      );
+      CREATE TABLE product_type(
+        "productId" INTEGER REFERENCES products(id),
+        "typeId" INTEGER REFERENCES types(id),
+        UNIQUE ("productId", "typeId")
       );
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
@@ -68,8 +74,6 @@ async function createTables() {
   }
 }
 
-
-
 async function buildTables() {
   try {
     client.connect();
@@ -78,16 +82,16 @@ async function buildTables() {
   } catch (error) {
     throw error;
   }
-} 
+}
 
 async function createInitialUsers() {
   console.log("Starting to create users...");
   try {
     const usersToCreate = [
-      { username: "bob", password: "iliketurtles", isAdmin: true},
-      { username: "emelie", password: "fornarnia!", isAdmin: true},
-      { username: "kendra", password: "darthvaderrules", isAdmin: true},
-      { username: "ed", password: "ilovebakedgoods", isAdmin: false}
+      { username: "bob", password: "iliketurtles", isAdmin: true },
+      { username: "emelie", password: "fornarnia!", isAdmin: true },
+      { username: "kendra", password: "darthvaderrules", isAdmin: true },
+      { username: "ed", password: "ilovebakedgoods", isAdmin: false }
     ];
     const users = await Promise.all(usersToCreate.map(createUser));
 
@@ -106,16 +110,22 @@ async function createInitialTypes() {
 
     const typesToCreate = [
       {
-        name: "Cake"
+        name: "cake"
       },
       {
-        name: "Cookie"
+        name: "cookie"
       },
       {
-        name: "Tea"
+        name: "tea"
       },
       {
-        name: "Coffee"
+        name: "coffee"
+      },
+      {
+        name: "beverages"
+      },
+      {
+        name: "baked goods"
       }
     ];
 
@@ -141,10 +151,10 @@ async function createInitialProducts() {
       {
         name: "Angel's Food Cake",
         description: "If you eat it, you'll grow wings",
-        price: 1500, 
+        price: 1500,
         quantity: 5,
-        photo: "../angelsfood.jpeg", 
-        typeId: 1
+        photo: "../angelsfood.jpeg",
+        type: ['cake', 'baked goods']
       },
       {
         name: "Chai Tea Set",
@@ -152,15 +162,15 @@ async function createInitialProducts() {
         price: 1200,
         quantity: 10,
         photo: "../chaiteaset.jpeg",
-        typeId: 3
+        type: ['tea', 'beverages']
       },
       {
         name: "Chocolate Chip Cookies",
         description: "Would you like some cookie with your chocolate?",
-        price: 700, 
+        price: 700,
         quantity: 2,
-        photo: "../chocolatechipcookie.jpeg", 
-        typeId: 2
+        photo: "../chocolatechipcookie.jpeg",
+        type: ['cookie', 'baked goods']
       },
       {
         name: "Cheesecake",
@@ -168,7 +178,7 @@ async function createInitialProducts() {
         price: 900,
         quantity: 4,
         photo: "../cheesecake.jpeg",
-        typeId: 1
+        type: ['cake', 'baked goods', 'chilled dessert']
       }
     ];
     const products = await Promise.all(
@@ -190,9 +200,9 @@ async function createInitialCarts() {
   console.log("Starting to create carts...");
   try {
     const cartsToCreate = [
-      { productId: "1", userId: "1", quantity: 1, purchased: false},
-      { productId: "2", userId: "2", quantity: 4, purchased: false},
-      { productId: "4", userId: "3", quantity: 13, purchased: false},
+      { productId: "1", userId: "1", quantity: 1, purchased: false },
+      { productId: "2", userId: "2", quantity: 4, purchased: false },
+      { productId: "4", userId: "3", quantity: 13, purchased: false },
     ];
     const carts = await Promise.all(cartsToCreate.map(addItemToCart));
 
@@ -210,7 +220,7 @@ async function populateInitialData() {
   try {
 
     await createInitialUsers()
-    await createInitialTypes()
+    // await createInitialTypes()
     await createInitialProducts()
     //await createInitialCarts()
 
