@@ -204,10 +204,12 @@ async function createInitialCarts() {
 
 async function populateInitialData() {
   try {
+
     await createInitialUsers()
     //await createInitialTypes()
     //await createInitialProducts()
     //await createInitialCarts()
+
   } catch (error) {
     throw error;
   }

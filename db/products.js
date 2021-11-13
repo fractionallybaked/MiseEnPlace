@@ -14,13 +14,13 @@ async function getAllProducts() {
 
 async function getProductsById(id) {
     try {
-        const { rows: products } = await client.query(`
+        const { rows: [product] } = await client.query(`
         SELECT *
         FROM products
         WHERE id = $1;
         `, [id]);
 
-        return products;
+        return product;
     } catch (error) {
         console.error(error);
     }
@@ -78,7 +78,9 @@ async function editProduct({ id, ...fields }) {
         `, vals);
 
         return updatedProduct;
+
     } catch (error) {
+
         throw error;
     }
 }
