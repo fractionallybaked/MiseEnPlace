@@ -6,5 +6,5 @@ const client = new Client(DB_URL);
 
 // export
 module.exports = {
-  client,
+  client
 }

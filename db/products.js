@@ -78,7 +78,9 @@ async function editProduct({ id, ...fields }) {
         `, vals);
 
         return updatedProduct;
-    }catch(error){
+
+    } catch (error) {
+
         throw error;
     }
 }
