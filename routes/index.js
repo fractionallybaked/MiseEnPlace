@@ -6,8 +6,8 @@ const {JWT_SECRET = "neverTell"} = process.env
 // attach other routers from files in this api directory (users, activities...)
 const usersRouter = require("./users");
 const productsRouter = require("./products")
-const typesRouter = require("./types")
-const cartRouter = require("./cart")
+// const typesRouter = require("./types")
+// const cartRouter = require("./cart")
 
 apiRouter.get("/", (req, res, next) => {
   res.send({
@@ -54,7 +54,7 @@ apiRouter.use(async (req, res, next) => {
 
 apiRouter.use('/users', usersRouter);
 apiRouter.use('/products', productsRouter);
-apiRouter.use('/types', typesRouter);
-apiRouter.use('/cart', cartRouter);
+// apiRouter.use('/types', typesRouter);
+// apiRouter.use('/cart', cartRouter);
 
 module.exports = apiRouter;
