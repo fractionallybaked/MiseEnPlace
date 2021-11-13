@@ -1,5 +1,8 @@
 const { client } = require("./client");
+<<<<<<< HEAD
 const { createProductType } = require("./types");
+=======
+>>>>>>> c7f7c33770c7565575c68e3ff760fea27d77b696
 
 async function getAllProducts() {
     try {
