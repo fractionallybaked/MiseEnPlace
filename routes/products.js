@@ -1,12 +1,13 @@
 const express = require("express");
 const productsRouter = express.Router();
-const { requireUser } = require("./utils");
+const { requireUser } = require("./utilities");
 const {
     getAllProducts,
     getProductsById,
     createProduct,
     editProduct,
     destoryProduct,
+    getUserById
 } = require("../db");
 
 productsRouter.get("/", async (req, res, next) => {
@@ -52,13 +53,15 @@ productsRouter.post("/", requireUser, async (req, res, next) => {
     }
 });
 
-productsRouter.patch('/', requireUser, async (req, res, next) => {
+productsRouter.patch('/:productId', requireUser, async (req, res, next) => {
     const { ...fields } = req.body;
+    const { productId } = req.params;
     const { id } = req.user;
+
     try {
         const user = await getUserById(id);
         if (user.isAdmin) {
-            const updatedProduct = await editProduct({ id, ...fields });
+            const updatedProduct = await editProduct({ productId, ...fields });
             res.send(updatedProduct);
         } else {
             next({
@@ -92,5 +95,6 @@ productsRouter.delete('/:productId', requireUser, async (req, res, next) => {
     } catch (error) {
         console.error(error);
     }
-})
+});
+
 module.exports = productsRouter;

@@ -205,9 +205,9 @@ async function createInitialCarts() {
 async function populateInitialData() {
   try {
     createInitialUsers()
-    createInitialTypes()
+    // createInitialTypes()
     createInitialProducts()
-    createInitialCarts()
+    // createInitialCarts()
   } catch (error) {
     throw error;
   }

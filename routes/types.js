@@ -1,5 +1,4 @@
-const client = require("./client");
+const express = require("express");
+const typesRouter = express.Router(); 
 
-module.exports = {
-    
-}
+module.exports = typesRouter
