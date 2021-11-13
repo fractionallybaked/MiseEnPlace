@@ -1,11 +1,9 @@
 // code to build and initialize DB goes here
-const {
-  client
-} = require('./client');
+const { client } = require("./client");
 
 const {
   //db methods
-} = require('./')
+} = require("./");
 
 async function dropTables() {
   try {
@@ -53,19 +51,16 @@ async function createTables() {
     "productId" INTEGER REFERENCES products(id),
     "userId" INTEGER REFERENCES users(id),
     quantity INTEGER NOT NULL,
-    "itemTotal" INTEGER,
+    "itemTotal" INTEGER default 0,
     purchased BOOLEAN default false,
     UNIQUE("productId", "userId")
    );    
   `);
-
   } catch (error) {
     console.error("Error building tables");
     throw error;
   }
 }
-
-
 
 async function buildTables() {
   try {
@@ -75,7 +70,7 @@ async function buildTables() {
   } catch (error) {
     throw error;
   }
-} 
+}
 
 async function populateInitialData() {
   try {
