@@ -7,14 +7,16 @@ const {
     createProduct,
     editProduct,
     destoryProduct,
-    getUserById
+    getUserById,
+    addTypeToProduct,
+    createType,
 } = require("../db");
 
 productsRouter.get("/", async (req, res, next) => {
     try {
         const allProducts = await getAllProducts();
 
-        res.send({allProducts});
+        res.send({ allProducts });
     } catch ({ name, message }) {
         next({ name, message });
     }
@@ -25,22 +27,41 @@ productsRouter.get("/:productId", async (req, res, next) => {
     try {
         const products = await getProductsById(id);
 
-        res.send(products);
+        res.send({ products });
     } catch ({ name, message }) {
         next({ name, message });
     }
 });
 
 productsRouter.post("/", requireUser, async (req, res, next) => {
-    const { name, description, price, quantity, photo, typeId} = req.body;
+    const { name, description, price, quantity, photo, type = "" } = req.body;
     const { id } = req.user;
+    const typeArr = type.trim().split(/\s+/);
+    const productData = {
+        name: name,
+        description: description,
+        price: price,
+        quantity: quantity,
+        photo: photo,
+        type: type
+    }
+
+    if (typeArr.length) {
+        productData.type = typeArr;
+    }
 
     try {
         const user = await getUserById(id);
 
         if (user.isAdmin) {
-            const newProduct = await createProduct({ name, description, price, quantity, photo, typeId });
-            res.send(newProduct);
+            const newProduct = await createProduct(productData);
+            if (newProduct) {
+                res.send({ newProduct });
+            } else {
+                const error = new Error("Missing product info")
+                next(error)
+            }
+
         } else {
             next({
                 name: "UnauthorizedUserError",
@@ -48,6 +69,27 @@ productsRouter.post("/", requireUser, async (req, res, next) => {
             });
         }
 
+    } catch ({ name, message }) {
+        next({ name, message });
+    }
+});
+
+productsRouter.post('/:productId/types', requireUser, async (req, res, next) => {
+    const { productId } = req.params;
+    const { types } = req.body;
+    const { id } = req.user;
+    try {
+        const user = await getUserById(id)
+        if (user.isAdmin) {
+            const typeList = await createType(types);
+            const updatedProduct = await addTypeToProduct(productId, typeList);
+            res.send({ updatedProduct });
+        } else {
+            next({
+                name: "UnauthorizedUserError",
+                message: "You must be an admin to add a new product"
+            });
+        }
     } catch ({ name, message }) {
         next({ name, message });
     }

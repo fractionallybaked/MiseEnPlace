@@ -1,8 +1,5 @@
 const { client } = require("./client");
-<<<<<<< HEAD
-const { createProductType } = require("./types");
-=======
->>>>>>> c7f7c33770c7565575c68e3ff760fea27d77b696
+const {createProductType} = require('./types');
 
 async function getAllProducts() {
     try {
@@ -40,7 +37,7 @@ async function createProduct({
 }
 
 async function createType(typeList) {
-
+console.log(typeList, "!!!createtype")
     if (typeList.length === 0) {
         return;
     }
@@ -72,7 +69,7 @@ async function createType(typeList) {
 
 async function addTypeToProduct(productId, typeList) {
     try {
-        
+       
         const createProductTypePromises = typeList.map(
             type => createProductType(productId, type.id)
         );
@@ -106,15 +103,19 @@ async function getProductsById(id) {
     }
 }
 
-async function getProductsByType(typeId) {
+async function getProductsByType(typeName) {
     try {
-        const { rows: products } = await client.query(`
-        SELECT *
+        const { rows: productId } = await client.query(`
+        SELECT products.id
         FROM products
-        WHERE "typeId" = $1;
-        `, [typeId]);
+        JOIN product_type ON products.id = product_type."productId"
+        JOIN types ON types.id = product_type."typeId"
+        WHERE types.name = $1;
+        `, [typeName]);
 
-        return products;
+        return await Promise.all(productId.map(
+            product => getProductsById(product.id)
+        ));
     } catch (error) {
         console.error(error);
     }
@@ -178,6 +179,8 @@ module.exports = {
     createProduct,
     editProduct,
     destoryProduct,
+    addTypeToProduct,
+    createType,
 }
 
 
