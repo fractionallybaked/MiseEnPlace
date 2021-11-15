@@ -6,7 +6,9 @@ const {
     createUser,
     getUser,
     getAllUsers
-} = require("../db")
+} = require("../db");
+const jwt = require("jsonwebtoken");
+const { JWT_SECRET } = process.env;
 
 usersRouter.post("/register", async (req, res, next) => {
     const {username, password} = req.body;

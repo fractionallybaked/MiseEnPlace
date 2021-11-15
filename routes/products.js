@@ -34,27 +34,15 @@ productsRouter.get("/:productId", async (req, res, next) => {
 });
 
 productsRouter.post("/", requireUser, async (req, res, next) => {
-    const { name, description, price, quantity, photo, type = "" } = req.body;
+    const { name, description, price, quantity, photo, type } = req.body;
     const { id } = req.user;
-    const typeArr = type.trim().split(/\s+/);
-    const productData = {
-        name: name,
-        description: description,
-        price: price,
-        quantity: quantity,
-        photo: photo,
-        type: type
-    }
-
-    if (typeArr.length) {
-        productData.type = typeArr;
-    }
 
     try {
         const user = await getUserById(id);
 
         if (user.isAdmin) {
-            const newProduct = await createProduct(productData);
+            const newProduct = await createProduct({ name, description, price, quantity, photo, type });
+
             if (newProduct) {
                 res.send({ newProduct });
             } else {
@@ -74,14 +62,14 @@ productsRouter.post("/", requireUser, async (req, res, next) => {
     }
 });
 
-productsRouter.post('/:productId/types', requireUser, async (req, res, next) => {
+productsRouter.post('/:productId/type', requireUser, async (req, res, next) => {
     const { productId } = req.params;
-    const { types } = req.body;
+    const { type } = req.body;
     const { id } = req.user;
     try {
         const user = await getUserById(id)
         if (user.isAdmin) {
-            const typeList = await createType(types);
+            const typeList = await createType(type);
             const updatedProduct = await addTypeToProduct(productId, typeList);
             res.send({ updatedProduct });
         } else {
@@ -103,7 +91,8 @@ productsRouter.patch('/:productId', requireUser, async (req, res, next) => {
     try {
         const user = await getUserById(id);
         if (user.isAdmin) {
-            const updatedProduct = await editProduct({ productId, ...fields });
+            const updatedProduct = await editProduct(productId, { ...fields });
+
             res.send(updatedProduct);
         } else {
             next({

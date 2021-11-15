@@ -1,5 +1,5 @@
 const { client } = require("./client");
-const {createProductType} = require('./types');
+const { createProductType } = require('./types');
 
 async function getAllProducts() {
     try {
@@ -19,7 +19,7 @@ async function createProduct({
     price,
     quantity,
     photo,
-    type = [], 
+    type = [],
 }) {
     try {
         const { rows: [product] } = await client.query(`
@@ -29,7 +29,7 @@ async function createProduct({
         `, [name, description, price, quantity, photo]);
 
         const typeList = await createType(type);
-        
+
         return await addTypeToProduct(product.id, typeList);
     } catch (error) {
         console.error(error);
@@ -37,7 +37,7 @@ async function createProduct({
 }
 
 async function createType(typeList) {
-console.log(typeList, "!!!createtype")
+    console.log(typeList, "!!!createtype")
     if (typeList.length === 0) {
         return;
     }
@@ -47,7 +47,7 @@ console.log(typeList, "!!!createtype")
 
     const selectValues = typeList.map(
         (_, index) => `$${index + 1}`).join(', ');
-       
+
     try {
         await client.query(`
         INSERT INTO types(name)
@@ -69,7 +69,7 @@ console.log(typeList, "!!!createtype")
 
 async function addTypeToProduct(productId, typeList) {
     try {
-       
+
         const createProductTypePromises = typeList.map(
             type => createProductType(productId, type.id)
         );
@@ -136,10 +136,16 @@ function dbFields(fields) {
     return { insert, select, vals };
 }
 
-async function editProduct({ id, ...fields }) {
-    const {type} = fields;
-    delete fields.type;
+async function editProduct(id, { ...fields }) {
+    const { type, productId } = fields;
+
+    if (type || productId) {
+        delete fields.type;
+        delete fields.productId;
+    }
+
     const { insert, vals } = dbFields(fields);
+
     try {
         const { rows: [updatedProduct] } = await client.query(`
         UPDATE products
@@ -148,7 +154,25 @@ async function editProduct({ id, ...fields }) {
         RETURNING *;
         `, vals);
 
-        return updatedProduct;
+        if (type === undefined) {
+            return await getProductsById(id);
+        }
+
+        const typeList = await createType(type);
+        const typeListIdString = typeList.map(
+            e => `${e.id}`
+        ).join(', ');
+
+        await client.query(`
+        DELETE FROM product_type
+        WHERE "typeId"
+        NOT IN (${typeListIdString})
+        AND "productId"=$1;
+        `, [id]);
+
+        await addTypeToProduct(id, typeList);
+
+        return await getProductsById(id)
 
     } catch (error) {
 
@@ -157,7 +181,14 @@ async function editProduct({ id, ...fields }) {
 }
 
 async function destoryProduct(id) {
+    console.log(id, "product id!")
     try {
+        await client.query(`
+            DELETE
+            FROM product_type
+            WHERE "productId" = $1
+             `, [id]);
+
         const { rows: [deletedProduct] } = await client.query(`
             DELETE 
             FROM products
