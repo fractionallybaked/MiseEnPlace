@@ -1,7 +1,8 @@
 const express = require("express");
 const apiRouter = express.Router();
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET = "neverTell" } = process.env;
+const {JWT_SECRET } = process.env;
+const {getUserById} = require('../db');
 
 // attach other routers from files in this api directory (users, activities...)
 const usersRouter = require("./users");

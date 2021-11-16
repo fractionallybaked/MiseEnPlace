@@ -9,8 +9,9 @@ async function dropTables() {
     // drop all tables, in the correct order
     client.query(`
       DROP TABLE IF EXISTS cart;
-      DROP TABLE IF EXISTS products;
+      DROP TABLE IF EXISTS product_type;
       DROP TABLE IF EXISTS types;
+      DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS users;
     `);
   } catch (error) {
@@ -31,18 +32,23 @@ async function createTables() {
         password varchar(255) NOT NULL,
         "isAdmin" boolean default false
       ); 
-      CREATE TABLE types (
-        id SERIAL PRIMARY KEY,
-        name varchar(255) UNIQUE NOT NULL
-      );
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
         description TEXT NOT NULL,
         price INTEGER NOT NULL,
         quantity INTEGER NOT NULL,
-        photo varchar(255) NOT NULL,
-        "typeId" INTEGER REFERENCES types(id)
+        photo varchar(255) NOT NULL
+        
+      );
+      CREATE TABLE types (
+        id SERIAL PRIMARY KEY,
+        name varchar(255) UNIQUE NOT NULL
+      );
+      CREATE TABLE product_type(
+        "productId" INTEGER REFERENCES products(id),
+        "typeId" INTEGER REFERENCES types(id),
+        UNIQUE ("productId", "typeId")
       );
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
@@ -77,7 +83,7 @@ async function createInitialUsers() {
       { username: "bob", password: "iliketurtles", isAdmin: true },
       { username: "emelie", password: "fornarnia!", isAdmin: true },
       { username: "kendra", password: "darthvaderrules", isAdmin: true },
-      { username: "ed", password: "ilovebakedgoods", isAdmin: false },
+      { username: "ed", password: "ilovebakedgoods", isAdmin: false }
     ];
     const users = await Promise.all(usersToCreate.map(createUser));
 
@@ -96,17 +102,24 @@ async function createInitialTypes() {
 
     const typesToCreate = [
       {
-        name: "Cake",
+        name: "cake"
       },
       {
-        name: "Cookie",
+        name: "cookie"
       },
       {
-        name: "Tea",
+        name: "tea"
       },
       {
-        name: "Coffee",
+        name: "coffee"
       },
+      {
+        name: "beverages"
+      },
+      {
+        name: "baked goods"
+      }
+
     ];
 
     const types = await Promise.all(typesToCreate.map(createType));
@@ -131,7 +144,7 @@ async function createInitialProducts() {
         price: 1500,
         quantity: 5,
         photo: "../angelsfood.jpeg",
-        typeId: 1,
+        type: ['cake', 'baked goods']
       },
       {
         name: "Chai Tea Set",
@@ -139,7 +152,7 @@ async function createInitialProducts() {
         price: 1200,
         quantity: 10,
         photo: "../chaiteaset.jpeg",
-        typeId: 3,
+        type: ['tea', 'beverages']
       },
       {
         name: "Chocolate Chip Cookies",
@@ -147,7 +160,7 @@ async function createInitialProducts() {
         price: 700,
         quantity: 2,
         photo: "../chocolatechipcookie.jpeg",
-        typeId: 2,
+        type: ['cookie', 'baked goods']
       },
       {
         name: "Cheesecake",
@@ -155,8 +168,8 @@ async function createInitialProducts() {
         price: 900,
         quantity: 4,
         photo: "../cheesecake.jpeg",
-        typeId: 1,
-      },
+        type: ['cake', 'baked goods', 'chilled dessert']
+      }
     ];
     const products = await Promise.all(productsToCreate.map(createProduct));
 
@@ -191,10 +204,12 @@ async function createInitialCarts() {
 
 async function populateInitialData() {
   try {
-    await createInitialUsers();
-    await createInitialTypes();
-    await createInitialProducts();
-    await createInitialCarts();
+
+    await createInitialUsers()
+    // await createInitialTypes()
+    await createInitialProducts()
+    //await createInitialCarts()
+
   } catch (error) {
     throw error;
   }
