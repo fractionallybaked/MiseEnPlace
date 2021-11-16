@@ -48,14 +48,13 @@ cartRouter.patch("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const userCart = await getCartByUser(userId);
   const cartId = userCart.id;
-  const { productId, quantity, purchased } = req.body;
+  const { productId, quantity } = req.body;
 
   try {
     const newCart = await updateCart({
       cartId,
       productId,
       quantity,
-      purchased,
     });
     res.send(newCart);
   } catch (err) {
