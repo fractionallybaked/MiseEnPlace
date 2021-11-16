@@ -28,13 +28,13 @@ cartRouter.get("/:userId", async (req, res, next) => {
 
 cartRouter.post("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  const { productId, quantity, isPurchased } = req.body;
+  const { productId, quantity, purchased } = req.body;
   try {
     const updatedCart = await addItemToCart({
       productId,
       userId,
       quantity,
-      isPurchased,
+      purchased,
     });
     res.send(updatedCart);
   } catch (err) {
