@@ -9,7 +9,7 @@ const {
 } = require("../db");
 
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET = "neverTell" } = process.env;
+const { JWT_SECRET } = process.env;
 
 usersRouter.post("/register", async (req, res, next) => {
   const { username, password, isAdmin } = req.body;

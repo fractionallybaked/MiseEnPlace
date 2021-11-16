@@ -1,6 +1,6 @@
-const {client} = require("./client");
+const { client } = require("./client");
 
-async function getAllTypes(){
+async function getAllTypes() {
     try {
         const { rows: types } = await client.query(`
         SELECT *
@@ -12,8 +12,7 @@ async function getAllTypes(){
     }
 }
 
-
-async function getTypeById(id){
+async function getTypeById(id) {
     try {
         const { rows: [type] } = await client.query(`
         SELECT *
@@ -27,30 +26,45 @@ async function getTypeById(id){
     }
 }
 
-async function createType({name}){
+async function createProductType(productId, typeId) {
     try {
-        const { rows: [type] } = await client.query(`
-        INSERT INTO types (name)
-        VALUES ($1)
-        RETURNING *;
-        `, [name]);
+        await client.query(`
+        INSERT INTO product_type("productId", "typeId")
+        VALUES ($1, $2)
+        ON CONFLICT ("productId", "typeId") DO NOTHING;
+`, [productId, typeId]);
 
-        return type;
     } catch (error) {
-        console.error(error);
+        throw error;
     }
 }
 
-async function addTypeToProduct(id, productId){
+async function destroyType(id) {
+    try {
+        await client.query(`
+            DELETE
+            FROM product_type
+            WHERE "typeId" = $1
+            `, [id]);
 
-}
+        const { rows: [deletedType] } = await client.query(`
+            DELETE 
+            FROM types
+            WHERE id=$1
+            RETURNING *;
+            `, [id]);
 
-async function destroyType(id){
-
+        return deletedProduct;
+    } catch (error) {
+        throw error;
+    }
 }
 
 module.exports = {
     getAllTypes,
     getTypeById,
-    createType
+   
+    createProductType,
+    
+    destroyType
 }
