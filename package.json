@@ -10,8 +10,8 @@
     "server:dev": "nodemon index.js",
     "db:build": "node ./db/init_db",
     "start": "node index.js",
-    "seed:dev": "nodemon ./db/seed.js",
-    "seed": "node ./db/seed.js", 
+    "seed:dev": "nodemon ./db/init_db.js",
+    "seed": "node ./db/init_db.js", 
     "start:dev": "nodemon index.js"
   },
   "keywords": [],
