@@ -93,7 +93,7 @@ cartRouter.patch("/:userId/checkout", async (req, res, next) => {
 
 //
 
-cartRouter.post("/:userId/history", async (req, res, next) => {
+cartRouter.get("/:userId/history", async (req, res, next) => {
   const userId = req.params.userId;
   try {
     const purchHistory = await getAllProductsByUser(userId);
