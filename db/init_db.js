@@ -7,7 +7,7 @@ async function dropTables() {
   try {
     console.log("Dropping All Tables...");
     // drop all tables, in the correct order
-    client.query(`
+    await client.query(`
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product_type;
       DROP TABLE IF EXISTS types;
@@ -39,7 +39,6 @@ async function createTables() {
         price INTEGER NOT NULL,
         quantity INTEGER NOT NULL,
         photo varchar(255) NOT NULL
-        
       );
       CREATE TABLE types (
         id SERIAL PRIMARY KEY,
@@ -206,9 +205,9 @@ async function populateInitialData() {
   try {
 
     await createInitialUsers()
-    // await createInitialTypes()
+    //await createInitialTypes()
     await createInitialProducts()
-    //await createInitialCarts()
+    await createInitialCarts()
 
   } catch (error) {
     throw error;
