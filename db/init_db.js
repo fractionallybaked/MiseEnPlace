@@ -1,14 +1,7 @@
 // code to build and initialize DB goes here
-const {
-  client
-} = require('./client');
+const { client } = require("./client");
 
-const {
-  createUser,
-  createProduct,
-  createType,
-  addItemToCart
-} = require('./')
+const { createUser, createProduct, createType, addItemToCart } = require("./");
 
 async function dropTables() {
   try {
@@ -67,7 +60,6 @@ async function createTables() {
         UNIQUE("productId", "userId")
       );    
     `);
-
   } catch (error) {
     console.error("Error building tables");
     throw error;
@@ -106,7 +98,7 @@ async function createInitialUsers() {
 
 async function createInitialTypes() {
   try {
-    console.log("starting to create types...")
+    console.log("starting to create types...");
 
     const typesToCreate = [
       {
@@ -127,11 +119,10 @@ async function createInitialTypes() {
       {
         name: "baked goods"
       }
+
     ];
 
-    const types = await Promise.all(
-      typesToCreate.map(createType)
-    );
+    const types = await Promise.all(typesToCreate.map(createType));
     console.log("types created:");
     console.log(types);
 
@@ -141,7 +132,6 @@ async function createInitialTypes() {
     throw error;
   }
 }
-
 
 async function createInitialProducts() {
   try {
@@ -181,9 +171,7 @@ async function createInitialProducts() {
         type: ['cake', 'baked goods', 'chilled dessert']
       }
     ];
-    const products = await Promise.all(
-      productsToCreate.map(createProduct)
-    );
+    const products = await Promise.all(productsToCreate.map(createProduct));
 
     console.log("products created:");
     console.log(products);
@@ -194,7 +182,6 @@ async function createInitialProducts() {
     throw error;
   }
 }
-
 
 async function createInitialCarts() {
   console.log("Starting to create carts...");
@@ -214,7 +201,6 @@ async function createInitialCarts() {
     throw error;
   }
 }
-
 
 async function populateInitialData() {
   try {
