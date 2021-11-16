@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "seed": "node ./db/init_db.js", 
+    "seed": "node ./db/init_db.js",
     "postinstall": "npm run client:build",
     "client:dev": "react-scripts start",
     "client:build": "react-scripts build",
