@@ -1,13 +1,16 @@
 const { client } = require("./client");
 
 async function createUser({ username, password, isAdmin }){
-
+    let isAdminBoolean = true;
+    if(!isAdmin) {
+        isAdminBoolean = false;
+    }    
     try{
         const {rows: [user] } = await client.query(`
         INSERT INTO users(username, password, "isAdmin")
         VALUES ($1, $2, $3)
         RETURNING *;`
-        , [username, password, isAdmin]);
+        , [username, password, isAdminBoolean]);
 
         delete user.password;        
         return user;
@@ -23,9 +26,13 @@ async function getUser({username, password}){
                 WHERE username = $1;
             `, [username]);
 
-        if (user.password !== password){
-            return
+        if (user) {
+            if(user.password !== password){
+                return
+            }
         }
+        else 
+            return
         delete user.password;
         return user;
     } catch (error){
