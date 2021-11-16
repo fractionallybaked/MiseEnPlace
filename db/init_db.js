@@ -7,7 +7,7 @@ async function dropTables() {
   try {
     console.log("Dropping All Tables...");
     // drop all tables, in the correct order
-    client.query(`
+    await client.query(`
       DROP TABLE IF EXISTS cart;
       DROP TABLE IF EXISTS product_type;
       DROP TABLE IF EXISTS types;
@@ -83,7 +83,7 @@ async function createInitialUsers() {
       { username: "bob", password: "iliketurtles", isAdmin: true },
       { username: "emelie", password: "fornarnia!", isAdmin: true },
       { username: "kendra", password: "darthvaderrules", isAdmin: true },
-      { username: "ed", password: "ilovebakedgoods", isAdmin: false }
+      { username: "ed", password: "ilovebakedgoods", isAdmin: false },
     ];
     const users = await Promise.all(usersToCreate.map(createUser));
 
@@ -102,24 +102,23 @@ async function createInitialTypes() {
 
     const typesToCreate = [
       {
-        name: "cake"
+        name: "cake",
       },
       {
-        name: "cookie"
+        name: "cookie",
       },
       {
-        name: "tea"
+        name: "tea",
       },
       {
-        name: "coffee"
+        name: "coffee",
       },
       {
-        name: "beverages"
+        name: "beverages",
       },
       {
-        name: "baked goods"
-      }
-
+        name: "baked goods",
+      },
     ];
 
     const types = await Promise.all(typesToCreate.map(createType));
@@ -144,7 +143,7 @@ async function createInitialProducts() {
         price: 1500,
         quantity: 5,
         photo: "../angelsfood.jpeg",
-        type: ['cake', 'baked goods']
+        type: ["cake", "baked goods"],
       },
       {
         name: "Chai Tea Set",
@@ -152,7 +151,7 @@ async function createInitialProducts() {
         price: 1200,
         quantity: 10,
         photo: "../chaiteaset.jpeg",
-        type: ['tea', 'beverages']
+        type: ["tea", "beverages"],
       },
       {
         name: "Chocolate Chip Cookies",
@@ -160,7 +159,7 @@ async function createInitialProducts() {
         price: 700,
         quantity: 2,
         photo: "../chocolatechipcookie.jpeg",
-        type: ['cookie', 'baked goods']
+        type: ["cookie", "baked goods"],
       },
       {
         name: "Cheesecake",
@@ -168,8 +167,8 @@ async function createInitialProducts() {
         price: 900,
         quantity: 4,
         photo: "../cheesecake.jpeg",
-        type: ['cake', 'baked goods', 'chilled dessert']
-      }
+        type: ["cake", "baked goods", "chilled dessert"],
+      },
     ];
     const products = await Promise.all(productsToCreate.map(createProduct));
 
@@ -204,12 +203,9 @@ async function createInitialCarts() {
 
 async function populateInitialData() {
   try {
-
-    await createInitialUsers()
-    // await createInitialTypes()
-    await createInitialProducts()
-    //await createInitialCarts()
-
+    await createInitialUsers();
+    await createInitialProducts();
+    await createInitialCarts();
   } catch (error) {
     throw error;
   }
