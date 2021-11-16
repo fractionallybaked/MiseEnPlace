@@ -29,8 +29,8 @@ async function createTables() {
       CREATE TABLE users(
         id SERIAL PRIMARY KEY,
         username varchar(255) UNIQUE NOT NULL,
-        password varchar(255) NOT NULL,
-        "isAdmin" boolean default false
+        "isAdmin" BOOLEAN DEFAULT false, 
+        password varchar(255) NOT NULL
       ); 
       CREATE TABLE products (
         id SERIAL PRIMARY KEY,
