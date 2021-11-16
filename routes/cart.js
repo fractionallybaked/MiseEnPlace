@@ -8,6 +8,7 @@ const {
   deleteCartItem,
   addItemToCart,
   checkoutCart,
+  getAllProductsByUser,
 } = require("../db");
 
 //
@@ -85,6 +86,18 @@ cartRouter.patch("/:userId/checkout", async (req, res, next) => {
   try {
     const boughtCart = await checkoutCart(userId);
     res.send(boughtCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//
+
+cartRouter.post("/:userId/history", async (req, res, next) => {
+  const userId = req.params.userId;
+  try {
+    const purchHistory = await getAllProductsByUser(userId);
+    res.send(purchHistory);
   } catch (err) {
     next(err);
   }

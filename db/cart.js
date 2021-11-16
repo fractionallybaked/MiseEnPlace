@@ -108,10 +108,30 @@ async function checkoutCart(userId) {
 
 //
 
+async function getAllProductsByUser(userId) {
+  try {
+    const { rows: cart } = await client.query(
+      `
+  SELECT *
+  FROM cart
+  WHERE "userId"=$1 AND purchased=true
+  RETURNING *;
+  `,
+      [userId]
+    );
+    return cart;
+  } catch (err) {
+    throw err;
+  }
+}
+
+//
+
 module.exports = {
   getCartByUser,
   updateCart,
   deleteCartItem,
   addItemToCart,
   checkoutCart,
+  getAllProductsByUser,
 };
