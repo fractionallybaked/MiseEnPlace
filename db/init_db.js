@@ -39,7 +39,6 @@ async function createTables() {
         price INTEGER NOT NULL,
         quantity INTEGER NOT NULL,
         photo varchar(255) NOT NULL
-        
       );
       CREATE TABLE types (
         id SERIAL PRIMARY KEY,
@@ -203,9 +202,18 @@ async function createInitialCarts() {
 
 async function populateInitialData() {
   try {
+<<<<<<< HEAD
     await createInitialUsers();
     await createInitialProducts();
     await createInitialCarts();
+=======
+
+    await createInitialUsers()
+
+    await createInitialProducts()
+    await createInitialCarts()
+
+>>>>>>> 71b067978d39c9fbe3f74420ae2f067c119903eb
   } catch (error) {
     throw error;
   }
