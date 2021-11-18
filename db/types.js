@@ -63,8 +63,6 @@ async function destroyType(id) {
 module.exports = {
     getAllTypes,
     getTypeById,
-   
     createProductType,
-    
     destroyType
 }
