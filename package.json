@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "seed": "node ./db/init_db.js",
     "postinstall": "npm run client:build",
     "client:dev": "react-scripts start",
     "client:build": "react-scripts build",
-    "server:dev": "nodemon index.js",
-    "db:build": "node ./db/init_db",
-    "start": "node index.js"
+    "start": "node index.js",
+    "seed:dev": "nodemon ./db/init_db.js",
+    "start:dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
