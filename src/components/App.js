@@ -4,6 +4,10 @@ import {
   getSomething
 } from '../api';
 
+import {
+  Navbar
+} from './'
+
 const App = () => {
   const [message, setMessage] = useState('');
 
@@ -19,6 +23,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Navbar />
       <h1>Hello, World!</h1>
       <h2>{ message }</h2>
     </div>

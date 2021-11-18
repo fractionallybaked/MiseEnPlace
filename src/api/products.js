@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-const BASE = "";
+const BASE = "https://polar-harbor-90312.herokuapp.com/api";
 
 export async function getAllProducts() {
     try {
