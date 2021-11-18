@@ -10,18 +10,21 @@ import { getAllProducts } from "../api/products";
 
 import {
   Navbar,
-  SingleProduct
+  SingleProduct,
+  CreateProduct
 } from "./";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     async function setUp() {
       try {
         const products = await getAllProducts();
-        setAllProducts(products);
+      
+        setAllProducts(products.allProducts);
       } catch (err) {
         console.log(err);
       }
@@ -31,7 +34,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar 
+      isLoggedIn={isLoggedIn}
+      setIsLoggedIn= {setIsLoggedIn}
+       />
     
       <Switch>
         <Route path="/about">
@@ -48,6 +54,9 @@ const App = () => {
         </Route>
         <Route path="/cart">
           <h2>cart</h2>
+        </Route>
+        <Route path="/admin">
+        <CreateProduct setAllProducts={setAllProducts} />
         </Route>
         <Route exact path="/">
           <h2>home</h2>
