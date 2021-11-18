@@ -7,11 +7,13 @@ import {
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
+// import { getMyID } from "../api/users";
 
 import {
   Navbar,
   SingleProduct,
-  CreateProduct
+  CreateProduct,
+  AddType,
 } from "./";
 
 const App = () => {
@@ -23,8 +25,13 @@ const App = () => {
     async function setUp() {
       try {
         const products = await getAllProducts();
-      
+
         setAllProducts(products.allProducts);
+
+        // const currentUser = await getMyID();
+        // if (isLoggedIn && currentUser.isAdmin) {
+        //   setIsAdmin(true);
+        // }
       } catch (err) {
         console.log(err);
       }
@@ -34,11 +41,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar 
-      isLoggedIn={isLoggedIn}
-      setIsLoggedIn= {setIsLoggedIn}
-       />
-    
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
+
       <Switch>
         <Route path="/about">
           <h2>about</h2>
@@ -56,12 +63,19 @@ const App = () => {
           <h2>cart</h2>
         </Route>
         <Route path="/admin">
-        <CreateProduct setAllProducts={setAllProducts} />
+          {isAdmin
+            ? <CreateProduct setAllProducts={setAllProducts} />
+            : null
+          }
+          <AddType 
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
+          isAdmin={isAdmin}/>
         </Route>
         <Route exact path="/">
           <h2>home</h2>
         </Route>
-        
+
       </Switch>
     </div>
   );
