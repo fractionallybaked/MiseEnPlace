@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
-// import { getMyID } from "../api/users";
+import { getMyID } from "../api/users";
 
 import {
   Navbar,
@@ -16,6 +16,7 @@ import {
   AddType,
   Register,
   Login,
+  Cart,
 } from ".";
 
 const App = () => {
@@ -30,10 +31,10 @@ const App = () => {
 
         setAllProducts(products.allProducts);
 
-        // const currentUser = await getMyID();
-        // if (isLoggedIn && currentUser.isAdmin) {
-        //   setIsAdmin(true);
-        // }
+        const currentUser = await getMyID();
+        if (isLoggedIn && currentUser.isAdmin) {
+          setIsAdmin(true);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -59,7 +60,7 @@ const App = () => {
           <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/cart">
-          <h2>cart</h2>
+          <Cart />
         </Route>
         <Route path="/admin">
           {isAdmin ? <CreateProduct setAllProducts={setAllProducts} /> : null}

@@ -1,0 +1,54 @@
+import React, { useState, useEffect } from "react";
+
+import { getToken } from "../auth";
+
+import { getUserCart } from "../api/cart";
+
+import { getProductById } from "../api/products";
+import SingleProduct from "./SingleProduct";
+import { getMyID } from "../api/users";
+
+const Cart = () => {
+  const token = getToken();
+
+  const [userCart, setUserCart] = useState([]);
+
+  useEffect(() => {
+    async function getCart(userId) {
+      const userCart = await getUserCart(userId.id);
+      setUserCart(userCart);
+    }
+
+    const userId = getMyID();
+    if (userId) {
+      getCart(userId);
+    }
+  }, []);
+
+  const [allProducts, setAllProducts] = useState([]);
+
+  if (token) {
+    return (
+      <div>
+        <div className="cart-container">
+          <h2>Your Cart</h2>
+          <div className="cart-products">
+            {userCart.map(async (item) => {
+              const productId = item.productId;
+              const newProduct = await getProductById(productId);
+              setAllProducts([...allProducts, newProduct]);
+              return (
+                <div key={productId}>
+                  <SingleProduct allProducts={allProducts} />;
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  } else {
+  }
+};
+
+export default Cart;

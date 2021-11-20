@@ -1,6 +1,10 @@
 export { default as App } from "./App";
 export { default as Navbar } from "./Navbar";
 export { default as SingleProduct } from "./SingleProduct";
+export { default as Cart } from "./Cart";
+export { default as ItemAdd } from "./ItemAdd";
+export { default as ItemDelete } from "./ItemDelete";
+export { default as ItemUpdate } from "./ItemUpdate";
 export { default as CreateProduct } from "./CreateProduct";
 export { default as EditProduct } from "./EditProduct";
 export { default as DeleteProduct } from "./DeleteProduct";
