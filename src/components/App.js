@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
-// import { getMyID } from "../api/users";
+import { getMyID } from "../api/users";
 
 import {
   Navbar,
@@ -28,10 +28,10 @@ const App = () => {
 
         setAllProducts(products.allProducts);
 
-        // const currentUser = await getMyID();
-        // if (isLoggedIn && currentUser.isAdmin) {
-        //   setIsAdmin(true);
-        // }
+        const currentUser = await getMyID();
+        if (isLoggedIn && currentUser.isAdmin) {
+          setIsAdmin(true);
+        }
       } catch (err) {
         console.log(err);
       }

@@ -46,6 +46,7 @@ export async function getMyID() {
 
 export async function getAllUsers() {
   try {
+    const token = getToken();
     const { data } = await axios.get(`${BASE}/`, {
       headers: {
         "Content-Type": "application/json",
