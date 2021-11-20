@@ -21,6 +21,8 @@ const Cart = () => {
     }
   }, []);
 
+  const [allProducts, setAllProducts] = useState([]);
+
   if (token) {
     return (
       <div>
@@ -30,9 +32,9 @@ const Cart = () => {
             {userCart.forEach(async (item) => {
               const productId = item.productId;
               const newProduct = await getProductById(productId);
-              console.log(newProduct);
-              // <SingleProduct allProducts={newProduct}/>
+              setAllProducts(...newProduct);
             })}
+            <SingleProduct allProducts={allProducts} />;
           </div>
         </div>
       </div>
