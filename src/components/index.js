@@ -1,7 +1,10 @@
-export { default as App } from './App';
-export { default as Navbar } from './Navbar';
-export { default as SingleProduct } from './SingleProduct';
-export { default as CreateProduct } from './CreateProduct';
-export { default as EditProduct } from './EditProduct';
-export { default as DeleteProduct } from './DeleteProduct';
-export { default as AddType } from './AddType';
+export { default as App } from "./App";
+export { default as Navbar } from "./Navbar";
+export { default as SingleProduct } from "./SingleProduct";
+export { default as CreateProduct } from "./CreateProduct";
+export { default as EditProduct } from "./EditProduct";
+export { default as DeleteProduct } from "./DeleteProduct";
+export { default as AddType } from "./AddType";
+export { default as Login } from "./Login";
+export { default as Register } from "./Register";
+export { default as AllProductsPage } from "./AllProductsPage";
