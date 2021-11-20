@@ -14,7 +14,9 @@ import {
   SingleProduct,
   CreateProduct,
   AddType,
-} from "./";
+  Register,
+  Login,
+} from ".";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -41,10 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-      />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <Switch>
         <Route path="/about">
@@ -54,28 +53,25 @@ const App = () => {
           <SingleProduct allProducts={allProducts} />
         </Route>
         <Route path="/login">
-          <h2>login</h2>
+          <Login setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/register">
-          <h2>register</h2>
+          <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/cart">
           <h2>cart</h2>
         </Route>
         <Route path="/admin">
-          {isAdmin
-            ? <CreateProduct setAllProducts={setAllProducts} />
-            : null
-          }
-          <AddType 
-          allProducts={allProducts}
-          setAllProducts={setAllProducts}
-          isAdmin={isAdmin}/>
+          {isAdmin ? <CreateProduct setAllProducts={setAllProducts} /> : null}
+          <AddType
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            isAdmin={isAdmin}
+          />
         </Route>
         <Route exact path="/">
           <h2>home</h2>
         </Route>
-
       </Switch>
     </div>
   );
