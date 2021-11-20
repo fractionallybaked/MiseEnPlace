@@ -37,6 +37,7 @@ async function createProduct({
 }
 
 async function createType(typeList) {
+    console.log(typeList, "!!!createtype")
     if (typeList.length === 0) {
         return;
     }

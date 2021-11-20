@@ -170,6 +170,7 @@ async function createInitialProducts() {
         quantity: 4,
         photo:
           "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
+
         type: ["cake", "baked goods", "chilled dessert"],
       },
     ];
@@ -207,7 +208,6 @@ async function createInitialCarts() {
 async function populateInitialData() {
   try {
     await createInitialUsers();
-
     await createInitialProducts();
     await createInitialCarts();
   } catch (error) {
