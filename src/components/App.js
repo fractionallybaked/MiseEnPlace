@@ -64,13 +64,16 @@ const App = () => {
         </Route>
         <Route path="/admin">
           {isAdmin
-            ? <CreateProduct setAllProducts={setAllProducts} />
+            ? <>
+              <CreateProduct setAllProducts={setAllProducts} />
+              <AddType
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                isAdmin={isAdmin} />
+            </>
             : null
           }
-          <AddType 
-          allProducts={allProducts}
-          setAllProducts={setAllProducts}
-          isAdmin={isAdmin}/>
+
         </Route>
         <Route exact path="/">
           <h2>home</h2>
