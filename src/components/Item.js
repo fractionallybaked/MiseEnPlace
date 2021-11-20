@@ -20,7 +20,12 @@ const Item = (cartItem) => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
-            const update = await updateCart(cartItem.id, product.id, quantity);
+            const update = await updateCart(
+              cartItem.id,
+              product.id,
+              quantity,
+              userId
+            );
             return update;
           } catch (err) {
             throw err;

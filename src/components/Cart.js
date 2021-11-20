@@ -4,9 +4,9 @@ import { getToken } from "../auth";
 
 import { getUserCart } from "../api/cart";
 
-import Item from "./Item";
 import { getProductById } from "../api/products";
 import SingleProduct from "./SingleProduct";
+import { getMyID } from "../api/users";
 
 const Cart = () => {
   const token = getToken();
@@ -14,8 +14,11 @@ const Cart = () => {
   const [userCart, setUserCart] = useState([]);
 
   useEffect(async () => {
-    const userCart = await getUserCart();
-    setUserCart(userCart);
+    const userId = getMyID();
+    if (userId) {
+      const userCart = await getUserCart(userId.id);
+      setUserCart(userCart);
+    }
   }, []);
 
   if (token) {

@@ -16,6 +16,7 @@ import {
   AddType,
   Register,
   Login,
+  Cart,
 } from ".";
 
 const App = () => {
