@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { storeUser } from "../auth";
 import { loginUser } from "../api/users";
 
-const Login = ({ setIsLoggedIn }) => {
+const Login = ({ setIsLoggedIn, setIsAdmin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,6 +27,7 @@ const Login = ({ setIsLoggedIn }) => {
                 const results = await loginUser(username, password);
                 storeUser(results.token);
                 setIsLoggedIn(true);
+                setIsAdmin(results.user.isAdmin);
                 setUsername("");
                 setPassword("");
                 handleClick();

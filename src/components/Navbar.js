@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
   return (
     <nav>
       <section className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
         <Link to="/products">Products</Link>
-        <Link to="/admin">Admin</Link>
+        {isAdmin ? <Link to="/admin">Admin</Link> : null}
         {isLoggedIn ? (
           <Link
             to="/login"
             onClick={() => {
               clearCurrentUser();
               setIsLoggedIn(false);
+              setIsAdmin(false);
             }}
           >
             Logout

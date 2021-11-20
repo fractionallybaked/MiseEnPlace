@@ -44,7 +44,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+      />
 
       <Switch>
         <Route path="/about">
@@ -54,7 +59,7 @@ const App = () => {
           <SingleProduct allProducts={allProducts} />
         </Route>
         <Route path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} />
+          <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
         </Route>
         <Route path="/register">
           <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
