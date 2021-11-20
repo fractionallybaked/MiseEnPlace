@@ -5,21 +5,27 @@ import { getToken } from "../auth";
 import { getUserCart } from "../api/cart";
 
 import { getProductById } from "../api/products";
-import SingleProduct from "./SingleProduct";
+
 import { getMyID } from "../api/users";
+
+import SingleProduct from "./SingleProduct";
+
+import Checkout from "./Checkout";
 
 const Cart = () => {
   const token = getToken();
 
   const [userCart, setUserCart] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     async function getCart(userId) {
+      const usersID = await getMyID();
+      setUserId(usersID);
       const userCart = await getUserCart(userId.id);
       setUserCart(userCart);
     }
 
-    const userId = getMyID();
     if (userId) {
       getCart(userId);
     }
@@ -43,6 +49,7 @@ const Cart = () => {
                 </div>
               );
             })}
+            {/* <Checkout userId={userId} /> */}
           </div>
         </div>
       </div>
