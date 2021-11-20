@@ -13,11 +13,15 @@ const Cart = () => {
 
   const [userCart, setUserCart] = useState([]);
 
-  useEffect(async () => {
-    const userId = getMyID();
-    if (userId) {
+  useEffect(() => {
+    async function getCart(userId) {
       const userCart = await getUserCart(userId.id);
       setUserCart(userCart);
+    }
+
+    const userId = getMyID();
+    if (userId) {
+      getCart(userId);
     }
   }, []);
 
@@ -29,12 +33,16 @@ const Cart = () => {
         <div className="cart-container">
           <h2>Your Cart</h2>
           <div className="cart-products">
-            {userCart.forEach(async (item) => {
+            {userCart.map(async (item) => {
               const productId = item.productId;
               const newProduct = await getProductById(productId);
-              setAllProducts(...newProduct);
+              setAllProducts([...allProducts, newProduct]);
+              return (
+                <div key={productId}>
+                  <SingleProduct allProducts={allProducts} />;
+                </div>
+              );
             })}
-            <SingleProduct allProducts={allProducts} />;
           </div>
         </div>
       </div>
