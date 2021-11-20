@@ -19,19 +19,36 @@ const Cart = () => {
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    async function getCart(userId) {
+    async function getCart() {
       const usersID = await getMyID();
       setUserId(usersID);
-      const userCart = await getUserCart(userId.id);
-      setUserCart(userCart);
+
+      if (usersID) {
+        const userCart = await getUserCart(usersID.id);
+        setUserCart(userCart);
+      }
     }
 
-    if (userId) {
-      getCart(userId);
-    }
+    getCart();
   }, []);
 
   const [allProducts, setAllProducts] = useState([]);
+
+  useEffect(() => {
+    console.log(userCart);
+    async function setProducts() {
+      const allProducts = await Promise.all(
+        userCart.map(async (item) => {
+          const productId = item.productId;
+          const newProduct = await getProductById(productId);
+          return newProduct;
+        })
+      );
+      console.log("ALLPRODUCTS", allProducts);
+      setAllProducts(allProducts);
+    }
+    setProducts();
+  }, [userCart]);
 
   if (token) {
     return (
@@ -39,16 +56,7 @@ const Cart = () => {
         <div className="cart-container">
           <h2>Your Cart</h2>
           <div className="cart-products">
-            {userCart.map(async (item) => {
-              const productId = item.productId;
-              const newProduct = await getProductById(productId);
-              setAllProducts([...allProducts, newProduct]);
-              return (
-                <div key={productId}>
-                  <SingleProduct allProducts={allProducts} />;
-                </div>
-              );
-            })}
+            <SingleProduct allProducts={allProducts} />
             {/* <Checkout userId={userId} /> */}
           </div>
         </div>
