@@ -141,7 +141,8 @@ async function createInitialProducts() {
         description: "If you eat it, you'll grow wings",
         price: 1500,
         quantity: 5,
-        photo: "../angelsfood.jpeg",
+        photo:
+          "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/90e96872-f2aa-4564-befb-ebcffac92fd4/Derivates/5809bfb5-e7ae-4826-ad4a-93f191e489ea.jpg",
         type: ["cake", "baked goods"],
       },
       {
@@ -149,7 +150,8 @@ async function createInitialProducts() {
         description: "Chai Tea.  Tea tea.",
         price: 1200,
         quantity: 10,
-        photo: "../chaiteaset.jpeg",
+        photo:
+          "https://imbibemagazine.com/wp-content/uploads/2019/10/chai-tea-iStock-67194691-crdt-GeloKorol.jpg",
         type: ["tea", "beverages"],
       },
       {
@@ -157,7 +159,8 @@ async function createInitialProducts() {
         description: "Would you like some cookie with your chocolate?",
         price: 700,
         quantity: 2,
-        photo: "../chocolatechipcookie.jpeg",
+        photo:
+          "https://cdn.loveandlemons.com/wp-content/uploads/2020/02/vegan-chocolate-chip-cookies.jpg",
         type: ["cookie", "baked goods"],
       },
       {
@@ -165,7 +168,9 @@ async function createInitialProducts() {
         description: "Is it cheese or is it cake?",
         price: 900,
         quantity: 4,
-        photo: "../cheesecake.jpeg",
+        photo:
+          "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
+
         type: ["cake", "baked goods", "chilled dessert"],
       },
     ];
