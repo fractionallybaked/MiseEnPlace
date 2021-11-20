@@ -7,18 +7,33 @@ import {
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
+// import { getMyID } from "../api/users";
 
-import { Navbar, SingleProduct, Cart } from "./";
+import {
+  Navbar,
+  SingleProduct,
+  CreateProduct,
+  AddType,
+  Register,
+  Login,
+} from ".";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     async function setUp() {
       try {
         const products = await getAllProducts();
-        setAllProducts(products);
+
+        setAllProducts(products.allProducts);
+
+        // const currentUser = await getMyID();
+        // if (isLoggedIn && currentUser.isAdmin) {
+        //   setIsAdmin(true);
+        // }
       } catch (err) {
         console.log(err);
       }
@@ -28,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <Switch>
         <Route path="/about">
@@ -38,13 +53,21 @@ const App = () => {
           <SingleProduct allProducts={allProducts} />
         </Route>
         <Route path="/login">
-          <h2>login</h2>
+          <Login setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/register">
-          <h2>register</h2>
+          <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/cart">
           <Cart />
+        </Route>
+        <Route path="/admin">
+          {isAdmin ? <CreateProduct setAllProducts={setAllProducts} /> : null}
+          <AddType
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            isAdmin={isAdmin}
+          />
         </Route>
         <Route exact path="/">
           <h2>home</h2>
