@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 // This is the Web Server
 const express = require("express");
@@ -29,12 +29,10 @@ server.use((req, res, next) => {
 
 //404 handler
 server.get("*", (req, res) => {
-  res
-    .status(404)
-    .send({
-      error: "404 - Not Found",
-      message: "No route found for the requested URL",
-    });
+  res.status(404).send({
+    error: "404 - Not Found",
+    message: "No route found for the requested URL",
+  });
 });
 
 // error handling middleware
