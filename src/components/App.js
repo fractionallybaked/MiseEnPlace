@@ -8,10 +8,7 @@ import {
 
 import { getAllProducts } from "../api/products";
 
-import {
-  Navbar,
-  SingleProduct
-} from "./";
+import { Navbar, SingleProduct, Cart } from "./";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,7 +29,7 @@ const App = () => {
   return (
     <div className="App">
       <Navbar />
-    
+
       <Switch>
         <Route path="/about">
           <h2>about</h2>
@@ -47,12 +44,11 @@ const App = () => {
           <h2>register</h2>
         </Route>
         <Route path="/cart">
-          <h2>cart</h2>
+          <Cart />
         </Route>
         <Route exact path="/">
           <h2>home</h2>
         </Route>
-        
       </Switch>
     </div>
   );
