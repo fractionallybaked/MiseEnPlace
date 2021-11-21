@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
+import { SearchBar } from './';
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const handleToggle = () => {
+    setSearchOpen(prev => !prev)
+  }
+
   return (
     <nav>
       <section className="nav-links">
@@ -24,11 +30,24 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
         ) : (
           <Link to="/login"> Sign In</Link>
         )}
-        <Link to="/register">Sign up</Link>
-        <Link to="/cart">
+        {!isLoggedIn ? <Link to="/register">Sign up</Link> : null}
+      </section>
+
+      <section className='nav-cart'>
+
+        <button onClick={() => {
+          handleToggle()
+        }}>
+          <span className="material-icons">{!searchOpen ? "search" : "close"}</span>
+        </button>
+
+        <Link to='/cart'>
           <span className="material-icons">shopping_cart</span>
         </Link>
+
       </section>
+      <SearchBar searchOpen={searchOpen} />
+
     </nav>
   );
 };

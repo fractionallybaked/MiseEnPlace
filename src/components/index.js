@@ -12,3 +12,6 @@ export { default as DeleteProduct } from "./DeleteProduct";
 export { default as AddType } from "./AddType";
 export { default as Login } from "./Login";
 export { default as Register } from "./Register";
+export { default as AllProductsPage } from "./AllProductsPage";
+export { default as SearchBar } from "./SearchBar";
+export { default as Header } from "./Header";

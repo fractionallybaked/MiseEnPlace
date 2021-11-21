@@ -50,9 +50,9 @@ const Cart = () => {
     setProducts();
   }, [userCart]);
 
-  if (token) {
+ 
     return (
-      <div>
+      <div className="all-products-main-container">
         <div className="cart-container">
           <h2>Your Cart</h2>
           <div className="cart-products">
@@ -62,8 +62,7 @@ const Cart = () => {
         </div>
       </div>
     );
-  } else {
-  }
+  
 };
 
 export default Cart;

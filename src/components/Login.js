@@ -14,7 +14,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
   };
 
   return (
-    <div className="login-main-container">
+    <div className="all-products-main-container">
       <div className="login-left-container"></div>
       <div className="login-right-container">
         <div className="login-right-inner-container">
