@@ -4,7 +4,9 @@ const SingleProduct = ({ allProducts }) => {
   return (
     <div>
       {allProducts.length
-        ? allProducts.map((e) => {
+        ? allProducts.map((el) => {
+            const e = el.products;
+            console.log(e.price);
             return (
               <div key={e.id}>
                 <img src={e.photo} />
