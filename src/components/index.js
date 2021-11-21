@@ -15,3 +15,4 @@ export { default as Register } from "./Register";
 export { default as AllProductsPage } from "./AllProductsPage";
 export { default as SearchBar } from "./SearchBar";
 export { default as Header } from "./Header";
+export { default as SearchResultsPage } from "./SearchResultsPage";

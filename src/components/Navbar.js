@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
 import { SearchBar } from './';
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, query, setQuery }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const handleToggle = () => {
     setSearchOpen(prev => !prev)
@@ -46,7 +46,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
         </Link>
 
       </section>
-      <SearchBar searchOpen={searchOpen} />
+      <SearchBar 
+      searchOpen={searchOpen}
+      setSearchOpen={setSearchOpen}
+      query={query}
+      setQuery={setQuery}
+      />
 
     </nav>
   );
