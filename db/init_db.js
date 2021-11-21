@@ -82,7 +82,7 @@ async function createInitialUsers() {
       { username: "bob", password: "iliketurtles", isAdmin: true },
       { username: "emelie", password: "fornarnia!", isAdmin: true },
       { username: "kendra", password: "darthvaderrules", isAdmin: true },
-      { username: "ed", password: "ilovebakedgoods", isAdmin: false }
+      { username: "ed", password: "ilovebakedgoods", isAdmin: false },
     ];
     const users = await Promise.all(usersToCreate.map(createUser));
 
@@ -101,24 +101,23 @@ async function createInitialTypes() {
 
     const typesToCreate = [
       {
-        name: "cake"
+        name: "cake",
       },
       {
-        name: "cookie"
+        name: "cookie",
       },
       {
-        name: "tea"
+        name: "tea",
       },
       {
-        name: "coffee"
+        name: "coffee",
       },
       {
-        name: "beverages"
+        name: "beverages",
       },
       {
-        name: "baked goods"
-      }
-
+        name: "baked goods",
+      },
     ];
 
     const types = await Promise.all(typesToCreate.map(createType));
@@ -142,33 +141,38 @@ async function createInitialProducts() {
         description: "If you eat it, you'll grow wings",
         price: 1500,
         quantity: 5,
-        photo: "../angelsfood.jpeg",
-        type: ['cake', 'baked goods']
+        photo:
+          "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/90e96872-f2aa-4564-befb-ebcffac92fd4/Derivates/5809bfb5-e7ae-4826-ad4a-93f191e489ea.jpg",
+        type: ["cake", "baked goods"],
       },
       {
         name: "Chai Tea Set",
         description: "Chai Tea.  Tea tea.",
         price: 1200,
         quantity: 10,
-        photo: "../chaiteaset.jpeg",
-        type: ['tea', 'beverages']
+        photo:
+          "https://imbibemagazine.com/wp-content/uploads/2019/10/chai-tea-iStock-67194691-crdt-GeloKorol.jpg",
+        type: ["tea", "beverages"],
       },
       {
         name: "Chocolate Chip Cookies",
         description: "Would you like some cookie with your chocolate?",
         price: 700,
         quantity: 2,
-        photo: "../chocolatechipcookie.jpeg",
-        type: ['cookie', 'baked goods']
+        photo:
+          "https://cdn.loveandlemons.com/wp-content/uploads/2020/02/vegan-chocolate-chip-cookies.jpg",
+        type: ["cookie", "baked goods"],
       },
       {
         name: "Cheesecake",
         description: "Is it cheese or is it cake?",
         price: 900,
         quantity: 4,
-        photo: "../cheesecake.jpeg",
-        type: ['cake', 'baked goods', 'chilled dessert']
-      }
+        photo:
+          "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
+
+        type: ["cake", "baked goods", "chilled dessert"],
+      },
     ];
     const products = await Promise.all(productsToCreate.map(createProduct));
 
@@ -203,12 +207,9 @@ async function createInitialCarts() {
 
 async function populateInitialData() {
   try {
-
-    await createInitialUsers()
-
-    await createInitialProducts()
-    await createInitialCarts()
-
+    await createInitialUsers();
+    await createInitialProducts();
+    await createInitialCarts();
   } catch (error) {
     throw error;
   }

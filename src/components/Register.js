@@ -15,20 +15,20 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
 
   if (isLoggedIn && !registered)
     return (
-      <div className="register-main-container">
+      <div className="all-products-main-container">
         You're stilled logged in! Log out before registering as a different
         user.
       </div>
     );
   else if (isLoggedIn && registered)
     return (
-      <div className="register-main-container">
+      <div className="all-products-main-container">
         Account registered! Let's start pitching!
       </div>
     );
 
   return (
-    <div className="register-main-container">
+    <div className="all-products-main-container">
       <div className="register-left-container"></div>
       <div className="register-right-container">
         <div className="register-right-inner-container">

@@ -18,6 +18,8 @@ import {
   Login,
   EditProduct,
   AllProductsPage,
+  Cart,
+  Header
 } from "./";
 
 
@@ -30,13 +32,16 @@ const App = () => {
     async function setUp() {
       try {
         const products = await getAllProducts();
-
         setAllProducts(products.allProducts);
 
         const currentUser = await getMyID();
-        console.log(currentUser)
+       
         if (token && currentUser.isAdmin) {
           setIsAdmin(true);
+        }
+
+        if(token){
+          setIsLoggedIn(true)
         }
       } catch (err) {
         console.log(err);
@@ -47,10 +52,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navbar isLoggedIn={isLoggedIn}
+      <Header />
+      <Navbar
+        isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
-        isAdmin={isAdmin} />
-
+        isAdmin={isAdmin}
+        setIsAdmin={setIsAdmin}
+      />
       <Switch>
         <Route path="/about">
           <h2>about</h2>
@@ -61,13 +69,13 @@ const App = () => {
           isAdmin={isAdmin} />
         </Route>
         <Route path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} />
+          <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
         </Route>
         <Route path="/register">
           <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/cart">
-          <h2>cart</h2>
+          <Cart />
         </Route>
         <Route path="/admin">
           {isAdmin

@@ -23,4 +23,4 @@ typesRouter.get('/:typeName/products', async (req, res) => {
     }
 });
 
-module.exports = typesRouter;
+module.exports = typesRouter
