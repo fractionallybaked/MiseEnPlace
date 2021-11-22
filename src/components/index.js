@@ -16,3 +16,5 @@ export { default as AllProductsPage } from "./AllProductsPage";
 export { default as SearchBar } from "./SearchBar";
 export { default as Header } from "./Header";
 export { default as SearchResultsPage } from "./SearchResultsPage";
+export { default as DropdownMenu } from "./DropdownMenu";
+export { default as Pagination } from "./Pagination";
