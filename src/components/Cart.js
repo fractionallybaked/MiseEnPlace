@@ -13,18 +13,16 @@ import SingleProduct from "./SingleProduct";
 import Checkout from "./Checkout";
 
 const Cart = () => {
-  const token = getToken();
-
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     async function getCart() {
-      const usersID = await getMyID();
-      setUserId(usersID);
+      const user = await getMyID();
+      setUserId(user.id);
 
-      if (usersID) {
-        const userCart = await getUserCart(usersID.id);
+      if (user.id) {
+        const userCart = await getUserCart(user.id);
         setUserCart(userCart);
       }
     }
@@ -50,21 +48,21 @@ const Cart = () => {
     setProducts();
   }, [userCart]);
 
- 
-    return (
-      <div className="all-products-main-container">
-        <div className="cart-container">
-          <h2>Your Cart</h2>
-          <div className="cart-products">
-            <SingleProduct allProducts={allProducts} />
-            <ItemUpdate cartId={userCart.id} productId={} userId={userId}/>
-            <ItemDelete userId={userId} productId={} cartId={userCart.id}/>
-            {/* <Checkout userId={userId} /> */}
-          </div>
+  return (
+    <div className="all-products-main-container">
+      <div className="cart-container">
+        <h2>Your Cart</h2>
+        <div className="cart-products">
+          <SingleProduct
+            allProducts={allProducts}
+            userCart={userCart}
+            setUserCart={setUserCart}
+          />
+          <Checkout userId={userId} />
         </div>
       </div>
-    );
-  
+    </div>
+  );
 };
 
 export default Cart;

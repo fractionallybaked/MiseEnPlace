@@ -57,31 +57,6 @@ export async function removeItemFromCart({ userId, productId, cartId }) {
 
 //
 
-export async function deleteCart(userId) {
-  const token = getToken();
-  const userCart = await getUserCart(userId);
-  const cartId = userCart.id;
-  try {
-    const { data } = await axios.delete(
-      `${BASE}/cart/${userId}/${cartId}`,
-      {
-        userId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/JSON",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    return data;
-  } catch (err) {
-    throw err;
-  }
-}
-
-//
-
 export async function getUserCart(userId) {
   const token = getToken();
   try {

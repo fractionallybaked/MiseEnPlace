@@ -1,5 +1,5 @@
 import React from "react";
-import { checkoutCart } from "../api/cart";
+import { checkoutCart, removeItemFromCart } from "../api/cart";
 
 const Checkout = ({ userId, allProducts, cartId }) => {
   return (
@@ -9,8 +9,21 @@ const Checkout = ({ userId, allProducts, cartId }) => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
-            const checkedOutCart = await checkoutCart(userId);
-            return checkedOutCart;
+            allProducts.forEach(async (p) => {
+              const itemId = p.id;
+              const itemRemoved = await removeItemFromCart({
+                userId,
+                itemId,
+                cartId,
+              });
+              return itemRemoved;
+            });
+            await checkoutCart(userId);
+            return (
+              <div>
+                <h2>Order completed!</h2>
+              </div>
+            );
           } catch (err) {
             throw err;
           }
