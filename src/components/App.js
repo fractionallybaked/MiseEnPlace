@@ -19,7 +19,8 @@ import {
   EditProduct,
   AllProductsPage,
   Cart,
-  Header
+  Header,
+  LandingPage
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 
@@ -117,7 +118,7 @@ const App = () => {
           </div>
         </Route>
         <Route exact path="/">
-          <h2>home</h2>
+          <LandingPage />
         </Route>
       </Switch>
     </div>
