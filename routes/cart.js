@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cartRouter = express.Router();
 const { requireUser } = require("./utilities.js");
@@ -35,7 +34,6 @@ cartRouter.post("/:userId", async (req, res, next) => {
       productId,
       userId,
       quantity,
-      purchased,
     });
     res.send(updatedCart);
   } catch (err) {
