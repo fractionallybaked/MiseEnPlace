@@ -8,7 +8,7 @@ import {
 
 import { getAllProducts } from "../api/products";
 import { getMyID } from "../api/users";
-
+import { getToken } from '../auth';
 import {
   Navbar,
   SingleProduct,
@@ -16,24 +16,36 @@ import {
   AddType,
   Register,
   Login,
+  EditProduct,
+  AllProductsPage,
   Cart,
-} from ".";
+  Header
+} from "./";
+import SearchResultsPage from "./SearchResultsPage";
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [query, setQuery] = useState('');
+
+  const token = getToken();
 
   useEffect(() => {
     async function setUp() {
       try {
         const products = await getAllProducts();
-
         setAllProducts(products.allProducts);
 
         const currentUser = await getMyID();
-        if (isLoggedIn && currentUser.isAdmin) {
+
+        if (token && currentUser.isAdmin) {
           setIsAdmin(true);
+        }
+
+        if (token) {
+          setIsLoggedIn(true)
         }
       } catch (err) {
         console.log(err);
@@ -44,20 +56,33 @@ const App = () => {
 
   return (
     <div className="App">
+      <Header />
       <Navbar
         isLoggedIn={isLoggedIn}
         setIsLoggedIn={setIsLoggedIn}
         isAdmin={isAdmin}
         setIsAdmin={setIsAdmin}
+        query={query}
+        setQuery={setQuery}
       />
-
       <Switch>
         <Route path="/about">
           <h2>about</h2>
         </Route>
-        <Route path="/products">
-          <SingleProduct allProducts={allProducts} />
+        <Route exact path="/products/searchresults">
+        <div className="all-products-main-container">
+          <SearchResultsPage
+            query={query}
+            setQuery={setQuery}
+            allProducts={allProducts} />
+            </div>
         </Route>
+        <Route path="/products">
+          <AllProductsPage
+            allProducts={allProducts}
+            isAdmin={isAdmin} />
+        </Route>
+
         <Route path="/login">
           <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
         </Route>
@@ -68,12 +93,28 @@ const App = () => {
           <Cart />
         </Route>
         <Route path="/admin">
-          {isAdmin ? <CreateProduct setAllProducts={setAllProducts} /> : null}
-          <AddType
-            allProducts={allProducts}
-            setAllProducts={setAllProducts}
-            isAdmin={isAdmin}
-          />
+        <div className="all-products-main-container">
+          {isAdmin
+            ? <><CreateProduct
+              setAllProducts={setAllProducts}
+              isAdmin={isAdmin} />
+
+              <AddType
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                isAdmin={isAdmin}
+              />
+            </>
+            : null}
+            </div>
+        </Route>
+
+        <Route path='/editproduct'>
+          <div className="all-products-main-container">
+            <EditProduct
+              setAllProducts={setAllProducts}
+              isAdmin={isAdmin} />
+          </div>
         </Route>
         <Route exact path="/">
           <h2>home</h2>

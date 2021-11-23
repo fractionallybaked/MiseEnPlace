@@ -5,7 +5,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState('');
     const [photo, setPhoto] = useState('');
     const [type, setType] = useState([]);
 
@@ -27,12 +27,12 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
                                         price,
                                         quantity,
                                         photo,
-                                        type
+                                        [type]
                                     );
                                     setName('');
                                     setDescription('');
                                     setPrice('');
-                                    setQuantity(0);
+                                    setQuantity('');
                                     setPhoto('');
                                     setType('');
 

@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { updateProduct } from '../api/products';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const EditProduct = ({ setAllProducts, isAdmin }) => {
     const pageLocation = useLocation();
-    const { pName, pDescription, pPrice, pQuantity, pPhoto, pType } = pageLocation.state;
+    const { pId, pName, pDescription, pPrice, pQuantity, pPhoto } = pageLocation.state;
 
     const [name, setName] = useState(pName);
     const [description, setDescription] = useState(pDescription);
     const [price, setPrice] = useState(pPrice);
     const [quantity, setQuantity] = useState(pQuantity);
     const [photo, setPhoto] = useState(pPhoto);
-    const [type, setType] = useState(pType);
+
+    const history = useHistory();
+
+    const handleClick = () => {
+        history.push('./products');
+    }
 
     return (
         <div>
@@ -23,22 +28,22 @@ const EditProduct = ({ setAllProducts, isAdmin }) => {
                             e.preventDefault();
                             try {
                                 const editedProduct = await updateProduct(
+                                    pId,
                                     name,
                                     description,
                                     price,
                                     quantity,
-                                    photo,
-                                    type
+                                    photo
                                 );
                                 setName('');
                                 setDescription('');
                                 setPrice('');
-                                setQuantity(0);
+                                setQuantity('');
                                 setPhoto('');
-                                setType('');
+                                // setType('');
 
                                 setAllProducts(prevProducts => ([...prevProducts, editedProduct]));
-
+                                handleClick();
                             } catch (err) {
                                 console.log(err)
                             }
@@ -79,13 +84,7 @@ const EditProduct = ({ setAllProducts, isAdmin }) => {
                             onChange={(e) => setPhoto(e.target.value)}
                             placeholder="Photo URL" />
 
-                        <input
-                            type="text"
-                            id="product-type"
-                            value={type}
-                            onChange={(e) => setType(e.target.value)}
-                            placeholder="Product Type" />
-                        <button>Create New Product</button>
+                        <button>Edit Product</button>
                     </form>
                 </>
                 : null
