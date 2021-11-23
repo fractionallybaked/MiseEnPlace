@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
-import { SearchBar } from './';
+import { SearchBar, DropdownMenu } from './';
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, query, setQuery }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const handleToggle = () => {
     setSearchOpen(prev => !prev)
@@ -14,7 +14,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
       <section className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
-        <Link to="/products">Products</Link>
+        {/* <Link to="/products">Products</Link> */}
+        <DropdownMenu />
         {isAdmin ? <Link to="/admin">Admin</Link> : null}
         {isLoggedIn ? (
           <Link
@@ -46,7 +47,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin }) => {
         </Link>
 
       </section>
-      <SearchBar searchOpen={searchOpen} />
+      <SearchBar 
+      searchOpen={searchOpen}
+      setSearchOpen={setSearchOpen}
+      query={query}
+      setQuery={setQuery}
+      />
 
     </nav>
   );
