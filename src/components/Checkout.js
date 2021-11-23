@@ -1,7 +1,7 @@
 import React from "react";
 import { checkoutCart } from "../api/cart";
 
-const Checkout = (userId) => {
+const Checkout = ({ userId, allProducts, cartId }) => {
   return (
     <div>
       <form

@@ -57,6 +57,8 @@ const Cart = () => {
           <h2>Your Cart</h2>
           <div className="cart-products">
             <SingleProduct allProducts={allProducts} />
+            <ItemUpdate cartId={userCart.id} productId={} userId={userId}/>
+            <ItemDelete userId={userId} productId={} cartId={userCart.id}/>
             {/* <Checkout userId={userId} /> */}
           </div>
         </div>
