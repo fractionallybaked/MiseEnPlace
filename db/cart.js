@@ -41,7 +41,7 @@ async function updateCart({ id, productId, quantity }) {
 
 //
 
-async function deleteCartItem({ userId, productId, id }) {
+async function deleteCartItem({ productId, id }) {
   try {
     const {
       rows: [cart],
@@ -49,10 +49,10 @@ async function deleteCartItem({ userId, productId, id }) {
       `
             DELETE
             FROM cart
-            WHERE "productId"=$2 AND "userId"=$1 AND id=$3
+            WHERE "productId"=$2 AND id=$3
             RETURNING *;
             `,
-      [userId, productId, id]
+      [productId, id]
     );
     return cart;
   } catch (err) {
@@ -62,7 +62,7 @@ async function deleteCartItem({ userId, productId, id }) {
 
 //
 
-async function addItemToCart({ productId, userId, quantity, purchased }) {
+async function addItemToCart({ productId, userId, quantity }) {
   const newProd = await getProductsById(productId);
   const prodPrice = newProd.price;
 
@@ -71,11 +71,11 @@ async function addItemToCart({ productId, userId, quantity, purchased }) {
       rows: [cart],
     } = await client.query(
       `
-            INSERT INTO cart("productId", "userId", quantity, purchased, "itemTotal")
-            VALUES($1, $2, $3, $4, $5)
+            INSERT INTO cart("productId", "userId", quantity, "itemTotal")
+            VALUES($1, $2, $3, $4)
             RETURNING *;
             `,
-      [productId, userId, quantity, purchased, prodPrice]
+      [productId, userId, quantity, prodPrice]
     );
     return cart;
   } catch (err) {

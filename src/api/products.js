@@ -63,7 +63,7 @@ export async function addTypeToProduct(id, type) {
         const { data } = await axios.post(
             `${BASE}/products/${id}/type`,
             {
-                type: type
+                type: [...type]
             },
             {
                 headers: {
