@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { SingleProduct } from './';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { SingleProduct, Pagination } from './';
 import { getProductById } from '../api/products';
-import {ItemAdd} from './'
 
 const AllProductsPage = ({ allProducts, isAdmin }) => {
     const [products, setProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [productsPerPage, setProductsPerPage] = useState(6);
     const idArr = allProducts.map(e => e.id);
 
     useEffect(() => {
@@ -22,6 +24,12 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
         }
         setUp();
     }, [allProducts]);
+    //get currrent posts
+    const indexOfLastProd = currentPage * productsPerPage;
+    const indexOfFirstProd = indexOfLastProd - productsPerPage;
+    const currentProducts = products.slice(indexOfFirstProd, indexOfLastProd);
+    //change page
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
     const beverages = products.map(product => {
         for (let items of product.type) {
@@ -33,31 +41,68 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
         return e !== undefined
     });
 
-    const bakedGoods = products.map(product =>{
-        for (let items of product.type){
-            if (items.id !== 4){
+    const bakedGoods = products.map(product => {
+        for (let items of product.type) {
+            if (items.id !== 4) {
                 return product
             }
         }
     }).filter(e => {
         return e !== undefined
     });
- 
+
     return (
-        <div className="all-products-main-container">
-            <div className="baked-goods-main-container">
-                <h2>Baked Goods</h2>
-                <SingleProduct
-                    allProducts={bakedGoods}
-                    isAdmin={isAdmin} />
-            </div>
-            <div className="beverages-main-container">
-                <h2>Beverages</h2>
-                <SingleProduct
-                    allProducts={beverages}
-                    isAdmin={isAdmin} />
-            </div>
-        </div>
+        <Switch>
+            <Route exact path="/products/bakedgoods">
+                <div className="all-products-main-container">
+                    <div className="baked-goods-main-container">
+                        <h2>Baked Goods</h2>
+                        <Pagination
+                            productsPerPage={productsPerPage}
+                            totalProducts={bakedGoods.length}
+                            paginate={paginate} />
+                    </div>
+                    <SingleProduct
+                        allProducts={bakedGoods.slice(indexOfFirstProd, indexOfLastProd)}
+                        isAdmin={isAdmin} />
+
+                </div>
+            </Route>
+
+            <Route exact path="/products/beverages">
+                <div className="all-products-main-container">
+                    <div className="beverages-main-container">
+                        <h2>Beverages</h2>
+                        <Pagination
+                            productsPerPage={productsPerPage}
+                            totalProducts={beverages.length}
+                            paginate={paginate} />
+                    </div>
+                    <SingleProduct
+                        allProducts={beverages.slice(indexOfFirstProd, indexOfLastProd)}
+                        isAdmin={isAdmin} />
+
+                </div>
+            </Route>
+
+            <Route exact path="/products" >
+                <div className="all-products-main-container">
+                    <div className="all-prods-main-container">
+                        <h2>All Products</h2>
+                        <Pagination
+                            productsPerPage={productsPerPage}
+                            totalProducts={products.length}
+                            paginate={paginate} />
+                    </div>
+                    <SingleProduct
+                        allProducts={currentProducts}
+                        isAdmin={isAdmin} />
+
+                </div>
+            </Route>
+        </Switch>
+
+
     )
 }
 
