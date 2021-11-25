@@ -10,7 +10,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
     const [type, setType] = useState([]);
 
     return (
-        <div>
+        <div className="create-product-main-container">
             { isAdmin
                 ? <> <h2>Create a New Product</h2>
                     <form
