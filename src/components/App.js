@@ -20,9 +20,8 @@ import {
   AllProductsPage,
   Cart,
   Header,
-  LandingPage
+  LandingPage,
   Admin,
-
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 
