@@ -15,9 +15,8 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
 
   return (
     <div className="all-products-main-container">
-      <div className="login-left-container"></div>
-      <div className="login-right-container">
-        <div className="login-right-inner-container">
+        <div className="login-main-container">
+          <img className="login-icon" src={require('../images/bakingIcon.png')}/>
           <h2>Sign In</h2>
           <form
             className="login-form"
@@ -64,7 +63,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
           </p>
         </div>
       </div>
-    </div>
+    
   );
 };
 

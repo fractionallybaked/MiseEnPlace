@@ -18,3 +18,8 @@ export { default as Header } from "./Header";
 export { default as SearchResultsPage } from "./SearchResultsPage";
 export { default as DropdownMenu } from "./DropdownMenu";
 export { default as Pagination } from "./Pagination";
+
+export { default as LandingPage } from "./LandingPage";
+
+export { default as Admin } from "./Admin";
+
