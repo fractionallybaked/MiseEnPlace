@@ -8,7 +8,7 @@ import {
 
 import { getAllProducts } from "../api/products";
 import { getMyID } from "../api/users";
-import { getToken } from '../auth';
+import { getToken } from "../auth";
 import {
   Navbar,
   SingleProduct,
@@ -21,15 +21,16 @@ import {
   Cart,
   Header,
   LandingPage
+  Admin,
+
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
-
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const token = getToken();
 
@@ -46,7 +47,7 @@ const App = () => {
         }
 
         if (token) {
-          setIsLoggedIn(true)
+          setIsLoggedIn(true);
         }
       } catch (err) {
         console.log(err);
@@ -71,17 +72,16 @@ const App = () => {
           <h2>about</h2>
         </Route>
         <Route exact path="/products/searchresults">
-        <div className="all-products-main-container">
-          <SearchResultsPage
-            query={query}
-            setQuery={setQuery}
-            allProducts={allProducts} />
-            </div>
+          <div className="all-products-main-container">
+            <SearchResultsPage
+              query={query}
+              setQuery={setQuery}
+              allProducts={allProducts}
+            />
+          </div>
         </Route>
         <Route path="/products">
-          <AllProductsPage
-            allProducts={allProducts}
-            isAdmin={isAdmin} />
+          <AllProductsPage allProducts={allProducts} isAdmin={isAdmin} />
         </Route>
 
         <Route path="/login">
@@ -94,27 +94,20 @@ const App = () => {
           <Cart />
         </Route>
         <Route path="/admin">
-        <div className="all-products-main-container">
-          {isAdmin
-            ? <><CreateProduct
-              setAllProducts={setAllProducts}
-              isAdmin={isAdmin} />
-
-              <AddType
+          <div className="all-products-main-container">
+            {isAdmin ? (
+              <Admin
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
                 isAdmin={isAdmin}
               />
-            </>
-            : null}
-            </div>
+            ) : null}
+          </div>
         </Route>
 
-        <Route path='/editproduct'>
+        <Route path="/editproduct">
           <div className="all-products-main-container">
-            <EditProduct
-              setAllProducts={setAllProducts}
-              isAdmin={isAdmin} />
+            <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
           </div>
         </Route>
         <Route exact path="/">
