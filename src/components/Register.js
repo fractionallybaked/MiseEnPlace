@@ -29,9 +29,8 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div className="all-products-main-container">
-      <div className="register-left-container"></div>
-      <div className="register-right-container">
-        <div className="register-right-inner-container">
+        <div className="register-main-container">
+        <img className="login-icon" src={require('../images/bakingIcon.png')}/>
           <h2>Sign Up</h2>
           <form
             className="register-form"
@@ -84,7 +83,6 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
           </p>
         </div>
       </div>
-    </div>
   );
 };
 
