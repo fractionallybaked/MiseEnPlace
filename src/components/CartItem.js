@@ -39,6 +39,7 @@ const CartItem = ({
     return item.quantity;
   };
 
+  console.log("cartItem usercart", userCart);
   return (
     <div className="single-product-main-container">
       {cartProducts.length
@@ -74,7 +75,7 @@ const CartItem = ({
                 ) : null}
                 {token ? (
                   <ItemUpdate
-                    cartId={userCart.id}
+                    cartId={userCart[0].id}
                     productId={item.id}
                     userId={userId}
                     quantity={e.quantity}
@@ -86,7 +87,9 @@ const CartItem = ({
                   <ItemDelete
                     userId={userId}
                     productId={item.id}
-                    cartId={userCart.id}
+                    cartId={userCart[0].id}
+                    userCart={userCart}
+                    setUserCart={setUserCart}
                   />
                 ) : null}
               </div>

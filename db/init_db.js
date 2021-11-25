@@ -56,7 +56,6 @@ async function createTables() {
         quantity INTEGER NOT NULL,
         "itemTotal" INTEGER,
         purchased BOOLEAN default false,
-        UNIQUE("productId", "userId")
       );    
     `);
   } catch (error) {

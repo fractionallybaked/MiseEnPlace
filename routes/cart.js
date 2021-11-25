@@ -1,6 +1,5 @@
 const express = require("express");
 const cartRouter = express.Router();
-const { requireUser } = require("./utilities.js");
 
 const {
   getCartByUser,
@@ -15,7 +14,6 @@ const {
 
 cartRouter.get("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  console.log(userId);
   try {
     const userCart = await getCartByUser(userId);
     res.send(userCart);
@@ -28,13 +26,14 @@ cartRouter.get("/:userId", async (req, res, next) => {
 
 cartRouter.post("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  const { productId, quantity, purchased } = req.body;
+  const { productId, quantity } = req.body;
   try {
     const updatedCart = await addItemToCart({
       productId,
       userId,
       quantity,
     });
+
     res.send(updatedCart);
   } catch (err) {
     next(err);
@@ -51,7 +50,7 @@ cartRouter.patch("/:userId", async (req, res, next) => {
 
   try {
     const newCart = await updateCart({
-      id: cartId,
+      userId,
       productId,
       quantity,
     });
@@ -65,13 +64,13 @@ cartRouter.patch("/:userId", async (req, res, next) => {
 
 cartRouter.delete("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  const userCart = await getCartByUser(userId);
-  const cartId = userCart.id;
-  const productId = req.body;
+  console.log("REQ BODY", req.body);
+  const { productId } = req.body;
+  console.log("ROUTES", productId, userId);
 
   try {
-    const deletedItem = await deleteCartItem({ userId, productId, cartId });
-    return deletedItem;
+    await deleteCartItem({ productId, userId });
+    res.sendStatus(204);
   } catch (err) {
     next(err);
   }

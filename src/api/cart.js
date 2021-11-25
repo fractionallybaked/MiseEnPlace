@@ -36,17 +36,20 @@ export async function addItemToCart({ productId, userId, quantity }) {
 export async function removeItemFromCart({ userId, productId, cartId }) {
   const token = getToken();
 
+  console.log("APIS", userId, productId, cartId);
+
   try {
     const { data } = await axios.delete(
       `${BASE}/cart/${userId}`,
-      {
-        productId,
-        cartId,
-      },
+
       {
         headers: {
           "Content-Type": "application/JSON",
           Authorization: `Bearer ${token}`,
+        },
+        data: {
+          productId,
+          userId,
         },
       }
     );
@@ -98,7 +101,6 @@ export async function updateCart({ cartId, productId, quantity, userId }) {
         },
       }
     );
-    console.log("DATA", typeof data);
     return data;
   } catch (err) {
     console.error(err);

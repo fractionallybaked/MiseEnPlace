@@ -24,12 +24,13 @@ const ItemUpdate = ({
               userId,
             });
             const updatedItem = userCart.map((e) => {
-              if (e.id === productId) {
+              if (e.productId === productId) {
                 return update;
               } else {
                 return e;
               }
             });
+
             setUserCart(updatedItem);
           } catch (err) {
             console.error(err);
@@ -52,7 +53,7 @@ const ItemUpdate = ({
                 userId,
               });
               const updatedItem = userCart.map((e) => {
-                if (e.id === productId) {
+                if (e.productId === productId) {
                   return update;
                 } else {
                   return e;

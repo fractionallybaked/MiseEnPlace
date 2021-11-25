@@ -45,16 +45,12 @@ const Cart = () => {
     setProducts();
   }, [userCart]);
 
+  console.log("CART USERCART", userCart);
   return (
     <div className="all-products-main-container">
       <div className="cart-container">
         <h2>Your Cart</h2>
         <div className="cart-products">
-          {/* <SingleProduct
-            allProducts={allProducts}
-            userCart={userCart}
-            setUserCart={setUserCart}
-          /> */}
           <CartItem
             cartProducts={cartProducts}
             userCart={userCart}
