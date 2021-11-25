@@ -64,9 +64,7 @@ cartRouter.patch("/:userId", async (req, res, next) => {
 
 cartRouter.delete("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
-  console.log("REQ BODY", req.body);
   const { productId } = req.body;
-  console.log("ROUTES", productId, userId);
 
   try {
     await deleteCartItem({ productId, userId });

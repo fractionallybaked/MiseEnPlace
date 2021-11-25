@@ -36,8 +36,6 @@ export async function addItemToCart({ productId, userId, quantity }) {
 export async function removeItemFromCart({ userId, productId, cartId }) {
   const token = getToken();
 
-  console.log("APIS", userId, productId, cartId);
-
   try {
     const { data } = await axios.delete(
       `${BASE}/cart/${userId}`,

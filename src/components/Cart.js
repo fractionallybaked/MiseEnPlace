@@ -45,7 +45,6 @@ const Cart = () => {
     setProducts();
   }, [userCart]);
 
-  console.log("CART USERCART", userCart);
   return (
     <div className="all-products-main-container">
       <div className="cart-container">

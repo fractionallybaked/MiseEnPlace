@@ -39,7 +39,6 @@ const CartItem = ({
     return item.quantity;
   };
 
-  console.log("cartItem usercart", userCart);
   return (
     <div className="single-product-main-container">
       {cartProducts.length

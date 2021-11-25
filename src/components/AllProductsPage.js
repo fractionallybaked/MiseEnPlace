@@ -54,7 +54,6 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
     .filter((e) => {
       return e !== undefined;
     });
-  console.log("PRODUCTS FRONT END", products);
   return (
     <Switch>
       <Route exact path="/products/bakedgoods">
