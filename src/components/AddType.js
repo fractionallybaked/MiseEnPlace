@@ -4,7 +4,7 @@ import { addTypeToProduct } from "../api/products";
 const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
   const [productId, setProductId] = useState("");
   const [type, setType] = useState("");
-  console.log(allProducts)
+  
   return (
     <div>
       {isAdmin ? (

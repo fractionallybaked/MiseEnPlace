@@ -20,7 +20,9 @@ import {
   AllProductsPage,
   Cart,
   Header,
+  LandingPage
   Admin,
+
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 
@@ -109,7 +111,7 @@ const App = () => {
           </div>
         </Route>
         <Route exact path="/">
-          <h2>home</h2>
+          <LandingPage />
         </Route>
       </Switch>
     </div>
