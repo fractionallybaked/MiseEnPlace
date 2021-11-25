@@ -86,7 +86,8 @@ usersRouter.get("/", requireUser, async (req, res, next) => {
 
   try {
     const users = await getAllUsers(id);
-    return users;
+    console.log("ALL USERS ROUTE: ", users);
+    res.send(users);
   } catch (error) {
     next(error);
   }
