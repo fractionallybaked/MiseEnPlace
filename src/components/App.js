@@ -20,6 +20,8 @@ import {
   AllProductsPage,
   Cart,
   Header,
+  LandingPage
+  Admin,
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 
@@ -93,18 +95,11 @@ const App = () => {
         <Route path="/admin">
           <div className="all-products-main-container">
             {isAdmin ? (
-              <>
-                <CreateProduct
-                  setAllProducts={setAllProducts}
-                  isAdmin={isAdmin}
-                />
-
-                <AddType
-                  allProducts={allProducts}
-                  setAllProducts={setAllProducts}
-                  isAdmin={isAdmin}
-                />
-              </>
+              <Admin
+                allProducts={allProducts}
+                setAllProducts={setAllProducts}
+                isAdmin={isAdmin}
+              />
             ) : null}
           </div>
         </Route>
@@ -115,7 +110,7 @@ const App = () => {
           </div>
         </Route>
         <Route exact path="/">
-          <h2>home</h2>
+          <LandingPage />
         </Route>
       </Switch>
     </div>
