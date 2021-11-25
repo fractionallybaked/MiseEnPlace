@@ -2,41 +2,71 @@ import React, { useState } from "react";
 
 import { updateCart } from "../api/cart";
 
-const ItemUpdate = ({ cartId, productId, userId }) => {
-  const [quantity, setQuantity] = useState();
-
+const ItemUpdate = ({
+  cartId,
+  productId,
+  userId,
+  quantity,
+  userCart,
+  setUserCart,
+}) => {
   return (
     <div>
-      <form
-        id="quantity-update"
-        onSubmit={async (event) => {
+      <button
+        onClick={async (event) => {
           event.preventDefault();
           try {
+            const newQuantity = quantity + 1;
             const update = await updateCart({
               cartId,
               productId,
-              quantity,
+              quantity: newQuantity,
               userId,
             });
-            return update;
+            const updatedItem = userCart.map((e) => {
+              if (e.id === productId) {
+                return update;
+              } else {
+                return e;
+              }
+            });
+            setUserCart(updatedItem);
           } catch (err) {
-            throw err;
+            console.error(err);
           }
         }}
       >
-        <fieldset>
-          <label>Quantity</label>
-          <input
-            id={productId}
-            type="integer"
-            value={quantity}
-            onChange={(event) => {
-              setQuantity(event.target.value);
-            }}
-          />
-        </fieldset>
-        <button type="submit">Update quantity</button>
-      </form>
+        +
+      </button>
+      <h3>{quantity}</h3>
+      <button
+        onClick={async (event) => {
+          if (quantity > 1) {
+            event.preventDefault();
+            try {
+              const newQuantity = quantity - 1;
+              const update = await updateCart({
+                cartId,
+                productId,
+                quantity: newQuantity,
+                userId,
+              });
+              const updatedItem = userCart.map((e) => {
+                if (e.id === productId) {
+                  return update;
+                } else {
+                  return e;
+                }
+              });
+              setUserCart(updatedItem);
+            } catch (err) {
+              console.error(err);
+            }
+          }
+        }}
+      >
+        -
+      </button>
     </div>
   );
 };

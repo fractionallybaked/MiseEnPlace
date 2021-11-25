@@ -5,62 +5,29 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 
-
-const SingleProduct = ({ allProducts, isAdmin, userCart, setUserCart }) => {
+const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
   const [userId, setUserId] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
-    async function getCart() {
+    async function getID() {
       const user = await getMyID();
       setUserId(user.id);
-
-      if (user.id) {
-        const userCart = await getUserCart(user.id);
-        setUserCart(userCart);
-      }
     }
 
-    getCart();
+    getID();
   }, []);
 
   const [guestCart, setGuestCart] = useState([]);
 
   const addHandle = async (productId) => {
-    const newItem = {
-      id=productId,
-      quantity=1
-    }
-    setGuestCart(...guestCart, newItem)
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart))
+    const newItem = {};
+    newItem.id = productId;
+    newItem.quantity = 1;
+    setGuestCart(...guestCart, newItem);
+    localStorage.setItem("GuestCart", JSON.stringify(guestCart));
   };
-
-  const deleteHandle = async (productId) => {
-    const deletedItem = guestCart.filter((e)=>{
-      return e.id === productId
-    })
-    const itemIndex = guestCart.indexOf(deletedItem)
-    guestCart.splice(itemIndex, 1)
-    setGuestCart(guestCart)
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart))
-  };
-
-  const updateHandle = async (productId) => {
-    const item = guestCart.find((p)=>{
-      return p.id === productId
-    })
-    item.quantity + 1
-    setGuestCart(guestCart)
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart))
-  };
-
-  const getQuantity = (productId) => {
-    const item = guestCart.find((p)=>{
-      return p.id === productId
-    })
-    return item.quantity
-  }
 
   return (
     <div className="single-product-main-container">
@@ -83,40 +50,12 @@ const SingleProduct = ({ allProducts, isAdmin, userCart, setUserCart }) => {
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                //
                 {location.pathname !== "./cart" && !token ? (
                   <button onClick={addHandle(e.id)}>Add Item</button>
                 ) : null}
-                {location.pathname === "./cart" && !token ? (
-                  <button onClick={deleteHandle(e.id)}>Delete Item</button>
-                ) : null}
-                {location.pathname === "./cart" && !token ? (
-                <div>
-                
-                <p>Current Quantity: {getQuantity(e.id)}</p>
-                
-                <button onClick={updateHandle(e.id)}>Add One More?</button>
-                </div>
-                ) : null}
-                //
                 {location.pathname !== "/cart" && token ? (
                   <ItemAdd productId={e.id} userId={userId} quantity={1} />
                 ) : null}
-                {location.pathname === "/cart" && token ? (
-                  <ItemUpdate
-                    cartId={userCart.id}
-                    productId={e.id}
-                    userId={userId}
-                  />
-                ) : null}
-                {location.pathname === "/cart" && token ? (
-                  <ItemDelete
-                    userId={userId}
-                    productId={e.id}
-                    cartId={userCart.id}
-                  />
-                ) : null}
-                //
                 {isAdmin ? (
                   <Link
                     to={{

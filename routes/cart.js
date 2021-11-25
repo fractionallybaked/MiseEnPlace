@@ -46,12 +46,12 @@ cartRouter.post("/:userId", async (req, res, next) => {
 cartRouter.patch("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const userCart = await getCartByUser(userId);
-  const cartId = userCart.id;
+  const cartId = userCart[0].id;
   const { productId, quantity } = req.body;
 
   try {
     const newCart = await updateCart({
-      cartId,
+      id: cartId,
       productId,
       quantity,
     });

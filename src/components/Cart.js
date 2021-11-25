@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { getToken } from "../auth";
-
 import { getUserCart } from "../api/cart";
 
 import { getProductById } from "../api/products";
 
 import { getMyID } from "../api/users";
 
-import SingleProduct from "./SingleProduct";
+import CartItem from "./CartItem";
 
 import Checkout from "./Checkout";
 
@@ -30,20 +28,19 @@ const Cart = () => {
     getCart();
   }, []);
 
-  const [allProducts, setAllProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
-    console.log(userCart);
     async function setProducts() {
       const allProducts = await Promise.all(
         userCart.map(async (item) => {
           const productId = item.productId;
           const newProduct = await getProductById(productId);
+          newProduct.quantity = item.quantity;
           return newProduct;
         })
       );
-      console.log("ALLPRODUCTS", allProducts);
-      setAllProducts(allProducts);
+      setCartProducts(allProducts);
     }
     setProducts();
   }, [userCart]);
@@ -53,10 +50,17 @@ const Cart = () => {
       <div className="cart-container">
         <h2>Your Cart</h2>
         <div className="cart-products">
-          <SingleProduct
+          {/* <SingleProduct
             allProducts={allProducts}
             userCart={userCart}
             setUserCart={setUserCart}
+          /> */}
+          <CartItem
+            cartProducts={cartProducts}
+            userCart={userCart}
+            setUserCart={setUserCart}
+            userId={userId}
+            setUserId={setUserId}
           />
           <Checkout userId={userId} />
         </div>
