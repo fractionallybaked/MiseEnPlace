@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import { CreateProduct, AddType } from "./";
+import ManageUsers from "./ManageUsers";
 
 const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
   return (
@@ -32,7 +33,7 @@ const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
 
         <Route exact path="/admin/manageusers">
           <div className="admin-form-main-container">
-            <h2 className="admin-header">Manage Users</h2>
+            <ManageUsers isAdmin={isAdmin} />
           </div>
         </Route>
       </Switch>
