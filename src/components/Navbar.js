@@ -44,8 +44,11 @@ const Navbar = ({
           </>
           : <DropdownMenu />
         }
-        {isAdmin ? <Link className={hamburgerOpen ? "link show" : "link hide"}
-          onClick={() => toggleHamburger()} to="/admin">Admin</Link> : null}
+        {isLoggedIn && isAdmin ? (<Link className={hamburgerOpen ? "link show" : "link hide"}
+          onClick={() => toggleHamburger()} to="/admin">Admin</Link>) : isLoggedIn ? (
+          <Link className={hamburgerOpen ? "link show" : "link hide"}
+          onClick={() => toggleHamburger()} to="/account">Account</Link>
+        ) : null}
         {isLoggedIn ? (
           <Link className={hamburgerOpen ? "link show" : "link hide"}
             onClick={() => toggleHamburger()}

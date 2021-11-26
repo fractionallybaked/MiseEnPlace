@@ -6,6 +6,7 @@ const {
   createUser,
   getUser,
   getAllUsers,
+  editUser,
 } = require("../db");
 
 const jwt = require("jsonwebtoken");
@@ -87,6 +88,17 @@ usersRouter.get("/", requireUser, async (req, res, next) => {
   try {
     const users = await getAllUsers(id);
     res.send(users);
+  } catch (error) {
+    next(error);
+  }
+});
+
+usersRouter.patch("/edit", requireUser, async (req, res, next) => {
+  const { password, isAdmin, targetID } = req.body;
+  const { id } = req.user;
+  try {
+    const user = await editUser({ password, isAdmin, targetID, id });
+    res.send(user);
   } catch (error) {
     next(error);
   }
