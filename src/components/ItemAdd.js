@@ -20,7 +20,9 @@ const ItemAdd = ({ productId, userId, quantity }) => {
           }
         }}
       >
-        <button className="add-to-cart" type="submit">Add Item to Cart</button>
+        <button className="add-to-cart" type="submit">
+          Add Item to Cart
+        </button>
       </form>
     </div>
   );

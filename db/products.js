@@ -111,6 +111,7 @@ async function getProductsById(id) {
     );
 
     product.type = types;
+
     return product;
   } catch (error) {
     console.error(error);
@@ -200,7 +201,8 @@ async function editProduct(id, { ...fields }) {
 }
 
 async function destoryProduct(id) {
-  console.log(id, "product id!");
+
+
   try {
     await client.query(
       `
