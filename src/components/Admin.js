@@ -16,13 +16,13 @@ const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
 
       <Switch>
         <Route exact path="/admin/createproduct">
-          <div>
+          <div className="admin-form-main-container">
             <CreateProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
           </div>
         </Route>
 
         <Route exact path="/admin/addtype">
-          <div>
+          <div className="admin-form-main-container">
             <AddType
               allProducts={allProducts}
               setAllProducts={setAllProducts}
@@ -32,7 +32,7 @@ const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
         </Route>
 
         <Route exact path="/admin/manageusers">
-          <div>
+          <div className="admin-form-main-container">
             <ManageUsers isAdmin={isAdmin} />
           </div>
         </Route>

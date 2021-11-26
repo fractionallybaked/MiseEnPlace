@@ -2,6 +2,7 @@ export { default as App } from "./App";
 export { default as Navbar } from "./Navbar";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Cart } from "./Cart";
+export { default as CartItem } from "./CartItem";
 export { default as ItemAdd } from "./ItemAdd";
 export { default as ItemDelete } from "./ItemDelete";
 export { default as ItemUpdate } from "./ItemUpdate";
@@ -18,8 +19,8 @@ export { default as Header } from "./Header";
 export { default as SearchResultsPage } from "./SearchResultsPage";
 export { default as DropdownMenu } from "./DropdownMenu";
 export { default as Pagination } from "./Pagination";
-
+export { default as Hamburger } from "./Hamburger";
 export { default as LandingPage } from "./LandingPage";
-
+export { default as CartCount } from "./CartCount";
 export { default as Admin } from "./Admin";
 

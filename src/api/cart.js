@@ -3,6 +3,7 @@ import axios from "axios";
 import { getToken } from "../auth";
 
 const BASE = "https://polar-harbor-90312.herokuapp.com/api";
+// const BASE = "http://localhost:5000/api";
 
 //
 
@@ -38,39 +39,15 @@ export async function removeItemFromCart({ userId, productId, cartId }) {
   try {
     const { data } = await axios.delete(
       `${BASE}/cart/${userId}`,
-      {
-        productId,
-        cartId,
-      },
+
       {
         headers: {
           "Content-Type": "application/JSON",
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
-    return data;
-  } catch (err) {
-    throw err;
-  }
-}
-
-//
-
-export async function deleteCart(userId) {
-  const token = getToken();
-  const userCart = await getUserCart(userId);
-  const cartId = userCart.id;
-  try {
-    const { data } = await axios.delete(
-      `${BASE}/cart/${userId}/${cartId}`,
-      {
-        userId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/JSON",
-          Authorization: `Bearer ${token}`,
+        data: {
+          productId,
+          userId,
         },
       }
     );
@@ -124,7 +101,7 @@ export async function updateCart({ cartId, productId, quantity, userId }) {
     );
     return data;
   } catch (err) {
-    throw err;
+    console.error(err);
   }
 }
 
