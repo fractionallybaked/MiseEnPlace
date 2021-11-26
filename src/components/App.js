@@ -21,7 +21,8 @@ import {
   Cart,
   Header,
   LandingPage,
-  Admin,
+  Admin
+
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 

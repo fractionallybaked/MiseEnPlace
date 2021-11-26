@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-// export const BASE = "https://polar-harbor-90312.herokuapp.com/api";
-const BASE = "http://localhost:5000/api";
+export const BASE = "https://polar-harbor-90312.herokuapp.com/api";
+// const BASE = "http://localhost:5000/api";
 
 export async function loginUser(username, password) {
   try {

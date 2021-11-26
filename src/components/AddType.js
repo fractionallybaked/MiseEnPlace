@@ -8,7 +8,7 @@ const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
   return (
     <div>
       {isAdmin ? (
-        <div>
+        <div className="create-product-main-container">
           <h2>Add Type(s) to a Product</h2>
           <form
             className="add-type-form"
