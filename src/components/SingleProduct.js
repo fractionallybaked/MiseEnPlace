@@ -22,11 +22,16 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
   const [guestCart, setGuestCart] = useState([]);
 
   const addHandle = async (productId) => {
+    try{
     const newItem = {};
     newItem.id = productId;
     newItem.quantity = 1;
     setGuestCart(...guestCart, newItem);
+    console.log(guestCart, "!!!")
     localStorage.setItem("GuestCart", JSON.stringify(guestCart));
+    }catch(err){
+      console.log(err);
+    }
   };
 
   return (
@@ -51,7 +56,7 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
                 {location.pathname !== "./cart" && !token ? (
-                  <button onClick={addHandle(e.id)}>Add Item</button>
+                  <button onClick={()=>addHandle(e.id)}>Add Item</button>
                 ) : null}
                 {location.pathname !== "/cart" && token ? (
                   <ItemAdd productId={e.id} userId={userId} quantity={1} />

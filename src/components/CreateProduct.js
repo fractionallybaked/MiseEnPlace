@@ -96,7 +96,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
             <button>Create New Product</button>
           </form>
         </>
-      ) : (
+       : (
         <div> Error: You don't have permission for this function </div>
       )}
     </div>

@@ -93,7 +93,7 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
       <Route exact path="/products">
         <div className="all-products-main-container">
           <div className="all-prods-main-container">
-            <h2>All Products</h2>
+            <div><h2>All Products</h2></div>
             <Pagination
               productsPerPage={productsPerPage}
               totalProducts={products.length}

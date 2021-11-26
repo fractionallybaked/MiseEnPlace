@@ -18,15 +18,16 @@ p {
     font-size: 0.9rem;
 }
 
-h2{
+h2 {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 600;
     font-size: 1.8rem;
 }
 
-.active{
+.active {
     background: darkorchid;
 }
+
 /*-------------- header --------------  */
 .header-main-container {
     display: flex;
@@ -68,7 +69,7 @@ nav a {
 }
 
 nav a:hover {
-color: #c97c5d;
+    color: #c97c5d;
 }
 
 .nav-links {
@@ -86,6 +87,20 @@ color: #c97c5d;
 
 .nav-cart button {
     background-color: transparent;
+}
+
+.cart-count-container {
+    position: fixed;
+    right: 0;
+    top: 140px;
+    background: #c97c5d;
+    padding: 1px 3px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+
+.cart-count-number {
+    font-size: .8rem;
 }
 
 /*-------------- admin navbar ---------------*/
@@ -348,6 +363,11 @@ color: #c97c5d;
     overflow-y: auto;
 }
 
+.all-prods-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /*-------------- pagination --------------  */
 .pagination {
@@ -623,8 +643,8 @@ a.page-link:hover {
 }
 
 /*-------------- media queries --------------  */
-
-@media screen and (max-width: 640px) {
+/* phone - portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
     .single-product-main-container {
         display: flex;
         flex-direction: column;
@@ -641,7 +661,7 @@ a.page-link:hover {
     .hamburger {
         position: fixed;
         z-index: -1;
-        
+
     }
 
     nav {
@@ -663,11 +683,11 @@ a.page-link:hover {
         margin-top: 20px;
     }
 
-    .link.show:first-child{
+    .link.show:first-child {
         margin-top: 45px;
     }
 
-    .link.show:last-child{
+    .link.show:last-child {
         margin-bottom: 20px;
     }
 
@@ -686,13 +706,15 @@ a.page-link:hover {
     .landing-main-container {
         position: unset;
         top: 100px;
+        height: 55vh;
     }
 
     .landing-product-link-card {
         background: rgba(0, 0, 0, .8);
         color: rgba(238, 215, 197, .9);
         width: 100%;
-        margin-top: 0px;
+        top: 44%;
+
     }
 
     .landing-product-types {
@@ -700,16 +722,22 @@ a.page-link:hover {
         flex-direction: column;
     }
 
-    .login-main-container, .register-main-container{
+    .login-main-container, .register-main-container {
         width: 100%;
     }
 
-    .login-form, .register-form{
+    .login-form, .register-form {
+        width: 100%;
+    }
+
+    .search-bar input {
         width: 100%;
     }
 }
 
-@media (max-width: 812px) {
+/* phone landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
+
     .hamburger-icon {
         display: unset;
         position: fixed;
@@ -718,7 +746,7 @@ a.page-link:hover {
     .hamburger {
         position: fixed;
         z-index: -1;
-        
+
     }
 
     nav {
@@ -737,15 +765,15 @@ a.page-link:hover {
     }
 
     .link.show {
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
-    .link.show:first-child{
-        margin-top: 35px;
+    .link.show:first-child {
+        margin-top: 45px;
     }
 
-    .link.show:last-child{
-        margin-bottom: 10px;
+    .link.show:last-child {
+        margin-bottom: 20px;
     }
 
     .nav-links.hide {
@@ -754,34 +782,47 @@ a.page-link:hover {
 
     .link.hide {
         display: none;
-    } 
+    }
 
     .single-product-main-container {
         width: 100%;
+        justify-content: space-around;
+    }
+
+    .landing-image-main {
+        display: none;
     }
 
     .landing-product-link-card {
         background: rgba(0, 0, 0, .8);
         color: rgba(238, 215, 197, .9);
+        top: 85%;
+        height: 50%;
         width: 100%;
-       position: unset;
+    }
+
+    .landing-product-card {
+        display: flex;
+        justify-content: center;
+        height: inherit;
     }
 
     .landing-product-types {
         height: unset;
-        width: 90%;
+        width: 100%;
         background: transparent;
+        margin-top: 2em;
     }
 
-    .landing-product-img{
+    .landing-product-img {
         width: 80%;
     }
 
-    .login-main-container, .register-main-container{
+    .login-main-container, .register-main-container {
         width: 100%;
     }
 
-    .login-form, .register-form{
+    .login-form, .register-form {
         width: 100%;
     }
 }
