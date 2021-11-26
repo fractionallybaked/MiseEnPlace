@@ -201,6 +201,8 @@ async function editProduct(id, { ...fields }) {
 }
 
 async function destoryProduct(id) {
+
+
   try {
     await client.query(
       `
