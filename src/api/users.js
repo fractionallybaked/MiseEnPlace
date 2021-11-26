@@ -47,11 +47,30 @@ export async function getMyID() {
 export async function getAllUsers() {
   try {
     const token = getToken();
-    const { data } = await axios.get(`${BASE}/`, {
+    const { data } = await axios.get(`${BASE}/users/`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+    });
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function editUser(password, isAdmin, targetID) {
+  try {
+    console.log("EDIT USER YAYYY");
+    const token = getToken();
+    const { data } = await axios.get(`${BASE}/users/edit`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      password: password,
+      isAdmin: isAdmin,
+      targetID: targetID,
     });
     return data;
   } catch (error) {

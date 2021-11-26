@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {} from "./";
-import { getAllUsers } from "../api/users";
+import { getAllUsers, editUser } from "../api/users";
 
 const ManageUsers = ({ isAdmin }) => {
   const [users, setUsers] = useState({});
@@ -19,7 +18,7 @@ const ManageUsers = ({ isAdmin }) => {
   }, [isAdmin]);
 
   return (
-    <div>
+    <div className="all-users-main-container">
       <h2>Manage Users</h2>
       {console.log("ISADMIN: ", isAdmin)}
       {isAdmin ? (
@@ -28,16 +27,52 @@ const ManageUsers = ({ isAdmin }) => {
             ? users.map((user) => {
                 return (
                   <div className="single-user-card" key={user.id}>
-                    <h3>User ID: {user.id} </h3>
-                    <h3>Username: {user.name}</h3>
-                    <h3>
+                    <div>User ID: {user.id} </div>
+                    <div>
+                      Username:{" "}
+                      <span className="single-user-name">{user.username}</span>
+                    </div>
+                    <div>
                       Account Type:{" "}
                       {user.isAdmin ? (
-                        <span className="account-type">Admin</span>
+                        <div>
+                          <span className="account-type-admin">Admin </span>
+                          <span className="account-change-button">
+                            <a
+                              className="account-type-change-button"
+                              onClick={async () => {
+                                try {
+                                  await editUser(null, false, user.id);
+                                } catch (err) {
+                                  console.log(err);
+                                }
+                              }}
+                            >
+                              {" "}
+                              ▼{" "}
+                            </a>
+                          </span>
+                        </div>
                       ) : (
-                        <span className="account-type">Regular</span>
+                        <div>
+                          <span className="account-type-regular">Regular </span>
+                          <span className="account-change-button">
+                            <a
+                              className="account-type-change-button"
+                              onClick={async () => {
+                                try {
+                                  await editUser(null, true, user.id);
+                                } catch (err) {
+                                  console.log(err);
+                                }
+                              }}
+                            >
+                              ▲
+                            </a>
+                          </span>
+                        </div>
                       )}
-                    </h3>
+                    </div>
                   </div>
                 );
               })

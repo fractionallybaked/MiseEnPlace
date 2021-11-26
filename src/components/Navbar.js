@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
-import { SearchBar, DropdownMenu } from './';
+import { SearchBar, DropdownMenu } from "./";
 
-const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, query, setQuery }) => {
+const Navbar = ({
+  isLoggedIn,
+  setIsLoggedIn,
+  isAdmin,
+  setIsAdmin,
+  query,
+  setQuery,
+}) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const handleToggle = () => {
-    setSearchOpen(prev => !prev)
-  }
+    setSearchOpen((prev) => !prev);
+  };
 
   return (
     <nav>
@@ -16,7 +23,11 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, query, setQuer
         <Link to="/about">About</Link>
         {/* <Link to="/products">Products</Link> */}
         <DropdownMenu />
-        {isAdmin ? <Link to="/admin">Admin</Link> : null}
+        {isLoggedIn && isAdmin ? (
+          <Link to="/admin">Admin</Link>
+        ) : isLoggedIn ? (
+          <Link to="/account">Account</Link>
+        ) : null}
         {isLoggedIn ? (
           <Link
             to="/login"
@@ -34,26 +45,27 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn, isAdmin, setIsAdmin, query, setQuer
         {!isLoggedIn ? <Link to="/register">Sign up</Link> : null}
       </section>
 
-      <section className='nav-cart'>
-
-        <button onClick={() => {
-          handleToggle()
-        }}>
-          <span className="material-icons">{!searchOpen ? "search" : "close"}</span>
+      <section className="nav-cart">
+        <button
+          onClick={() => {
+            handleToggle();
+          }}
+        >
+          <span className="material-icons">
+            {!searchOpen ? "search" : "close"}
+          </span>
         </button>
 
-        <Link to='/cart'>
+        <Link to="/cart">
           <span className="material-icons">shopping_cart</span>
         </Link>
-
       </section>
-      <SearchBar 
-      searchOpen={searchOpen}
-      setSearchOpen={setSearchOpen}
-      query={query}
-      setQuery={setQuery}
+      <SearchBar
+        searchOpen={searchOpen}
+        setSearchOpen={setSearchOpen}
+        query={query}
+        setQuery={setQuery}
       />
-
     </nav>
   );
 };

@@ -103,6 +103,11 @@ const App = () => {
             ) : null}
           </div>
         </Route>
+        <Route path="/account">
+          <div className="all-products-main-container">
+            {/* {isAdmin ? null : <Account />} */}
+          </div>
+        </Route>
 
         <Route path="/editproduct">
           <div className="all-products-main-container">
