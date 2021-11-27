@@ -2,7 +2,7 @@ import React from "react";
 import { checkoutCart, removeItemFromCart } from "../api/cart";
 import { getToken } from "../auth";
 
-const Checkout = ({ userId, allProducts, cartId }) => {
+const Checkout = ({ userId, cartProducts, cartId }) => {
   const token = getToken();
 
   if (token) {
@@ -13,7 +13,7 @@ const Checkout = ({ userId, allProducts, cartId }) => {
           onSubmit={async (event) => {
             event.preventDefault();
             try {
-              allProducts.forEach(async (p) => {
+              cartProducts.forEach(async (p) => {
                 const itemId = p.id;
                 const itemRemoved = await removeItemFromCart({
                   userId,

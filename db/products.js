@@ -32,9 +32,10 @@ async function createProduct({
         `,
       [name, description, price, quantity, photo]
     );
-
     const typeList = await createType(type);
 
+    const variable = await addTypeToProduct(product.id, typeList);
+    console.log("VARIABLE", variable);
     return await addTypeToProduct(product.id, typeList);
   } catch (error) {
     console.error(error);
@@ -77,10 +78,13 @@ async function createType(typeList) {
 
 async function addTypeToProduct(productId, typeList) {
   try {
+    console.log("PRODUCT ID TYPELIST", productId, typeList);
     const createProductTypePromises = typeList.map((type) =>
       createProductType(productId, type.id)
     );
     await Promise.all(createProductTypePromises);
+    const getProducts = await getProductsById(productId);
+    console.log(getProducts);
     return await getProductsById(productId);
   } catch (error) {
     throw error;
@@ -201,8 +205,6 @@ async function editProduct(id, { ...fields }) {
 }
 
 async function destoryProduct(id) {
-
-
   try {
     await client.query(
       `

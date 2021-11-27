@@ -57,7 +57,11 @@ const Cart = () => {
             userId={userId}
             setUserId={setUserId}
           />
-          <Checkout userId={userId} />
+          <Checkout
+            userId={userId}
+            cartProducts={cartProducts}
+            cartId={userCart.id}
+          />
         </div>
       </div>
     </div>
