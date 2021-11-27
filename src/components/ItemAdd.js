@@ -8,10 +8,9 @@ const ItemAdd = ({ productId, userId, quantity, userCart, setUserCart }) => {
     const alreadyAdded = userCart.filter((e) => {
       return e.productId === productId;
     });
-    console.log("AA", alreadyAdded);
+
     if (alreadyAdded.length) {
       setAdded(true);
-      console.error("This item is already in your cart!");
     }
   }, [userCart]);
 
