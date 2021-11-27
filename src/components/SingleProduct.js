@@ -8,28 +8,32 @@ import { getToken } from "../auth";
 const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
   const [userId, setUserId] = useState([]);
+  const [userCart, setUserCart] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     async function getID() {
       const user = await getMyID();
       setUserId(user.id);
-    }
 
+      if (user.id) {
+        const userCart = await getUserCart(user.id);
+        setUserCart(userCart);
+      }
+    }
     getID();
   }, []);
 
   const [guestCart, setGuestCart] = useState([]);
 
   const addHandle = async (productId) => {
-    try{
-    const newItem = {};
-    newItem.id = productId;
-    newItem.quantity = 1;
-    setGuestCart(...guestCart, newItem);
-    console.log(guestCart, "!!!")
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart));
-    }catch(err){
+    try {
+      const newItem = {};
+      newItem.id = productId;
+      newItem.quantity = 1;
+      setGuestCart(...guestCart, newItem);
+      localStorage.setItem("GuestCart", JSON.stringify(guestCart));
+    } catch (err) {
       console.log(err);
     }
   };
@@ -55,11 +59,17 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                {location.pathname !== "./cart" && !token ? (
-                  <button onClick={()=>addHandle(e.id)}>Add Item</button>
+                {!token ? (
+                  <button onClick={() => addHandle(e.id)}>Add Item</button>
                 ) : null}
-                {location.pathname !== "/cart" && token ? (
-                  <ItemAdd productId={e.id} userId={userId} quantity={1} />
+                {token ? (
+                  <ItemAdd
+                    productId={e.id}
+                    userId={userId}
+                    quantity={1}
+                    userCart={userCart}
+                    setUserCart={setUserCart}
+                  />
                 ) : null}
                 {isAdmin ? (
                   <Link
