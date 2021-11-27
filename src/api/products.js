@@ -60,7 +60,6 @@ export async function createProduct(
 export async function addTypeToProduct(productId, type) {
   try {
     const token = getToken();
-    console.log("HERE", token, productId, type);
     const { data } = await axios.post(
       `${BASE}/products/${productId}/type`,
       {
@@ -73,7 +72,6 @@ export async function addTypeToProduct(productId, type) {
         },
       }
     );
-    console.log("DATA", data);
     return data;
   } catch (error) {
     throw error;
