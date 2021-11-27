@@ -31,7 +31,6 @@ async function createProductType(productId, typeId) {
         await client.query(`
         INSERT INTO product_type("productId", "typeId")
         VALUES ($1, $2)
-        ON CONFLICT ("productId", "typeId") DO NOTHING;
 `, [productId, typeId]);
 
     } catch (error) {

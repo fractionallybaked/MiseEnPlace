@@ -21,7 +21,8 @@ import {
   Cart,
   Header,
   LandingPage,
-  Admin
+  Admin,
+  SingleProductPage
 
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
@@ -78,6 +79,11 @@ const App = () => {
               setQuery={setQuery}
               allProducts={allProducts}
             />
+          </div>
+        </Route>
+        <Route path="/products/:productId">
+          <div className="all-products-main-container">
+            <SingleProductPage />
           </div>
         </Route>
         <Route path="/products">

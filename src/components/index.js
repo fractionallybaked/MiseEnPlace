@@ -23,4 +23,4 @@ export { default as Hamburger } from "./Hamburger";
 export { default as LandingPage } from "./LandingPage";
 export { default as CartCount } from "./CartCount";
 export { default as Admin } from "./Admin";
-
+export { default as SingleProductPage } from "./SingleProductPage";
