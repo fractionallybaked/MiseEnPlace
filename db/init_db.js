@@ -55,7 +55,7 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         quantity INTEGER NOT NULL,
         "itemTotal" INTEGER,
-        purchased BOOLEAN default false,
+        purchased BOOLEAN default false
       );    
     `);
   } catch (error) {

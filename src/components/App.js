@@ -21,8 +21,8 @@ import {
   Cart,
   Header,
   LandingPage,
-  Admin
-
+  Admin,
+  Account,
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
 
@@ -106,7 +106,7 @@ const App = () => {
         </Route>
         <Route path="/account">
           <div className="all-products-main-container">
-            {/* {isAdmin ? null : <Account />} */}
+            {isLoggedIn ? null : <Account />}
           </div>
         </Route>
 

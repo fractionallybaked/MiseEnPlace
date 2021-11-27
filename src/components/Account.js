@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { CreateProduct, AddType, ManageUsers } from "./";
+import {} from "./";
 
-const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
+const Account = () => {
   return (
     <div>
       <nav className="admin-nav">
@@ -40,4 +40,4 @@ const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
   );
 };
 
-export default Admin;
+export default Account;
