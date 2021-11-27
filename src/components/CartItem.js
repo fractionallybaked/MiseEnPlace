@@ -2,13 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ItemAdd, ItemUpdate, ItemDelete } from "./";
 import { getToken } from "../auth";
 
-const CartItem = ({
-  cartProducts,
-  userId,
-  setUserId,
-  userCart,
-  setUserCart,
-}) => {
+const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   const token = getToken();
 
   const [guestCart, setGuestCart] = useState([]);

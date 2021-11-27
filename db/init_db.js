@@ -46,8 +46,7 @@ async function createTables() {
       );
       CREATE TABLE product_type(
         "productId" INTEGER REFERENCES products(id),
-        "typeId" INTEGER REFERENCES types(id),
-        UNIQUE ("productId", "typeId")
+        "typeId" INTEGER REFERENCES types(id)
       );
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
@@ -55,7 +54,7 @@ async function createTables() {
         "userId" INTEGER REFERENCES users(id),
         quantity INTEGER NOT NULL,
         "itemTotal" INTEGER,
-        purchased BOOLEAN default false,
+        purchased BOOLEAN default false
       );    
     `);
   } catch (error) {
@@ -173,6 +172,7 @@ async function createInitialProducts() {
         type: ["cake", "baked goods", "chilled dessert"],
       },
     ];
+    console.log("HELLO");
     const products = await Promise.all(productsToCreate.map(createProduct));
 
     console.log("products created:");
