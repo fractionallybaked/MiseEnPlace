@@ -16,7 +16,7 @@ module.exports= productsSeed=[
     quantity: 5,
     photo:
       "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/90e96872-f2aa-4564-befb-ebcffac92fd4/Derivates/5809bfb5-e7ae-4826-ad4a-93f191e489ea.jpg",
-    type: ["cake", "baked goods"],
+    type: ["cake", "baked goods"]
   },
   {
     name: "Chai Tea Set",
@@ -25,7 +25,7 @@ module.exports= productsSeed=[
     quantity: 10,
     photo:
       "https://imbibemagazine.com/wp-content/uploads/2019/10/chai-tea-iStock-67194691-crdt-GeloKorol.jpg",
-    type: ["tea", "beverages"],
+    type: ["tea", "beverages"]
   },
   {
     name: "Chocolate Chip Cookies",
@@ -33,8 +33,8 @@ module.exports= productsSeed=[
     price: 700,
     quantity: 2,
     photo:
-      "https://cdn.loveandlemons.com/wp-content/uploads/2020/02/vegan-chocolate-chip-cookies.jpg",
-    type: ["cookie", "baked goods"],
+      "https://images.unsplash.com/photo-1584847801423-852691e41bc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hvY29sYXRlJTIwY2hpcCUyMGNvb2tpZXN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    type: ["cookie", "baked goods"]
   },
   {
     name: "Cheesecake",
@@ -44,7 +44,7 @@ module.exports= productsSeed=[
     photo:
       "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
 
-    type: ["cake", "baked goods", "chilled dessert"],
+    type: ["cake", "baked goods", "chilled dessert"]
   },
   {
     name: "Blonde Roast",
@@ -52,7 +52,7 @@ module.exports= productsSeed=[
     price: 1000,
     quantity: 4,
     photo: "https://images.unsplash.com/photo-1495881674446-33314d7fb917?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNvZmZlZSUyMGJhZ3xlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type:["beverages"],
+    type:["beverages"]
   },
   {
     name: "Battlecreek Decaf",
@@ -60,7 +60,7 @@ module.exports= productsSeed=[
     price: 1400,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1559056199-96c307526265?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y29mZmVlJTIwYmFnfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Sprinkle Donuts",
@@ -68,7 +68,7 @@ module.exports= productsSeed=[
     price: 800,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1506224772180-d75b3efbe9be?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZG9udXRzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Devil's Food Cake",
@@ -76,7 +76,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 25,
     photo: "https://images.unsplash.com/photo-1623888884968-b5a895f882dc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2hvY29sYXRlJTIwY2FrZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Gingerbread Cookies",
@@ -84,7 +84,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 22,
     photo: "https://images.unsplash.com/photo-1614034201480-bb46b1d1b05d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z2luZ2VyYnJlYWQlMjBjb29raWVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Cinnamon Rolls",
@@ -92,7 +92,7 @@ module.exports= productsSeed=[
     price: 950,
     quantity: 28,
     photo: "https://images.unsplash.com/photo-1609126979532-0f514232d1a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YmFrZWQlMjBnb29kc3xlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Vanilla Cupcakes",
@@ -100,7 +100,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 25,
     photo: "https://images.unsplash.com/photo-1519869325930-281384150729?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3VwY2FrZXN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Red Velvet Cake",
@@ -108,7 +108,7 @@ module.exports= productsSeed=[
     price: 1500,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVkJTIwdmVsdmV0JTIwY2FrZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Apple Pie",
@@ -116,7 +116,7 @@ module.exports= productsSeed=[
     price: 1400,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1601000938259-9e92002320b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXBwbGUlMjBwaWV8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Mini Cherry Pies",
@@ -124,7 +124,7 @@ module.exports= productsSeed=[
     price: 1500,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2hlcnJ5JTIwcGllfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Chocolate Brownie",
@@ -132,7 +132,7 @@ module.exports= productsSeed=[
     price: 950,
     quantity: 29,
     photo: "https://images.unsplash.com/photo-1461009312844-e80697a81cc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8YnJvd25pZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Candy Cookies",
@@ -140,7 +140,7 @@ module.exports= productsSeed=[
     price: 1000,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1541717872011-9d16b87a5551?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FuZHklMjBjb29raWVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Iced Coffee",
@@ -148,7 +148,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aWNlZCUyMGNvZmZlZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Matcha Green Tea Powder",
@@ -156,7 +156,7 @@ module.exports= productsSeed=[
     price: 1895,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1582793988951-9aed5509eb97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3JlZW4lMjB0ZWF8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "English Breakfast Tea",
@@ -164,7 +164,7 @@ module.exports= productsSeed=[
     price: 800,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1580666622398-d5bffc4c9051?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YnJlYWtmYXN0JTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Rooibos Tea",
@@ -172,7 +172,7 @@ module.exports= productsSeed=[
     price: 1500,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9vaWJvc3xlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Camomille Tea",
@@ -180,7 +180,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 18,
     photo: "https://images.unsplash.com/photo-1523920290228-4f321a939b4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2Ftb21pbGxlJTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Banana Bread",
@@ -188,7 +188,7 @@ module.exports= productsSeed=[
     price: 950,
     quantity: 1050,
     photo: "https://images.unsplash.com/photo-1617319610261-ea6c6594a646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YmFuYW5hJTIwYnJlYWR8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Lemon Loaf",
@@ -196,7 +196,7 @@ module.exports= productsSeed=[
     price: 1400,
     quantity: 20,
     photo: "https://images.unsplash.com/photo-1598795164852-d2b5472d8bbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGVtb24lMjBjYWtlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Oatmeal Raisin Cookies",
@@ -204,7 +204,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 30,
     photo: "https://images.unsplash.com/photo-1587540217853-52034b3e6c14?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8b2F0bWVhbCUyMGNvb2tpZXN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Chocolate Cupcakes",
@@ -212,7 +212,7 @@ module.exports= productsSeed=[
     price: 1300,
     quantity: 25,
     photo: "https://images.unsplash.com/photo-1574085733277-851d9d856a3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzc2VydHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Carrot Cake",
@@ -220,7 +220,7 @@ module.exports= productsSeed=[
     price: 1200,
     quantity: 28,
     photo: "https://images.unsplash.com/photo-1566121933407-3c7ccdd26763?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2FrZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Blueberry Scone",
@@ -228,7 +228,7 @@ module.exports= productsSeed=[
     price: 1000,
     quantity: 18,
     photo: "https://images.unsplash.com/photo-1589114471223-dec0d8d572c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NvbmVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
+    type: ["baked goods"]
   },
   {
     name: "Ginger Tea",
@@ -236,7 +236,7 @@ module.exports= productsSeed=[
     price: 1450,
     quantity: 20,
     photo: "https://images.unsplash.com/34/rcaNUh3pQ9GD8w7Iy8qE__DSC0940.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z2luZ2VyJTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["beverages"],
+    type: ["beverages"]
   },
   {
     name: "Birthday Cake",
@@ -244,8 +244,8 @@ module.exports= productsSeed=[
     price: 1300,
     quantity: 50,
     photo: "https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBjYWtlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
-    type: ["baked goods"],
-  },
+    type: ["baked goods"]
+  }
 
 ];
 

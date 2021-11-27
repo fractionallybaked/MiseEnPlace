@@ -81,7 +81,7 @@ const App = () => {
             />
           </div>
         </Route>
-        <Route path="/products/:productId">
+        <Route exact path="/products/:productId">
           <div className="all-products-main-container">
             <SingleProductPage />
           </div>

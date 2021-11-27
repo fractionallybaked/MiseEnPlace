@@ -54,6 +54,7 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
     .filter((e) => {
       return e !== undefined;
     });
+
   return (
     <Switch>
       <Route exact path="/products/bakedgoods">
@@ -93,7 +94,7 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
       <Route exact path="/products">
         <div className="all-products-main-container">
           <div className="all-prods-main-container">
-            <div><h2>All Products</h2></div>
+            <h2>All Products</h2>
             <Pagination
               productsPerPage={productsPerPage}
               totalProducts={products.length}
