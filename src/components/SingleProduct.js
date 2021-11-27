@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ItemAdd, ItemUpdate, ItemDelete } from "./";
+import { Link } from "react-router-dom";
+import { ItemAdd } from "./";
 import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
+import { GuestAdd } from "./";
 
 const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
   const [userId, setUserId] = useState([]);
   const [userCart, setUserCart] = useState([]);
-  const location = useLocation();
 
   useEffect(() => {
     async function getID() {
@@ -23,20 +23,6 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
     }
     getID();
   }, []);
-
-  const [guestCart, setGuestCart] = useState([]);
-
-  const addHandle = async (productId) => {
-    try {
-      const newItem = {};
-      newItem.id = productId;
-      newItem.quantity = 1;
-      setGuestCart(...guestCart, newItem);
-      localStorage.setItem("GuestCart", JSON.stringify(guestCart));
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   return (
     <div className="single-product-main-container">
@@ -59,9 +45,7 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                {!token ? (
-                  <button onClick={() => addHandle(e.id)}>Add Item</button>
-                ) : null}
+                {!token ? <GuestAdd productId={e.id} /> : null}
                 {token ? (
                   <ItemAdd
                     productId={e.id}
