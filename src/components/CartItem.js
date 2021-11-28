@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ItemAdd, ItemUpdate, ItemDelete } from "./";
+import React, { useState } from "react";
+import { ItemUpdate, ItemDelete } from "./";
 import { getToken } from "../auth";
 
 const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {

@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { addItemToCart } from "../api/cart";
 
-const ItemAdd = ({ productId, userId, quantity }) => {
+const ItemAdd = ({ productId, userId, quantity, userCart, setUserCart }) => {
+  const [alreadyAdded, setAdded] = useState(false);
+
+  useEffect(() => {
+    const alreadyAdded = userCart.filter((e) => {
+      return e.productId === productId;
+    });
+
+    if (alreadyAdded.length) {
+      setAdded(true);
+    }
+  }, [userCart]);
+
   return (
     <div>
       <form
         id="add-item"
         onSubmit={async (event) => {
           event.preventDefault();
+
           try {
             const addedItem = await addItemToCart({
               productId,
               userId,
               quantity,
             });
-            return addedItem;
+            setUserCart([...userCart, addedItem]);
           } catch (err) {
             throw err;
           }
         }}
       >
-        <button className="add-to-cart" type="submit">
-          Add Item to Cart
-        </button>
+        {alreadyAdded ? (
+          <div>
+            <p className="add-to-cart">Item already added!</p>
+          </div>
+        ) : (
+          <button className="add-to-cart" type="submit">
+            Add Item to Cart
+          </button>
+        )}
       </form>
     </div>
   );

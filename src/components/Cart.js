@@ -50,18 +50,26 @@ const Cart = () => {
       <div className="cart-container">
         <h2>Your Cart</h2>
         <div className="cart-products">
-          <CartItem
-            cartProducts={cartProducts}
-            userCart={userCart}
-            setUserCart={setUserCart}
-            userId={userId}
-            setUserId={setUserId}
-          />
-          <Checkout
-            userId={userId}
-            cartProducts={cartProducts}
-            cartId={userCart.id}
-          />
+          {userCart.length ? (
+            <CartItem
+              cartProducts={cartProducts}
+              userCart={userCart}
+              setUserCart={setUserCart}
+              userId={userId}
+              setUserId={setUserId}
+            />
+          ) : (
+            <div>
+              <h2>Is empty! Show it some love and add some items!</h2>
+            </div>
+          )}
+          {userCart.length ? (
+            <Checkout
+              userId={userId}
+              cartProducts={cartProducts}
+              cartId={userCart.id}
+            />
+          ) : null}
         </div>
       </div>
     </div>
