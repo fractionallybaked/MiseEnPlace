@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
-
+import { getToken } from "../auth";
 import { getUserCart } from "../api/cart";
-
 import { getProductById } from "../api/products";
-
 import { getMyID } from "../api/users";
-
-import CartItem from "./CartItem";
-
+import SingleProduct from "./SingleProduct";
+import {Flex} from '@chakra-ui/react';
 import Checkout from "./Checkout";
 
 const Cart = () => {
+  const token = getToken();
+
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     async function getCart() {
-      const user = await getMyID();
-      setUserId(user.id);
+      const usersID = await getMyID();
+      setUserId(usersID);
 
-      if (user.id) {
-        const userCart = await getUserCart(user.id);
+      if (usersID) {
+        const userCart = await getUserCart(usersID.id);
         setUserCart(userCart);
       }
     }
@@ -28,40 +27,36 @@ const Cart = () => {
     getCart();
   }, []);
 
-  const [cartProducts, setCartProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
+    console.log(userCart);
     async function setProducts() {
       const allProducts = await Promise.all(
         userCart.map(async (item) => {
           const productId = item.productId;
           const newProduct = await getProductById(productId);
-          newProduct.quantity = item.quantity;
           return newProduct;
         })
       );
-      setCartProducts(allProducts);
+      console.log("ALLPRODUCTS", allProducts);
+      setAllProducts(allProducts);
     }
     setProducts();
   }, [userCart]);
 
-  return (
-    <div className="all-products-main-container">
-      <div className="cart-container">
-        <h2>Your Cart</h2>
-        <div className="cart-products">
-          <CartItem
-            cartProducts={cartProducts}
-            userCart={userCart}
-            setUserCart={setUserCart}
-            userId={userId}
-            setUserId={setUserId}
-          />
-          <Checkout userId={userId} />
-        </div>
-      </div>
-    </div>
-  );
+    return (
+      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
+        <Flex direction='column' align='center'>
+          <h2>Your Cart</h2>
+          <div className="cart-products">
+            <SingleProduct allProducts={allProducts} />
+            {/* <Checkout userId={userId} /> */}
+          </div>
+        </Flex>
+      </Flex>
+    );
+  
 };
 
 export default Cart;

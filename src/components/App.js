@@ -81,15 +81,17 @@ const App = () => {
             />
           </div>
         </Route>
-        <Route exact path="/products/:productId">
-          <div className="all-products-main-container">
-            <SingleProductPage />
-          </div>
-        </Route>
+
         <Route path="/products">
           <AllProductsPage allProducts={allProducts} isAdmin={isAdmin} />
         </Route>
-
+        <Route exact path="/product/:productId">
+          <div className="all-products-main-container">
+            <SingleProductPage 
+            allProducts={allProducts}
+            isAdmin={isAdmin} />
+          </div>
+        </Route>
         <Route path="/login">
           <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
         </Route>

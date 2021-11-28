@@ -91,7 +91,7 @@ nav a:hover {
 
 .cart-count-container {
     position: fixed;
-    right:0;
+    right: 0;
     top: 140px;
     background: #c97c5d;
     padding: 1px 3px;
@@ -332,7 +332,6 @@ nav a:hover {
 .single-product-main-container {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
     justify-content: center;
     flex-wrap: wrap;
     width: 1200px;
@@ -363,7 +362,7 @@ nav a:hover {
     overflow-y: auto;
 }
 
-.all-prods-main-container{
+.all-prods-main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -738,7 +737,7 @@ a.page-link:hover {
 /* phone landscape */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
 
-    .hamburger-icon {
+    /* .hamburger-icon {
         display: unset;
         position: fixed;
     }
@@ -782,7 +781,7 @@ a.page-link:hover {
 
     .link.hide {
         display: none;
-    }
+    } */
 
     .single-product-main-container {
         width: 100%;
@@ -825,4 +824,30 @@ a.page-link:hover {
     .login-form, .register-form {
         width: 100%;
     }
+}
+
+@media only screen and (max-width: 1110px) {
+   .landing-image-main{
+       top: 90%;
+       position: unset;
+   }
+
+    .landing-product-types {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .landing-product-link-card {
+        background: transparent;
+        color: rgba(238, 215, 197, .9);
+        /* top: 55%; */
+        width: 100%;
+        height: 100vh;
+    }
+
+    .landing-product-link-card h2{
+        font-size: 2.4rem;
+    }
+
+   
 }
