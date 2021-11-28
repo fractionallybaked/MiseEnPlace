@@ -41,7 +41,6 @@ async function updateCart({ userId, productId, quantity }) {
 //
 
 async function deleteCartItem({ productId, userId }) {
-  console.log("DB", productId, userId);
   try {
     const {
       rows: [cart],

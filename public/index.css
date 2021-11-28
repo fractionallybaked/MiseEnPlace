@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Open+Sans:wght@300;400;500;700&display=swap');
 
-
 * {
     font-family: "Open Sans", sans-serif;
 }
@@ -9,6 +8,7 @@
 .material-icons {
     background-color: transparent;
 }
+
 
 li, ul, a {
     text-decoration: none;
@@ -24,9 +24,9 @@ h2 {
     font-size: 1.8rem;
 }
 
-.active {
+/* .active {
     background: darkorchid;
-}
+} */
 
 /*-------------- header --------------  */
 .header-main-container {
@@ -296,7 +296,7 @@ nav a:hover {
 
 .landing-inner-product-card button {
     padding: 10px 15px;
-    margin-top: .5em;
+    margin-top: 0.5em;
     background: #c97c5d;
     color: black;
     border-radius: 5px;
@@ -350,7 +350,8 @@ nav a:hover {
     margin-top: 220px;
 }
 
-.outerDivWrapper, .outerDiv {
+.outerDivWrapper,
+.outerDiv {
     height: 60px;
     margin: 0em;
     overflow: visible;
@@ -398,87 +399,8 @@ a.page-link:hover {
     align-items: center;
 }
 
-.create-product-form, .add-type-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
-    margin: 1em;
-    padding: 10px;
-    border-radius: 2px;
-}
-
-.create-product-form input {
-    padding: 10px;
-    margin: 5px;
-    border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, .6);
-    color: #0A2342;
-    font-weight: 600;
-}
-
-.create-product-form textarea {
-    padding: 10px;
-    margin: 5px;
-    border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, .6);
-    color: #0A2342;
-    font-weight: 600;
-}
-
-.create-product-form button {
-    padding: 10px 15px;
-    margin: 5px;
-    background: #c97c5d;
-    color: black;
-    border-radius: 5px;
-    font-weight: 400;
-    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-}
-
-.create-product-form button:hover {
-    background: #915944;
-    color: white;
-}
-
-.add-type-form select {
-    padding: 10px;
-    margin: 5px;
-    border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, .6);
-    color: #0A2342;
-    font-weight: 600;
-}
-
-.add-type-form input {
-    padding: 10px;
-    margin: 5px;
-    border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, .6);
-    color: #0A2342;
-    font-weight: 600;
-}
-
-.add-type-form button {
-    padding: 10px 15px;
-    margin: 5px;
-    background: #c97c5d;
-    color: black;
-    border-radius: 5px;
-    font-weight: 400;
-    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-}
-
-.add-type-form button:hover {
-    background: #915944;
-    color: white;
-}
-
-.create-product-form, .add-type-form {
+.create-product-form,
+.add-type-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -556,11 +478,91 @@ a.page-link:hover {
 .add-type-form button:hover {
     background: #915944;
     color: white;
+}
 
+.create-product-form, .add-type-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    margin: 1em;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+.create-product-form input {
+    padding: 10px;
+    margin: 5px;
+    border-bottom: 1px solid lightgrey;
+    background-color: rgba(238, 215, 197, 0.6);
+    color: #0a2342;
+    font-weight: 600;
+}
+
+.create-product-form textarea {
+    padding: 10px;
+    margin: 5px;
+    border-bottom: 1px solid lightgrey;
+    background-color: rgba(238, 215, 197, 0.6);
+    color: #0a2342;
+    font-weight: 600;
+}
+
+.create-product-form button {
+    padding: 10px 15px;
+    margin: 5px;
+    background: #c97c5d;
+    color: black;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+.create-product-form button:hover {
+    background: #915944;
+    color: white;
+}
+
+.add-type-form select {
+    padding: 10px;
+    margin: 5px;
+    border-bottom: 1px solid lightgrey;
+    background-color: rgba(238, 215, 197, 0.6);
+    color: #0a2342;
+    font-weight: 600;
+}
+
+.add-type-form input {
+    padding: 10px;
+    margin: 5px;
+    border-bottom: 1px solid lightgrey;
+    background-color: rgba(238, 215, 197, 0.6);
+    color: #0a2342;
+    font-weight: 600;
+}
+
+.add-type-form button {
+    padding: 10px 15px;
+    margin: 5px;
+    background: #c97c5d;
+    color: black;
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+}
+
+.add-type-form button:hover {
+    background: #915944;
+    color: white;
 }
 
 /*-------------- login/register --------------*/
-.login-main-container, .register-main-container {
+.login-main-container,
+.register-main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -571,13 +573,15 @@ a.page-link:hover {
     height: 40px;
 }
 
-.login-main-container h2, .register-main-container h2 {
-    font-family: 'Cormorant Garamond', serif;
+.login-main-container h2,
+.register-main-container h2 {
+    font-family: "Cormorant Garamond", serif;
     font-weight: 500;
     font-size: 1.8rem;
 }
 
-.login-form, .register-form {
+.login-form,
+.register-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -587,16 +591,18 @@ a.page-link:hover {
     border-radius: 2px;
 }
 
-.login-form input, .register-form input {
+.login-form input,
+.register-form input {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
     color: black;
     font-weight: 500;
-    font-size: .9rem;
+    font-size: 0.9rem;
 }
 
-.login-form button, .register-form button {
+.login-form button,
+.register-form button {
     padding: 10px 15px;
     margin: 5px;
     background: #c97c5d;
@@ -608,9 +614,47 @@ a.page-link:hover {
     -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
 }
 
-.login-form button:hover, .register-form button:hover {
+.login-form button:hover,
+.register-form button:hover {
     background: #915944;
     color: white;
+}
+
+/*-------------- cart --------------  */
+.cart-image {
+    width: 220px;
+    height: 150px;
+    margin-bottom: 0.5em;
+}
+
+.single-product-link {
+    color: black;
+}
+
+.single-product-link:hover {
+    color: #915944;
+}
+
+.checkout-cart {
+    padding: 10px 20px;
+    margin: 10px;
+    background: black;
+    color: rgb(238, 215, 197);
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    width: 200px;
+}
+
+.checkout-cart:hover {
+    background: #c97c5d;
+}
+
+.checkout-container {
+    background: rgba(238, 215, 197, 0.2);
+    width: 100%;
 }
 
 /*-------------- buttons --------------  */
@@ -620,11 +664,10 @@ a.page-link:hover {
 }
 
 .add-to-cart {
-
     padding: 10px 15px;
     margin: 5px;
-    background: #c97c5d;
-    color: black;
+    background: black;
+    color: rgb(238, 215, 197);
     border-radius: 5px;
     font-weight: 400;
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
@@ -633,7 +676,7 @@ a.page-link:hover {
 }
 
 .add-to-cart:hover {
-    background: #915944;
+    background: #c97c5d;
     color: white;
 }
 
@@ -641,7 +684,18 @@ a.page-link:hover {
     display: none;
 }
 
+.plus-minus {
+    background: transparent;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.plus-minus:hover {
+    color: #915944;
+}
+
 /*-------------- media queries --------------  */
+
 /* phone - portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
     .single-product-main-container {
@@ -714,11 +768,6 @@ a.page-link:hover {
         width: 100%;
         top: 44%;
 
-    }
-
-    .landing-product-types {
-        height: unset;
-        flex-direction: column;
     }
 
     .login-main-container, .register-main-container {
@@ -827,10 +876,10 @@ a.page-link:hover {
 }
 
 @media only screen and (max-width: 1110px) {
-   .landing-image-main{
-       top: 90%;
-       position: unset;
-   }
+    .landing-image-main {
+        top: 90%;
+        position: unset;
+    }
 
     .landing-product-types {
         justify-content: space-around;
@@ -845,9 +894,9 @@ a.page-link:hover {
         height: 100vh;
     }
 
-    .landing-product-link-card h2{
+    .landing-product-link-card h2 {
         font-size: 2.4rem;
     }
 
-   
+
 }

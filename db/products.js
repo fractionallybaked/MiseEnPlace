@@ -32,7 +32,6 @@ async function createProduct({
         `,
       [name, description, price, quantity, photo]
     );
-
     const typeList = await createType(type);
 
     return await addTypeToProduct(product.id, typeList);
@@ -201,8 +200,6 @@ async function editProduct(id, { ...fields }) {
 }
 
 async function destoryProduct(id) {
-
-
   try {
     await client.query(
       `

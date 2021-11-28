@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ItemAdd, ItemUpdate, ItemDelete } from "./";
+import React, { useState } from "react";
+import {Link} from 'react-router-dom';
+import { ItemUpdate, ItemDelete } from "./";
 import { getToken } from "../auth";
+import {Flex} from '@chakra-ui/react';
 
-const CartItem = ({
-  cartProducts,
-  userId,
-  setUserId,
-  userCart,
-  setUserCart,
-}) => {
+const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   const token = getToken();
-
   const [guestCart, setGuestCart] = useState([]);
 
   const deleteHandle = async (productId) => {
@@ -40,7 +35,7 @@ const CartItem = ({
   };
 
   return (
-    <div className="single-product-main-container">
+    <Flex direction='row' justify='center' wrap='wrap'>
       {cartProducts.length
         ? cartProducts.map((e) => {
             let item;
@@ -48,18 +43,13 @@ const CartItem = ({
 
             return (
               <div className="single-product-card" key={item.id}>
-                <img className="product-image" src={item.photo} />
+                <Link className="single-product-link" to={`/product/${item.id}`}>
+                <img className="cart-image" src={item.photo} />
                 <h3>{item.name}</h3>
-                <div className="outerDivWrapper">
-                  <div className="outerDiv">
-                    <div className="scrollableContent">
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-                </div>
                 <span className="single-product-price">
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
+                </Link>
                 {!token ? (
                   <button onClick={deleteHandle(item.id)}>Delete Item</button>
                 ) : null}
@@ -95,7 +85,7 @@ const CartItem = ({
             );
           })
         : null}
-    </div>
+    </Flex>
   );
 };
 

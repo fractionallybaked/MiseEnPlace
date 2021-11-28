@@ -1,88 +1,83 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { ItemAdd, ItemUpdate, ItemDelete } from "./";
+import { Link } from "react-router-dom";
+import { ItemAdd } from "./";
 import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
-import { Flex } from '@chakra-ui/react';
+import { GuestAdd } from "./";
+import {Flex} from '@chakra-ui/react';
 
 const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
   const [userId, setUserId] = useState([]);
-  const location = useLocation();
+  const [userCart, setUserCart] = useState([]);
 
   useEffect(() => {
     async function getID() {
       const user = await getMyID();
       setUserId(user.id);
-    }
 
+      if (user.id) {
+        const userCart = await getUserCart(user.id);
+        setUserCart(userCart);
+      }
+    }
     getID();
   }, []);
 
-  const [guestCart, setGuestCart] = useState([]);
-
-  const addHandle = async (productId) => {
-    try {
-      const newItem = {};
-      newItem.id = productId;
-      newItem.quantity = 1;
-      setGuestCart(...guestCart, newItem);
-      localStorage.setItem("GuestCart", JSON.stringify(guestCart));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
-    <Flex direction='row' justify="center" wrap='wrap' >
+    <Flex direction='row' justify='center' wrap='wrap'>
       {allProducts.length
         ? allProducts.map((el) => {
-          let e;
-          el.products ? (e = el.products) : (e = el);
+            let e;
+            el.products ? (e = el.products) : (e = el);
 
-          return (
-            <div className="single-product-card" key={e.id}>
-              <img className="product-image" src={e.photo} />
-             <Link to={`/product/${e.id}`}> <h3>{e.name}</h3></Link>
-              <div className="outerDivWrapper">
-                <div className="outerDiv">
-                  <div className="scrollableContent">
-                    <p>{e.description}</p>
+            return (
+              <div className="single-product-card" key={e.id}>
+                <img className="product-image" src={e.photo} />
+                <h3>{e.name}</h3>
+                <div className="outerDivWrapper">
+                  <div className="outerDiv">
+                    <div className="scrollableContent">
+                      <p>{e.description}</p>
+                    </div>
                   </div>
                 </div>
+                <span className="single-product-price">
+                  ${(Math.round(e.price) / 100).toFixed(2)}
+                </span>
+                {!token ? <GuestAdd productId={e.id} /> : null}
+                {token ? (
+                  <ItemAdd
+                    productId={e.id}
+                    userId={userId}
+                    quantity={1}
+                    userCart={userCart}
+                    setUserCart={setUserCart}
+                  />
+                ) : null}
+                {isAdmin ? (
+                  <Link
+                    to={{
+                      pathname: "/editproduct",
+                      state: {
+                        pId: e.id,
+                        pName: e.name,
+                        pDescription: e.description,
+                        pPrice: e.price,
+                        pQuantity: e.quantity,
+                        pPhoto: e.photo,
+                      },
+                    }}
+                  >
+                    <button>
+                      <span className="material-icons edit-button">edit</span>
+                    </button>
+                  </Link>
+                ) : null}
               </div>
-              <span className="single-product-price">
-                ${(Math.round(e.price) / 100).toFixed(2)}
-              </span>
-              {location.pathname !== "./cart" && !token ? (
-                <button onClick={() => addHandle(e.id)}>Add Item</button>
-              ) : null}
-              {location.pathname !== "/cart" && token ? (
-                <ItemAdd productId={e.id} userId={userId} quantity={1} />
-              ) : null}
-              {isAdmin ? (
-                <Link
-                  to={{
-                    pathname: "/editproduct",
-                    state: {
-                      pId: e.id,
-                      pName: e.name,
-                      pDescription: e.description,
-                      pPrice: e.price,
-                      pQuantity: e.quantity,
-                      pPhoto: e.photo,
-                    },
-                  }}
-                >
-                  <button>
-                    <span className="material-icons edit-button">edit</span>
-                  </button>
-                </Link>
-              ) : null}
-            </div>
-          );
-        })
+            );
+          })
         : null}
     </Flex>
   );

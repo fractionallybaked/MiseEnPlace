@@ -12,7 +12,7 @@ const ItemUpdate = ({
 }) => {
   return (
     <div>
-      <button
+      <button className="plus-minus"
         onClick={async (event) => {
           event.preventDefault();
           try {
@@ -40,7 +40,7 @@ const ItemUpdate = ({
         +
       </button>
       <h3>{quantity}</h3>
-      <button
+      <button className="plus-minus"
         onClick={async (event) => {
           if (quantity > 1) {
             event.preventDefault();
