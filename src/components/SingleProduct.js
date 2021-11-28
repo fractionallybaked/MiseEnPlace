@@ -5,6 +5,7 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd } from "./";
+import {Flex} from '@chakra-ui/react';
 
 const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
@@ -25,7 +26,7 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
   }, []);
 
   return (
-    <div className="single-product-main-container">
+    <Flex direction='row' justify='center' wrap='wrap'>
       {allProducts.length
         ? allProducts.map((el) => {
             let e;
@@ -78,7 +79,7 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
             );
           })
         : null}
-    </div>
+    </Flex>
   );
 };
 

@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
-
 import { getUserCart } from "../api/cart";
-
 import { getProductById } from "../api/products";
-
 import { getMyID } from "../api/users";
-
 import CartItem from "./CartItem";
-
 import Checkout from "./Checkout";
+import { Flex } from '@chakra-ui/react';
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     async function getCart() {
@@ -41,15 +38,29 @@ const Cart = () => {
         })
       );
       setCartProducts(allProducts);
+
+      const totalArr = userCart.map(item => {
+        let total = 0;
+        total += item.itemTotal * item.quantity;
+        return total / 100
+      });
+
+      function add(accumulator, a) {
+        return accumulator + a;
+      }
+
+      const userTotal = totalArr.reduce(add, 0);
+      setTotal(userTotal)
+      
     }
     setProducts();
   }, [userCart]);
 
   return (
-    <div className="all-products-main-container">
-      <div className="cart-container">
+    <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
+      <Flex direction='column' align='center'>
         <h2>Your Cart</h2>
-        <div className="cart-products">
+        <Flex direction='row' justify='center' wrap='wrap'>
           {userCart.length ? (
             <CartItem
               cartProducts={cartProducts}
@@ -64,15 +75,18 @@ const Cart = () => {
             </div>
           )}
           {userCart.length ? (
-            <Checkout
-              userId={userId}
-              cartProducts={cartProducts}
-              cartId={userCart.id}
-            />
+            <Flex direction='column' justify='center' align='center' h='200px' className="checkout-container">
+              <h3>Total: ${total} </h3>
+              <Checkout
+                userId={userId}
+                cartProducts={cartProducts}
+                cartId={userCart.id}
+              />
+            </Flex>
           ) : null}
-        </div>
-      </div>
-    </div>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 

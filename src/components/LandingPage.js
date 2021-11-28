@@ -4,6 +4,7 @@ import coffee from '../images/coffee.jpg';
 import cookies from '../images/cookies.jpg';
 import tea from '../images/tea.jpg';
 import { Link } from 'react-router-dom';
+import {Flex} from '@chakra-ui/react';
 
 const LandingPage = () => {
     return (
@@ -17,7 +18,7 @@ const LandingPage = () => {
                     </Link>
                 </div>
             </div>
-            <div className='landing-product-types'>
+            <Flex direction='row' justify='space-around' wrap="wrap">
                 <div className="landing-product-card">
                     <div className="landing-inner-product-card">
                         <h2>Baked Goods</h2>
@@ -45,7 +46,7 @@ const LandingPage = () => {
                     </div>
                     <img className="landing-product-img" src={tea} />
                 </div>
-            </div>
+                </Flex>
         </>
     )
 }

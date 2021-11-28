@@ -37,13 +37,12 @@ async function createProductType(productId, typeId) {
     await client.query(
       `
         INSERT INTO product_type("productId", "typeId")
-        VALUES ($1, $2);
-`,
-      [productId, typeId]
-    );
-  } catch (error) {
-    throw error;
-  }
+        VALUES ($1, $2)
+`, [productId, typeId]);
+
+    } catch (error) {
+        throw error;
+    }
 }
 
 async function destroyType(id) {

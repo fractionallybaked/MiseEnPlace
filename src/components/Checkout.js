@@ -33,7 +33,7 @@ const Checkout = ({ userId, cartProducts, cartId }) => {
             }
           }}
         >
-          <button type="submit">Checkout Cart</button>
+          <button className="checkout-cart" type="submit">Checkout Cart</button>
         </form>
       </div>
     );

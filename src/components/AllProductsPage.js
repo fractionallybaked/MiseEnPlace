@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { SingleProduct, Pagination } from "./";
 import { getProductById } from "../api/products";
+import {Flex} from '@chakra-ui/react';
 
 const AllProductsPage = ({ allProducts, isAdmin }) => {
   const [products, setProducts] = useState([]);
@@ -54,10 +55,12 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
     .filter((e) => {
       return e !== undefined;
     });
+
   return (
     <Switch>
       <Route exact path="/products/bakedgoods">
-        <div className="all-products-main-container">
+        {/* <div className="all-products-main-container"> */}
+        <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
           <div className="baked-goods-main-container">
             <h2>Baked Goods</h2>
             <Pagination
@@ -70,11 +73,12 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
             allProducts={bakedGoods.slice(indexOfFirstProd, indexOfLastProd)}
             isAdmin={isAdmin}
           />
-        </div>
+        {/* </div> */}
+        </Flex>
       </Route>
 
       <Route exact path="/products/beverages">
-        <div className="all-products-main-container">
+      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
           <div className="beverages-main-container">
             <h2>Beverages</h2>
             <Pagination
@@ -87,13 +91,13 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
             allProducts={beverages.slice(indexOfFirstProd, indexOfLastProd)}
             isAdmin={isAdmin}
           />
-        </div>
+        </Flex>
       </Route>
 
       <Route exact path="/products">
-        <div className="all-products-main-container">
+      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
           <div className="all-prods-main-container">
-            <div><h2>All Products</h2></div>
+            <h2>All Products</h2>
             <Pagination
               productsPerPage={productsPerPage}
               totalProducts={products.length}
@@ -101,7 +105,7 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
             />
           </div>
           <SingleProduct allProducts={currentProducts} isAdmin={isAdmin} />
-        </div>
+        </Flex>
       </Route>
     </Switch>
   );
