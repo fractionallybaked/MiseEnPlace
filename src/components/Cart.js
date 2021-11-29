@@ -42,9 +42,9 @@ const Cart = () => {
       const totalArr = userCart.map(item => {
         let total = 0;
         total += item.itemTotal * item.quantity;
-        return total / 100
+        return total/100
       });
-
+      
       function add(accumulator, a) {
         return accumulator + a;
       }
@@ -60,7 +60,7 @@ const Cart = () => {
     <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
       <Flex direction='column' align='center'>
         <h2>Your Cart</h2>
-        <Flex direction='row' justify='center' wrap='wrap'>
+        <Flex direction='column' justify='center' align='center' >
           {userCart.length ? (
             <CartItem
               cartProducts={cartProducts}
@@ -76,7 +76,7 @@ const Cart = () => {
           )}
           {userCart.length ? (
             <Flex direction='column' justify='center' align='center' h='200px' className="checkout-container">
-              <h3>Total: ${total} </h3>
+              <h3>Total: ${total.toFixed(2)} </h3>
               <Checkout
                 userId={userId}
                 cartProducts={cartProducts}

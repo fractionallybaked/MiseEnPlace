@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SearchBar = ({ searchOpen, setSearchOpen, query, setQuery }) => {
+const SearchBar = ({ searchOpen, setSearchOpen, query, setQuery}) => {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push('/products/searchresults')
+        history.push('/products/searchresults');
     }
 
     return (
@@ -15,6 +15,7 @@ const SearchBar = ({ searchOpen, setSearchOpen, query, setQuery }) => {
                     e.preventDefault();
                     handleClick();
                     setSearchOpen(false);
+                
                 }}>
                 <input type="text"
                     id="product-search"

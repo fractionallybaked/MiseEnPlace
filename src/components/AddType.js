@@ -9,7 +9,7 @@ const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
     <div>
       {isAdmin ? (
         <div className="create-product-main-container">
-          <h2>Add Type(s) to a Product</h2>
+          <h3>Add Type(s) to a Product</h3>
           <form
             className="add-type-form"
             onSubmit={async (e) => {

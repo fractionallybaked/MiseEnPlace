@@ -16,16 +16,16 @@ module.exports = productsSeed = [
         quantity: 5,
         photo:
             "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/90e96872-f2aa-4564-befb-ebcffac92fd4/Derivates/5809bfb5-e7ae-4826-ad4a-93f191e489ea.jpg",
-        type: ["cake", "baked goods"]
+        type: ["baked goods"]
     },
     {
-        name: "Chai Tea Set",
-        description: "Chai Tea.  Tea tea.",
-        price: 1200,
-        quantity: 10,
+        name: "Chai Tea",
+        description: "Aromatic and delicious, our chai mix is a unique blend of black tea, cinnamon, cardamom, cloves and honey.",
+        price: 999,
+        quantity: 100,
         photo:
             "https://imbibemagazine.com/wp-content/uploads/2019/10/chai-tea-iStock-67194691-crdt-GeloKorol.jpg",
-        type: ["tea", "beverages"]
+        type: ["beverages"]
     },
     {
         name: "Chocolate Chip Cookies",
@@ -34,7 +34,7 @@ module.exports = productsSeed = [
         quantity: 2,
         photo:
             "https://images.unsplash.com/photo-1584847801423-852691e41bc7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2hvY29sYXRlJTIwY2hpcCUyMGNvb2tpZXN8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-        type: ["cookie", "baked goods"]
+        type: ["baked goods"]
     },
     {
         name: "Cheesecake",
@@ -44,7 +44,7 @@ module.exports = productsSeed = [
         photo:
             "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
 
-        type: ["cake", "baked goods", "chilled dessert"]
+        type: ["baked goods"]
     },
     {
         name: "Blonde Roast",
