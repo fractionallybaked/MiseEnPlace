@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { updateCart } from "../api/cart";
-
+import {Flex, HStack} from '@chakra-ui/react';
 const ItemUpdate = ({
   cartId,
   productId,
@@ -11,7 +11,7 @@ const ItemUpdate = ({
   setUserCart,
 }) => {
   return (
-    <div>
+    <HStack spacing='12px'>
       <button className="plus-minus"
         onClick={async (event) => {
           event.preventDefault();
@@ -37,7 +37,7 @@ const ItemUpdate = ({
           }
         }}
       >
-        +
+        <span className='material-icons'>add</span>
       </button>
       <h3>{quantity}</h3>
       <button className="plus-minus"
@@ -66,9 +66,9 @@ const ItemUpdate = ({
           }
         }}
       >
-        -
+        <span className='material-icons'>remove</span>
       </button>
-    </div>
+    </HStack>
   );
 };
 

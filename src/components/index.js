@@ -26,3 +26,4 @@ export { default as LandingPage } from "./LandingPage";
 export { default as CartCount } from "./CartCount";
 export { default as Admin } from "./Admin";
 export { default as SingleProductPage } from "./SingleProductPage";
+export { default as About } from "./About";

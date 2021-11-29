@@ -9,7 +9,7 @@ const Navbar = ({
   isAdmin,
   setIsAdmin,
   query,
-  setQuery,
+  setQuery
 }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -107,7 +107,7 @@ const Navbar = ({
             to="/login"
           >
             {" "}
-            Sign In
+            Log In
           </Link>
         )}
         {!isLoggedIn ? (
@@ -116,7 +116,7 @@ const Navbar = ({
             onClick={() => toggleHamburger()}
             to="/register"
           >
-            Sign up
+            <span className='register'>Sign up</span>
           </Link>
         ) : null}
       </section>

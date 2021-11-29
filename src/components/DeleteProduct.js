@@ -13,7 +13,7 @@ const DeleteProduct = ({ productId, setAllProducts }) => {
                     console.log(err);
                 }
             }}>
-            Delete Product
+            <span className="material-icons edit-button">delete</span>
         </button>
     )
 }
