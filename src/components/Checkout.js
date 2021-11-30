@@ -9,16 +9,16 @@ const Checkout = ({ userId, cartProducts, cartId }) => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
+            await checkoutCart(userId);
             cartProducts.forEach(async (p) => {
               const itemId = p.id;
-              const itemRemoved = await removeItemFromCart({
+              await removeItemFromCart({
                 userId,
                 itemId,
                 cartId,
               });
-              return itemRemoved;
             });
-            await checkoutCart(userId);
+
             return (
               <div>
                 <h2>Order completed!</h2>
