@@ -78,6 +78,7 @@ const Cart = () => {
             />
           ) : null}
           {!token ? <GuestCartItem /> : null}
+
           {userCart.length ? (
             <Flex
               direction="column"
@@ -87,13 +88,13 @@ const Cart = () => {
               className="checkout-container"
             >
               <h3>Total: ${total} </h3>
-              <Checkout
-                userId={userId}
-                cartProducts={cartProducts}
-                cartId={userCart.id}
-              />
             </Flex>
           ) : null}
+          <Checkout
+            userId={userId}
+            cartProducts={cartProducts}
+            cartId={userCart.id}
+          />
         </Flex>
       </Flex>
     </Flex>

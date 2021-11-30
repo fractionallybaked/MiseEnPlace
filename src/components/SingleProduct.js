@@ -29,7 +29,9 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
 
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("GuestCart"));
-    setGuestCart(cart);
+    if (cart) {
+      setGuestCart(cart);
+    }
   }, []);
 
   useEffect(() => {

@@ -7,7 +7,6 @@ const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
     const alreadyAdded = guestCart.filter((e) => {
       return e.id === productId;
     });
-
     if (alreadyAdded.length) {
       setAdded(true);
     }
@@ -18,10 +17,7 @@ const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
       let newItem = {};
       newItem.id = productId;
       newItem.quantity = 1;
-      console.log("ONE", guestCart);
       setGuestCart([...guestCart, newItem]);
-
-      console.log("TWO", guestCart);
     } catch (err) {
       console.log(err);
     }
