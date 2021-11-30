@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const GuestAdd = ({ productId }) => {
+const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
   const [alreadyAdded, setAdded] = useState(false);
-
-  const [guestCart, setGuestCart] = useState([]);
 
   useEffect(() => {
     const alreadyAdded = guestCart.filter((e) => {
-      return e.productId === productId;
+      return e.id === productId;
     });
 
     if (alreadyAdded.length) {
@@ -17,11 +15,13 @@ const GuestAdd = ({ productId }) => {
 
   const addHandle = async (productId) => {
     try {
-      const newItem = {};
+      let newItem = {};
       newItem.id = productId;
       newItem.quantity = 1;
+      console.log("ONE", guestCart);
       setGuestCart([...guestCart, newItem]);
-      localStorage.setItem("GuestCart", JSON.stringify(guestCart));
+
+      console.log("TWO", guestCart);
     } catch (err) {
       console.log(err);
     }
@@ -34,7 +34,12 @@ const GuestAdd = ({ productId }) => {
           <p className="add-to-cart">Already added to cart!</p>
         </div>
       ) : (
-        <button className="add-to-cart" onClick={addHandle}>
+        <button
+          className="add-to-cart"
+          onClick={() => {
+            addHandle(productId);
+          }}
+        >
           Add Item to Cart
         </button>
       )}

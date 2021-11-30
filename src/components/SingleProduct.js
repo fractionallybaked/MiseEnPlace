@@ -5,7 +5,7 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd } from "./";
-import {Flex} from '@chakra-ui/react';
+import { Flex } from "@chakra-ui/react";
 
 const SingleProduct = ({ allProducts, isAdmin }) => {
   const token = getToken();
@@ -25,8 +25,19 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
     getID();
   }, []);
 
+  const [guestCart, setGuestCart] = useState([]);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("GuestCart"));
+    setGuestCart(cart);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("GuestCart", JSON.stringify(guestCart));
+  }, [guestCart]);
+
   return (
-    <Flex direction='row' justify='center' wrap='wrap'>
+    <Flex direction="row" justify="center" wrap="wrap">
       {allProducts.length
         ? allProducts.map((el) => {
             let e;
@@ -46,7 +57,13 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                {!token ? <GuestAdd productId={e.id} /> : null}
+                {!token ? (
+                  <GuestAdd
+                    productId={e.id}
+                    guestCart={guestCart}
+                    setGuestCart={setGuestCart}
+                  />
+                ) : null}
                 {token ? (
                   <ItemAdd
                     productId={e.id}
