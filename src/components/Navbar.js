@@ -25,7 +25,7 @@ const Navbar = ({
 
   return (
     <nav>
-      <div className="hamburger-icon" onClick={() => setHamburgerOpen(true)}>
+      <div className="hamburger-icon" onClick={() =>{ setHamburgerOpen(true); toggleHamburger()}}>
         <Hamburger isOpen={hamburgerOpen}/>
       </div>
       <section className={hamburgerOpen ? "nav-links show" : "nav-links hide"}>

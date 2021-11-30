@@ -149,7 +149,7 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <FormHelperText textAlign="right">
+                <FormHelperText textAlign="center">
                   <Link>Password must be at least 8 characters</Link>
                 </FormHelperText>
               </FormControl>

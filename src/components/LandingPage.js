@@ -1,5 +1,4 @@
 import React from 'react';
-import mainImage from '../images/landingBg.jpg';
 import coffee from '../images/coffee.jpg';
 import cookies from '../images/cookies.jpg';
 import tea from '../images/tea.jpg';
@@ -19,6 +18,7 @@ const LandingPage = () => {
                 px={8}
                 mb={16}
                 mt='200px'
+                bg='#F8F3F2'
             >
 
                 <Stack
@@ -64,8 +64,8 @@ const LandingPage = () => {
                 minH="70vh"
                 px={8}
                 mb={16}
-                bg='#eee2df'
-                shadow='2xl'>
+                bg='white'
+                >
                 <Box m='1em'>
                     <div className="landing-inner-product-card">
                         <h3>Baked Goods</h3>
@@ -73,7 +73,7 @@ const LandingPage = () => {
                             <button>Shop Now</button>
                         </Link>
                     </div>
-                    <Image size='100%' src={cookies} rounded='1rem' />
+                    <Image size='100%' src={cookies} rounded='1rem' shadow='2xl' />
                 </Box>
                 <Box m='1em'>
                     <div className="landing-inner-product-card">
@@ -82,7 +82,7 @@ const LandingPage = () => {
                             <button>Shop Now</button>
                         </Link>
                     </div>
-                    <Image size='100%' src={coffee} rounded='1rem' />
+                    <Image size='100%' src={coffee} rounded='1rem' shadow='2xl' />
                 </Box>
                 <Box m='1em'>
                     <div className="landing-inner-product-card">
@@ -91,7 +91,7 @@ const LandingPage = () => {
                             <button>Shop Now</button>
                         </Link>
                     </div>
-                    <Image size='100%' src={tea} rounded='1rem' />
+                    <Image size='100%' src={tea} rounded='1rem' shadow='2xl'/>
                 </Box>
             </Flex>
         </>
