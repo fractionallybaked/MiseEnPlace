@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { ItemUpdate, ItemDelete } from "./";
 import { getToken } from "../auth";
-import { Flex } from "@chakra-ui/react";
+import { Flex, HStack } from '@chakra-ui/react';
 
 const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   const token = getToken();
 
   return (
-    <Flex direction="row" justify="center" wrap="wrap">
-      {cartProducts.length ? (
-        cartProducts.map((e) => {
+    <Flex direction='column' justify='center' align='center'>
+      {cartProducts.length
+        ? cartProducts.map((e) => {
           let item;
           e.products ? (item = e.products) : (item = e);
 
@@ -24,6 +24,7 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
                 </span>
               </Link>
 
+              <HStack spacing='15px'>
               <ItemUpdate
                 cartId={userCart[0].id}
                 productId={item.id}
@@ -40,6 +41,7 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
                 userCart={userCart}
                 setUserCart={setUserCart}
               />
+              </HStack>
             </div>
           );
         })
@@ -48,6 +50,7 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
           <h2>Your cart is empty! Show it some love and add some items!</h2>
         </div>
       )}
+
     </Flex>
   );
 };

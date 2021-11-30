@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ItemAdd } from "./";
 import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd } from "./";
 import { Flex } from "@chakra-ui/react";
 
-const SingleProduct = ({ allProducts, isAdmin }) => {
+const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
   const token = getToken();
   const [userId, setUserId] = useState([]);
   const [userCart, setUserCart] = useState([]);
@@ -47,8 +46,10 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
 
             return (
               <div className="single-product-card" key={e.id}>
+                <Link className="single-product-link" to={`/product/${e.id}`}>
                 <img className="product-image" src={e.photo} />
                 <h3>{e.name}</h3>
+                </Link>
                 <div className="outerDivWrapper">
                   <div className="outerDiv">
                     <div className="scrollableContent">
@@ -76,6 +77,7 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                   />
                 ) : null}
                 {isAdmin ? (
+                  <Flex direction='row' align='center'>
                   <Link
                     to={{
                       pathname: "/editproduct",
@@ -93,6 +95,8 @@ const SingleProduct = ({ allProducts, isAdmin }) => {
                       <span className="material-icons edit-button">edit</span>
                     </button>
                   </Link>
+                  <DeleteProduct productId={e.id} setAllProducts={setAllProducts} />
+                  </Flex>
                 ) : null}
               </div>
             );

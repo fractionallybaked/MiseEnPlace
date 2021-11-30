@@ -14,7 +14,7 @@ const SearchResultsPage = ({ allProducts, query, setQuery }) => {
             }
         }
     });
-console.log(query, "!!")
+
     return (
         <div className="search-results">
             <SingleProduct allProducts={filteredProducts} />

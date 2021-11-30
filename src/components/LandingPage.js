@@ -10,15 +10,15 @@ const LandingPage = () => {
     return (
         <>
             <div className='landing-main-container'>
-                <img className='landing-image-main' src={mainImage} />
+                <img className='landing-image-main' src={mainImage} alt='baking ingredients' />
                 <div className="landing-product-link-card">
                     <h2>Baking Made Easy</h2>
                     <Link to='/products'>
-                        <button>VIEW PRODUCTS</button>
+                        <button>GET STARTED</button>
                     </Link>
                 </div>
             </div>
-            <Flex direction='row' justify='space-around' wrap="wrap">
+            <Flex direction='row' justify='space-around' align='center' wrap="wrap" mt="1em" h="100vh">
                 <div className="landing-product-card">
                     <div className="landing-inner-product-card">
                         <h2>Baked Goods</h2>

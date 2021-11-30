@@ -12,7 +12,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
     return (
         <div className="create-product-main-container">
             { isAdmin
-                ? <> <h2>Create a New Product</h2>
+                ? <> <h3>Create a New Product</h3>
                     <form
                         className="create-product-form"
                         onSubmit={async (e) => {

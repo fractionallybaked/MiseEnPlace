@@ -108,74 +108,32 @@ async function getAllUsers(id) {
 async function editUser({ password, isAdmin, targetID, id }) {
   try {
     const admin = await getUserById(id);
-    console.log("adminID: ", id);
-    console.log("UserMAYBEADMIN: ", admin);
-    if (admin.isAdmin && id === targetID) {
-      //admin changing own password/account type
-      if (password !== null) {
-        //change admin status
-        const {
-          rows: [user],
-        } = await client.query(
-          `
-            UPDATE users
-            SET password=$1
-            WHERE id=$2
-            RETURNING *;
-          `,
-          [password, targetID]
-        );
-        delete user.password;
-        return user;
-      } else {
-        //change password
-        const {
-          rows: [user],
-        } = await client.query(
-          `
-            UPDATE users
-            SET password=$1,
-            WHERE id=$2
-            RETURNING *;
-          `,
-          [password, targetID]
-        );
-        delete user.password;
-        return user;
-      }
-    } else if (admin.isAdmin && id !== targetID) {
-      //admin changing other user account type
+    let updateField = "password=$1";
+    let targetField = password;
+    let targetUser = id;
+
+    if (password === null && admin.isAdmin) {
+      updateField = '"isAdmin"=$1';
+      targetField = isAdmin;
+      targetUser = targetID;
+    }
+
+    if (password !== null || (password === null && admin.isAdmin)) {
       const {
         rows: [user],
       } = await client.query(
         `
-          UPDATE users
-          SET "isAdmin"=$1
-          WHERE id=$2
-          RETURNING *;
-        `,
-        [isAdmin, targetID]
-      );
-      console.log("TARGET: ", targetID);
-      console.log("returned user: ", user);
-      delete user.password;
-      return user;
-    } else if (!admin.isAdmin) {
-      //user changing own password
-      const {
-        rows: [user],
-      } = await client.query(
-        `
-          UPDATE users
-          SET password=$1
-          WHERE id=$2
-          RETURNING *;
-        `,
-        [password, targetID]
+            UPDATE users
+            SET ${updateField}
+            WHERE id=$2
+            RETURNING *;
+          `,
+        [targetField, targetUser]
       );
       delete user.password;
       return user;
     }
+    return;
   } catch (error) {
     throw error;
   }
