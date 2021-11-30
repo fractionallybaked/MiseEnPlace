@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { registerUser } from "../api/users";
 import { storeUser } from "../auth";
+import { useToast } from '@chakra-ui/react';
 
 const Register = ({ isLoggedIn, setIsLoggedIn }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [registered, setRegistered] = useState(false);
   const history = useHistory();
-
+  const toast = useToast();
   const handleClick = () => {
     history.push("/");
   };
@@ -29,60 +30,75 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <div className="all-products-main-container">
-        <div className="register-main-container">
-        <img className="login-icon" src={require('../images/bakingIcon.png')}/>
-          <h2>Sign Up</h2>
-          <form
-            className="register-form"
-            onSubmit={async (event) => {
-              event.preventDefault();
-
-              try {
-                const results = await registerUser(userName, password);
-                if (results.user) {
-                  storeUser(results.token);
-                  setIsLoggedIn(true);
-                  setRegistered(true);
-                  handleClick();
-                } else console.log("register failed: ", results.error.message);
-                setUserName("");
-                setPassword("");
-              } catch (err) {
-                console.log(err);
-              }
+      <div className="register-main-container">
+        <img className="login-icon" src={require('../images/bakingIcon.png')} />
+        <h2>Sign Up</h2>
+        <form
+          className="register-form"
+          onSubmit={async (event) => {
+            event.preventDefault();
+            if (password.length < 8) {
+              toast({
+                title: 'Password must be at least 8 characters',
+                status: 'error',
+                duration: 8000,
+                isClosable: true,
+                position: 'top'
+              })
+            }
+            try {
+              const results = await registerUser(userName, password);
+              if (results.user) {
+                storeUser(results.token);
+                setIsLoggedIn(true);
+                setRegistered(true);
+                handleClick();
+              } else console.log("register failed: ", results.error.message);
+              setUserName("");
+              setPassword("");
+            } catch (err) {
+              toast({
+                title: 'Username already exists',
+                status: 'error',
+                duration: 8000,
+                isClosable: true,
+                position: 'top'
+              })
+              console.log(err);
+            }
+          }}
+        >
+          <label htmlFor="userName">Username</label>
+          <input
+            id="userName"
+            type="text"
+            placeholder="enter username"
+            value={userName}
+            onChange={(event) => {
+              setUserName(event.target.value);
             }}
-          >
-            <label htmlFor="userName">Username</label>
-            <input
-              id="userName"
-              type="text"
-              placeholder="enter username"
-              value={userName}
-              onChange={(event) => {
-                setUserName(event.target.value);
-              }}
-            />
+          />
 
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="enter password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <button>Register</button>
-          </form>
-          <p>
-            Already a member?{" "}
-            <Link className="signup-link" to="/login">
-              Sign In
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="enter password"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <button>Register</button>
+        </form>
+        <p>
+          Already a member?{" "}
+          <Link className="signup-link" to="/login">
+            Log In
             </Link>
-          </p>
-        </div>
+        </p>
       </div>
+    </div>
   );
 };
 

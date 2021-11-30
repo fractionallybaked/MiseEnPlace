@@ -25,7 +25,7 @@ const ItemDelete = ({ userId, productId, cartId, userCart, setUserCart }) => {
           }
         }}
       >
-        <button type="submit">Remove Item</button>
+        <button className="add-to-cart" type="submit">Remove Item</button>
       </form>
     </div>
   );

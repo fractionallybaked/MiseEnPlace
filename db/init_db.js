@@ -2,7 +2,7 @@
 const { client } = require("./client");
 
 const { createUser, createProduct, createType, addItemToCart } = require("./");
-
+const productsSeed = require('./productSeed');
 async function dropTables() {
   try {
     console.log("Dropping All Tables...");
@@ -46,8 +46,7 @@ async function createTables() {
       );
       CREATE TABLE product_type(
         "productId" INTEGER REFERENCES products(id),
-        "typeId" INTEGER REFERENCES types(id),
-        UNIQUE ("productId", "typeId")
+        "typeId" INTEGER REFERENCES types(id)
       );
       CREATE TABLE cart(
         id SERIAL PRIMARY KEY,
@@ -133,47 +132,8 @@ async function createInitialTypes() {
 async function createInitialProducts() {
   try {
     console.log("Starting to create products...");
-
-    const productsToCreate = [
-      {
-        name: "Angel's Food Cake",
-        description: "If you eat it, you'll grow wings",
-        price: 1500,
-        quantity: 5,
-        photo:
-          "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/90e96872-f2aa-4564-befb-ebcffac92fd4/Derivates/5809bfb5-e7ae-4826-ad4a-93f191e489ea.jpg",
-        type: ["cake", "baked goods"],
-      },
-      {
-        name: "Chai Tea Set",
-        description: "Chai Tea.  Tea tea.",
-        price: 1200,
-        quantity: 10,
-        photo:
-          "https://imbibemagazine.com/wp-content/uploads/2019/10/chai-tea-iStock-67194691-crdt-GeloKorol.jpg",
-        type: ["tea", "beverages"],
-      },
-      {
-        name: "Chocolate Chip Cookies",
-        description: "Would you like some cookie with your chocolate?",
-        price: 700,
-        quantity: 2,
-        photo:
-          "https://cdn.loveandlemons.com/wp-content/uploads/2020/02/vegan-chocolate-chip-cookies.jpg",
-        type: ["cookie", "baked goods"],
-      },
-      {
-        name: "Cheesecake",
-        description: "Is it cheese or is it cake?",
-        price: 900,
-        quantity: 4,
-        photo:
-          "https://www.dailynews.com/wp-content/uploads/2021/07/LDN-L-CHEESECAKE-0709-01.jpg?w=1395",
-
-        type: ["cake", "baked goods", "chilled dessert"],
-      },
-    ];
-    const products = await Promise.all(productsToCreate.map(createProduct));
+    
+    const products = await Promise.all(productsSeed.map(createProduct));
 
     console.log("products created:");
     console.log(products);

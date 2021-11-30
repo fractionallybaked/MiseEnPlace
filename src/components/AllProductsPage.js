@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { SingleProduct, Pagination } from "./";
 import { getProductById } from "../api/products";
+import {Flex} from '@chakra-ui/react';
 
-const AllProductsPage = ({ allProducts, isAdmin }) => {
+const AllProductsPage = ({ allProducts, setAllProducts, isAdmin, setIsLoading }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
@@ -11,6 +12,7 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
 
   useEffect(() => {
     async function setUp() {
+      setIsLoading(true);
       try {
         const prods = [];
         for (const ids of idArr) {
@@ -20,6 +22,8 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
         setProducts([...prods]);
       } catch (err) {
         console.log(err);
+      }finally{
+        setIsLoading(false)
       }
     }
     setUp();
@@ -54,11 +58,12 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
     .filter((e) => {
       return e !== undefined;
     });
+
   return (
     <Switch>
       <Route exact path="/products/bakedgoods">
-        <div className="all-products-main-container">
-          <div className="baked-goods-main-container">
+        <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
+          <div className="all-prods-main-container">
             <h2>Baked Goods</h2>
             <Pagination
               productsPerPage={productsPerPage}
@@ -69,13 +74,15 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
           <SingleProduct
             allProducts={bakedGoods.slice(indexOfFirstProd, indexOfLastProd)}
             isAdmin={isAdmin}
+            setAllProducts={setAllProducts}
           />
-        </div>
+       
+        </Flex>
       </Route>
 
       <Route exact path="/products/beverages">
-        <div className="all-products-main-container">
-          <div className="beverages-main-container">
+      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
+          <div className="all-prods-main-container">
             <h2>Beverages</h2>
             <Pagination
               productsPerPage={productsPerPage}
@@ -86,22 +93,26 @@ const AllProductsPage = ({ allProducts, isAdmin }) => {
           <SingleProduct
             allProducts={beverages.slice(indexOfFirstProd, indexOfLastProd)}
             isAdmin={isAdmin}
+            setAllProducts={setAllProducts}
           />
-        </div>
+        </Flex>
       </Route>
 
       <Route exact path="/products">
-        <div className="all-products-main-container">
+      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
           <div className="all-prods-main-container">
-            <div><h2>All Products</h2></div>
+            <h2>All Products</h2>
             <Pagination
               productsPerPage={productsPerPage}
               totalProducts={products.length}
               paginate={paginate}
             />
           </div>
-          <SingleProduct allProducts={currentProducts} isAdmin={isAdmin} />
-        </div>
+          <SingleProduct 
+          allProducts={currentProducts} 
+          isAdmin={isAdmin}
+          setAllProducts={setAllProducts} />
+        </Flex>
       </Route>
     </Switch>
   );

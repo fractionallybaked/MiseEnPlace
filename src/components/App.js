@@ -11,9 +11,6 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import {
   Navbar,
-  SingleProduct,
-  CreateProduct,
-  AddType,
   Register,
   Login,
   EditProduct,
@@ -23,19 +20,23 @@ import {
   LandingPage,
   Admin,
   Account,
+  SingleProductPage,
+  About
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
+import { ChakraProvider, Spinner, Flex } from '@chakra-ui/react';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [query, setQuery] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const token = getToken();
 
   useEffect(() => {
     async function setUp() {
+      setIsLoading(true);
       try {
         const products = await getAllProducts();
         setAllProducts(products.allProducts);
@@ -51,6 +52,8 @@ const App = () => {
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setIsLoading(false)
       }
     }
     setUp();
@@ -67,9 +70,23 @@ const App = () => {
         query={query}
         setQuery={setQuery}
       />
+      {
+        isLoading
+          ? <ChakraProvider>
+            <Flex justify='center' align='center' h='100vh'>
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='rgba(238, 215, 197, 0.9)'
+                color='#c97c5d'
+                size='xl' />
+            </Flex>
+          </ChakraProvider>
+          : null
+      }
       <Switch>
         <Route path="/about">
-          <h2>about</h2>
+          <About />
         </Route>
         <Route exact path="/products/searchresults">
           <div className="all-products-main-container">
@@ -80,15 +97,30 @@ const App = () => {
             />
           </div>
         </Route>
-        <Route path="/products">
-          <AllProductsPage allProducts={allProducts} isAdmin={isAdmin} />
-        </Route>
 
+        <Route path="/products">
+          <AllProductsPage
+            allProducts={allProducts}
+            isAdmin={isAdmin}
+            setAllProducts={setAllProducts}
+            setIsLoading={setIsLoading} />
+        </Route>
+        <Route exact path="/product/:productId">
+          <div className="all-products-main-container">
+            <SingleProductPage
+              allProducts={allProducts}
+              isAdmin={isAdmin} />
+          </div>
+        </Route>
         <Route path="/login">
-          <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          <ChakraProvider>
+            <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          </ChakraProvider>
         </Route>
         <Route path="/register">
-          <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          <ChakraProvider>
+            <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          </ChakraProvider>
         </Route>
         <Route path="/cart">
           <Cart />
@@ -96,11 +128,13 @@ const App = () => {
         <Route path="/admin">
           <div className="all-products-main-container">
             {isAdmin ? (
+              <ChakraProvider>
               <Admin
                 allProducts={allProducts}
                 setAllProducts={setAllProducts}
                 isAdmin={isAdmin}
               />
+              </ChakraProvider>
             ) : null}
           </div>
         </Route>

@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { addTypeToProduct } from "../api/products";
+import { editUser, getMyID } from "../api/users";
 
-const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
-  const [productId, setProductId] = useState("");
-  const [type, setType] = useState("");
+const ChangePassword = ({ isLoggedIn }) => {
+  const [password, setPassword] = useState("");
 
   return (
     <div>
-      {isAdmin ? (
-        <div className="create-product-main-container">
-          <h3>Add Type(s) to a Product</h3>
+      {isLoggedIn ? (
+        <div className="create-new-password-main-container">
+          <h2>Set a New Password</h2>
           <form
-            className="add-type-form"
+            className="password-form"
             onSubmit={async (e) => {
               e.preventDefault();
               try {
-                const updatedProduct = await addTypeToProduct(productId, type);
+                const me = await getMyID();
+                const updatedProduct = await editUser(password, false, me.id);
                 setProductId("");
                 setType("");
                 setAllProducts((prevProduct) => [
@@ -60,4 +60,4 @@ const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
   );
 };
 
-export default AddType;
+export default ChangePassword;

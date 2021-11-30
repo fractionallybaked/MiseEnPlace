@@ -57,27 +57,25 @@ export async function createProduct(
   }
 }
 
-
 export async function addTypeToProduct(productId, type) {
-    try {
-        const token = getToken();
-
-        const { data } = await axios.post(
-            `${BASE}/products/${productId}/type`,
-            {
-                type: [type]
-            },
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            }
-        );
-        return data;
-    } catch (error) {
-        throw error
-    }
+  try {
+    const token = getToken();
+    const { data } = await axios.post(
+      `${BASE}/products/${productId}/type`,
+      {
+        type: [type],
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function updateProduct(

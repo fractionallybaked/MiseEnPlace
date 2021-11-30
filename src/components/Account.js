@@ -2,40 +2,35 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import {} from "./";
 
-const Account = () => {
+const Account = ({ isLoggedIn }) => {
   return (
     <div>
-      <nav className="admin-nav">
-        <section className="nav-links">
-          <Link to="/admin/createproduct">Create a Product</Link>
-          <Link to="/admin/addtype">Add Type</Link>
-          <Link to="/admin/manageusers">Manage Users</Link>
-        </section>
-      </nav>
+      {isLoggedIn ? (
+        <>
+          <nav className="admin-nav">
+            <section className="nav-links">
+              <Link to="/user/purchases">Past Purchases</Link>
+              <Link to="/user/changepassword">Change Password</Link>
+            </section>
+          </nav>
 
-      <Switch>
-        <Route exact path="/admin/createproduct">
-          <div className="admin-form-main-container">
-            <CreateProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
-          </div>
-        </Route>
+          <Switch>
+            <Route exact path="/user/purchases">
+              <div className="admin-form-main-container">
+                <PastPurchases isLoggedIn={isLoggedIn} />
+              </div>
+            </Route>
 
-        <Route exact path="/admin/addtype">
-          <div className="admin-form-main-container">
-            <AddType
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
-              isAdmin={isAdmin}
-            />
-          </div>
-        </Route>
-
-        <Route exact path="/admin/manageusers">
-          <div className="admin-form-main-container">
-            <ManageUsers isAdmin={isAdmin} />
-          </div>
-        </Route>
-      </Switch>
+            <Route exact path="/user/changepassword">
+              <div className="admin-form-main-container">
+                <ChangePassword isLoggedIn={isLoggedIn} />
+              </div>
+            </Route>
+          </Switch>
+        </>
+      ) : (
+        <div> You must be logged in to view account information </div>
+      )}
     </div>
   );
 };

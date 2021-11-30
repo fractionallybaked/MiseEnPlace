@@ -4,6 +4,7 @@ import { getMyID } from '../api/users';
 
 const CartCount = (props) => {
     const [itemNum, setItemNum] = useState('');
+    const [userCart, setUserCart]=useState([])
 
     useEffect(() => {
         async function setUp() {
@@ -11,6 +12,9 @@ const CartCount = (props) => {
                 const user = await getMyID();
                 if (user) {
                     const cart = await getUserCart(user.id);
+                    if (cart){
+                        setUserCart(cart);
+                    }
                     let num = 0
                     for (const items of cart) {
                         num += items.quantity
@@ -24,7 +28,7 @@ const CartCount = (props) => {
 
         }
         setUp();
-    }, [itemNum]);
+    }, [userCart]);
 
     return (
         <div className="cart-count-container">
