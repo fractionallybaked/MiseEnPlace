@@ -1,8 +1,8 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-export const BASE = "https://polar-harbor-90312.herokuapp.com/api";
-// const BASE = "http://localhost:5000/api";
+//const BASE = "https://polar-harbor-90312.herokuapp.com/api";
+const BASE = "http://localhost:5000/api";
 
 export async function loginUser(username, password) {
   try {
@@ -62,17 +62,21 @@ export async function getAllUsers() {
 
 export async function editUser(password, isAdmin, targetID) {
   try {
-    console.log("EDIT USER YAYYY");
     const token = getToken();
-    const { data } = await axios.get(`${BASE}/users/edit`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+    const { data } = await axios.patch(
+      `${BASE}/users/edit`,
+      {
+        password: password,
+        isAdmin: isAdmin,
+        targetID: targetID,
       },
-      password: password,
-      isAdmin: isAdmin,
-      targetID: targetID,
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return data;
   } catch (error) {
     throw error;

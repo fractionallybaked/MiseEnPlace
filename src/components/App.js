@@ -19,6 +19,7 @@ import {
   Header,
   LandingPage,
   Admin,
+  Account,
   SingleProductPage,
   About
 } from "./";
@@ -139,7 +140,7 @@ const App = () => {
         </Route>
         <Route path="/account">
           <div className="all-products-main-container">
-            {/* {isAdmin ? null : <Account />} */}
+            {isLoggedIn ? null : <Account />}
           </div>
         </Route>
 

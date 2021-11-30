@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { getAllUsers, editUser } from "../api/users";
+import { getAllUsers, editUser, getMyID } from "../api/users";
 
 const ManageUsers = ({ isAdmin }) => {
   const [users, setUsers] = useState({});
-  console.log("Users: ", users);
 
   useEffect(() => {
     async function setUp() {
       try {
         let tmp = await getAllUsers();
+        let myID = await getMyID();
+        tmp = tmp.filter((user) => user.id !== myID.id);
         setUsers(tmp);
       } catch (err) {
         console.log(err);
       }
     }
     setUp();
-  }, [isAdmin]);
+  }, [isAdmin, users]);
 
   return (
     <div className="all-users-main-container">
       <h3>Manage Users</h3>
-      {console.log("ISADMIN: ", isAdmin)}
       {isAdmin ? (
         <div className="all-users">
           {users.length
@@ -42,14 +42,17 @@ const ManageUsers = ({ isAdmin }) => {
                               className="account-type-change-button"
                               onClick={async () => {
                                 try {
-                                  await editUser(null, false, user.id);
+                                  let res = await editUser(
+                                    null,
+                                    false,
+                                    user.id
+                                  );
                                 } catch (err) {
                                   console.log(err);
                                 }
                               }}
                             >
-                              {" "}
-                              ▼{" "}
+                              ▼
                             </a>
                           </span>
                         </div>
@@ -61,7 +64,7 @@ const ManageUsers = ({ isAdmin }) => {
                               className="account-type-change-button"
                               onClick={async () => {
                                 try {
-                                  await editUser(null, true, user.id);
+                                  let res = await editUser(null, true, user.id);
                                 } catch (err) {
                                   console.log(err);
                                 }

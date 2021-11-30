@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { CreateProduct, AddType } from "./";
-import ManageUsers from "./ManageUsers";
+import { CreateProduct, AddType, ManageUsers } from "./";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 
 const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
