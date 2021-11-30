@@ -6,33 +6,6 @@ import { Flex, HStack } from '@chakra-ui/react';
 
 const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   const token = getToken();
-  const [guestCart, setGuestCart] = useState([]);
-
-  const deleteHandle = async (productId) => {
-    const deletedItem = guestCart.filter((e) => {
-      return e.id === productId;
-    });
-    const itemIndex = guestCart.indexOf(deletedItem);
-    guestCart.splice(itemIndex, 1);
-    setGuestCart(guestCart);
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart));
-  };
-
-  const updateHandle = async (productId) => {
-    const item = guestCart.find((p) => {
-      return p.id === productId;
-    });
-    item.quantity++;
-    setGuestCart(guestCart);
-    localStorage.setItem("GuestCart", JSON.stringify(guestCart));
-  };
-
-  const getQuantity = (productId) => {
-    const item = guestCart.find((p) => {
-      return p.id === productId;
-    });
-    return item.quantity;
-  };
 
   return (
     <Flex direction='column' justify='center' align='center'>
@@ -50,41 +23,34 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
               </Link>
-              {!token ? (
-                <button onClick={deleteHandle(item.id)}>Delete Item</button>
-              ) : null}
-              {!token ? (
-                <div>
-                  <p>Current Quantity: {getQuantity(item.id)}</p>
 
-                  <button onClick={updateHandle(item.id)}>
-                    Add One More?
-                    </button>
-                </div>
-              ) : null}
-              {token ? (
-                <HStack spacing='15px'>
-                  <ItemUpdate
-                    cartId={userCart[0].id}
-                    productId={item.id}
-                    userId={userId}
-                    quantity={e.quantity}
-                    userCart={userCart}
-                    setUserCart={setUserCart}
-                  />
-                  <ItemDelete
-                    userId={userId}
-                    productId={item.id}
-                    cartId={userCart[0].id}
-                    userCart={userCart}
-                    setUserCart={setUserCart}
-                  />
-                </HStack>
-              ) : null}
+              <HStack spacing='15px'>
+              <ItemUpdate
+                cartId={userCart[0].id}
+                productId={item.id}
+                userId={userId}
+                quantity={e.quantity}
+                userCart={userCart}
+                setUserCart={setUserCart}
+              />
+
+              <ItemDelete
+                userId={userId}
+                productId={item.id}
+                cartId={userCart[0].id}
+                userCart={userCart}
+                setUserCart={setUserCart}
+              />
+              </HStack>
             </div>
           );
         })
-        : null}
+      ) : (
+        <div>
+          <h2>Your cart is empty! Show it some love and add some items!</h2>
+        </div>
+      )}
+
     </Flex>
   );
 };
