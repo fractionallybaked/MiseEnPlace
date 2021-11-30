@@ -4,21 +4,21 @@ import coffee from '../images/coffee.jpg';
 import cookies from '../images/cookies.jpg';
 import tea from '../images/tea.jpg';
 import { Link } from 'react-router-dom';
-import {Flex} from '@chakra-ui/react';
+import {Flex, Image} from '@chakra-ui/react';
 
 const LandingPage = () => {
     return (
         <>
-            <div className='landing-main-container'>
-                <img className='landing-image-main' src={mainImage} alt='baking ingredients' />
-                <div className="landing-product-link-card">
+            <Flex direction='column' align='center'>
+                <img className='landing-image-main' src="https://images.unsplash.com/photo-1625574199327-6c8a521117d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt='baking ingredients' />
+                <Flex className='landing-product-link-card' direction='column' justify='center' align='center'>
                     <h2>Baking Made Easy</h2>
                     <Link to='/products'>
                         <button>GET STARTED</button>
                     </Link>
-                </div>
-            </div>
-            <Flex direction='row' justify='space-around' align='center' wrap="wrap" mt="1em" h="100vh">
+                </Flex>
+            </Flex>
+            <Flex direction='row' justify='space-around' align='center' wrap="wrap" h="100vh">
                 <div className="landing-product-card">
                     <div className="landing-inner-product-card">
                         <h2>Baked Goods</h2>

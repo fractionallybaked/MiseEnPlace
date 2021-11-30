@@ -12,7 +12,8 @@ const CartCount = (props) => {
                 const user = await getMyID();
                 if (user) {
                     const cart = await getUserCart(user.id);
-                    if (cart){
+
+                    if (cart.length){
                         setUserCart(cart);
                     }
                     let num = 0

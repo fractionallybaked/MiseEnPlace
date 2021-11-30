@@ -99,16 +99,17 @@ nav a:hover {
     font-size: .8rem;
 }
 
-.register{
-    background:  #c97c5d;
+.register {
+    background: #c97c5d;
     padding: 12px 15px;
     border-radius: 5px;
     color: white;
 }
 
-.register:hover{
-    background:rgba(0, 0, 0, 0.8) ;
+.register:hover {
+    background: rgba(0, 0, 0, 0.8);
 }
+
 /*-------------- admin navbar ---------------*/
 .admin-nav {
     background-color: rgba(231, 195, 168);
@@ -130,11 +131,12 @@ nav a:hover {
     margin-top: 90px;
 }
 
-.single-user-card{
+.single-user-card {
     margin: .8em;
     padding: 10px;
     border-top: 1px solid gray;
 }
+
 /*-------------- dropdown menu --------------  */
 .menu-container {
     position: relative;
@@ -242,18 +244,16 @@ nav a:hover {
 }
 
 .landing-product-link-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
     z-index: 1;
+    background: rgba(0, 0, 0, .8);
+    padding: 2em;
 }
 
-.landing-product-link-card h2{
+.landing-product-link-card h2 {
     font-family: "Open Sans", sans-serif;
     color: rgba(238, 215, 197, 1);
     font-weight: 600;
@@ -706,7 +706,7 @@ a.page-link:hover {
     font-size: .8rem;
     padding: 2px;
     border-radius: 5px;
-    background-color: rgba(238, 215, 197, 0.6);
+    background-color: rgba(238, 215, 197, 0.9);
     margin: 5px;
 }
 
@@ -785,7 +785,7 @@ a.page-link:hover {
         background: rgba(0, 0, 0, .8);
         color: rgba(238, 215, 197, .9);
         width: 100%;
-        top: 44%;
+        /* top: 44%; */
     }
 
     .login-main-container, .register-main-container {
@@ -848,10 +848,9 @@ a.page-link:hover {
 }
 
 @media only screen and (max-width: 1110px) {
-    .landing-image-main {
-        top: 90%;
-        position: unset;
-    }
+    /* .landing-image-main {
+        display: none;
+    } */
 
     .landing-product-types {
         justify-content: space-around;
@@ -859,15 +858,14 @@ a.page-link:hover {
     }
 
     .landing-product-link-card {
-        background: transparent;
+        background: rgba(0, 0, 0, .8);
         color: rgba(238, 215, 197, .9);
-        /* top: 55%; */
-        width: 100%;
-        height: 100vh;
+      
+
     }
 
     .landing-product-link-card h2 {
-        font-size: 2.4rem;
+        font-size: 2rem;
     }
 
 
