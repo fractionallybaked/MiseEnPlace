@@ -5,7 +5,10 @@ const About = (props) => {
         <Flex direction='column' align='center' 
         justify="center" wrap='wrap' mt='220px'>
         <Container centerContent>
-            About us...
+            <Flex direction='column' align='center'>
+            <h2>Mise en Place</h2>
+            <p><i>(pronounced meez ahn plahs)</i></p>
+            </Flex>
         </Container>
         </Flex>
     )

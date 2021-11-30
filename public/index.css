@@ -238,17 +238,12 @@ nav a:hover {
     width: 100%;
 }
 
-.landing-image-main {
-    width: 100%;
-    /* height: 100vh; */
-}
-
-.landing-product-link-card {
+/* .landing-product-link-card {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 99;
     background: rgba(0, 0, 0, .8);
     padding: 2em;
 }
@@ -271,32 +266,28 @@ nav a:hover {
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-}
+} */
 
-.landing-product-link-card button:hover {
+/* .landing-product-link-card button:hover {
     background: #915944;
     color: white;
-}
+} */
 
 .landing-product-types {
     height: 100vh;
     width: 100%;
-    background: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.landing-product-card {
-    height: 400px;
-    width: 350px;
-    background: white;
+/* .landing-product-card {
     margin: 1.5em;
     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .landing-inner-product-card {
     position: absolute;
@@ -304,9 +295,10 @@ nav a:hover {
     z-index: 1;
 }
 
-.landing-inner-product-card h2 {
+.landing-inner-product-card h3 {
     color: white;
     font-weight: 400;
+    font-size: 1.7rem;
 }
 
 .landing-inner-product-card button {
@@ -429,7 +421,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -438,7 +430,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -464,7 +456,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -473,7 +465,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -509,7 +501,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -518,7 +510,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -544,7 +536,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 500;
 }
@@ -553,7 +545,7 @@ a.page-link:hover {
     padding: 10px;
     margin: 5px;
     border-bottom: 1px solid lightgrey;
-    background-color: rgba(238, 215, 197, 0.3);
+    background-color: rgba(238, 215, 197, 0.5);
     color: black;
     font-weight: 600;
 }
@@ -678,8 +670,19 @@ a.page-link:hover {
     background-color: transparent;
 
 }
+.get-started{
+    padding: 10px 15px;
+    background: black;
+    width: 200px;
+    color: rgb(238, 215, 197);
+    border-radius: 5px;
+    font-weight: 400;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
+}
 
-.add-to-cart {
+.add-to-cart{
     padding: 10px 15px;
     margin: 5px;
     background: black;
@@ -691,7 +694,7 @@ a.page-link:hover {
     -moz-box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.2);
 }
 
-.add-to-cart:hover {
+.add-to-cart:hover, .get-started:hover {
     background: #c97c5d;
     color: white;
 }
@@ -775,19 +778,6 @@ a.page-link:hover {
         margin-top: 20px;
     }
 
-    .landing-main-container {
-        position: unset;
-        top: 100px;
-        height: 55vh;
-    }
-
-    .landing-product-link-card {
-        background: rgba(0, 0, 0, .8);
-        color: rgba(238, 215, 197, .9);
-        width: 100%;
-        /* top: 44%; */
-    }
-
     .login-main-container, .register-main-container {
         width: 100%;
     }
@@ -809,18 +799,6 @@ a.page-link:hover {
         justify-content: space-around;
     }
 
-    .landing-image-main {
-        display: none;
-    }
-
-    .landing-product-link-card {
-        background: rgba(0, 0, 0, .8);
-        color: rgba(238, 215, 197, .9);
-        top: 85%;
-        height: 50%;
-        width: 100%;
-    }
-
     .landing-product-card {
         display: flex;
         justify-content: center;
@@ -834,10 +812,6 @@ a.page-link:hover {
         margin-top: 2em;
     }
 
-    .landing-product-img {
-        width: 80%;
-    }
-
     .login-main-container, .register-main-container {
         width: 100%;
     }
@@ -848,9 +822,6 @@ a.page-link:hover {
 }
 
 @media only screen and (max-width: 1110px) {
-    /* .landing-image-main {
-        display: none;
-    } */
 
     .landing-product-types {
         justify-content: space-around;
@@ -860,8 +831,6 @@ a.page-link:hover {
     .landing-product-link-card {
         background: rgba(0, 0, 0, .8);
         color: rgba(238, 215, 197, .9);
-      
-
     }
 
     .landing-product-link-card h2 {

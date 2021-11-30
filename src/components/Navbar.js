@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
-import { SearchBar, DropdownMenu, Hamburger, CartCount } from "./";
+import { SearchBar, DropdownMenu, Hamburger} from "./";
 
 const Navbar = ({
   isLoggedIn,
@@ -134,7 +134,6 @@ const Navbar = ({
         <Link to="/cart">
           <span className="material-icons">shopping_cart</span>
         </Link>
-        <CartCount />
       </section>
       <SearchBar
         searchOpen={searchOpen}

@@ -138,11 +138,11 @@ const App = () => {
             ) : null}
           </div>
         </Route>
-        <Route path="/account">
+        {/* <Route path="/account">
           <div className="all-products-main-container">
             {isLoggedIn ? null : <Account />}
           </div>
-        </Route>
+        </Route> */}
 
         <Route path="/editproduct">
           <div className="all-products-main-container">
@@ -150,7 +150,9 @@ const App = () => {
           </div>
         </Route>
         <Route exact path="/">
+          <ChakraProvider>
           <LandingPage />
+          </ChakraProvider>
         </Route>
       </Switch>
     </div>
