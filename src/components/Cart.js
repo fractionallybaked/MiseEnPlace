@@ -7,6 +7,7 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import { Flex } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
+import GuestCheckout from "./GuestCheckout";
 
 const Cart = () => {
   const [userCart, setUserCart] = useState([]);
@@ -90,11 +91,14 @@ const Cart = () => {
               <h3>Total: ${total} </h3>
             </Flex>
           ) : null}
-          <Checkout
-            userId={userId}
-            cartProducts={cartProducts}
-            cartId={userCart.id}
-          />
+          {token ? (
+            <Checkout
+              userId={userId}
+              cartProducts={cartProducts}
+              cartId={userCart.id}
+            />
+          ) : null}
+          {!token ? <GuestCheckout /> : null}
         </Flex>
       </Flex>
     </Flex>

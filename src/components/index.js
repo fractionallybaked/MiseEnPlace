@@ -6,6 +6,7 @@ export { default as CartItem } from "./CartItem";
 export { default as ItemAdd } from "./ItemAdd";
 export { default as GuestAdd } from "./GuestAdd";
 export { default as GuestCartItem } from "./GuestCartItem";
+export { default as GuestCheckout } from "./GuestCheckout";
 export { default as ItemDelete } from "./ItemDelete";
 export { default as ItemUpdate } from "./ItemUpdate";
 export { default as Checkout } from "./Checkout";
