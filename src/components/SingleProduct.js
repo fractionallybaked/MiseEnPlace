@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
-import { GuestAdd } from "./";
+import { GuestAdd, ItemAdd, DeleteProduct } from "./";
 import { Flex } from "@chakra-ui/react";
 
 const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {

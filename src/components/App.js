@@ -123,7 +123,7 @@ const App = () => {
           </ChakraProvider>
         </Route>
         <Route path="/cart">
-          <Cart />
+          <Cart setIsLoading={setIsLoading} />
         </Route>
         <Route path="/admin">
           <div className="all-products-main-container">

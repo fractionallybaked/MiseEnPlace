@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { storeUser } from "../auth";
 import { loginUser } from "../api/users";
-import { 
+import {
   useToast,
   Flex,
   Heading,
@@ -48,7 +48,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
       justifyContent="center"
       alignItems="center"
     >
-        <Stack
+      <Stack
         flexDir="column"
         mb="2"
         justifyContent="center"
@@ -57,30 +57,30 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
         <Avatar bg="#c97c5d" />
         <Heading color="black">Log In</Heading>
         <Box minW={{ base: "90%", md: "468px" }}>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            try {
-              const results = await loginUser(username, password);
-              storeUser(results.token);
-              setIsLoggedIn(true);
-              setIsAdmin(results.user.isAdmin);
-              setUsername("");
-              setPassword("");
-              handleClick();
-            } catch (err) {
-              toast({
-                title: 'Username or password is incorrect',
-                status: 'error',
-                duration: 8000,
-                isClosable: true,
-                position: 'top'
-              })
-              console.log(err);
-            }
-          }}
-        >
-          <Stack
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              try {
+                const results = await loginUser(username, password);
+                storeUser(results.token);
+                setIsLoggedIn(true);
+                setIsAdmin(results.user.isAdmin);
+                setUsername("");
+                setPassword("");
+                handleClick();
+              } catch (err) {
+                toast({
+                  title: 'Username or password is incorrect',
+                  status: 'error',
+                  duration: 8000,
+                  isClosable: true,
+                  position: 'top'
+                })
+                console.log(err);
+              }
+            }}
+          >
+            <Stack
               spacing={4}
               p="1rem"
               backgroundColor="whiteAlpha.900"
@@ -92,15 +92,15 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-          
-          <Input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Enter username"
-          />
-           </InputGroup>
+
+                  <Input
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter username"
+                  />
+                </InputGroup>
               </FormControl>
               <FormControl>
                 <InputGroup>
@@ -109,14 +109,14 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                     color="gray.300"
                     children={<CFaLock color="gray.300" />}
                   />
-          <Input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Enter password"
-          />
-<InputRightElement width="4.5rem">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                  />
+                  <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
                       {showPassword ? "Hide" : "Show"}
                     </Button>
@@ -135,8 +135,8 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
               >
                 Login
               </Button>
-              </Stack>
-        </form>
+            </Stack>
+          </form>
         </Box>
       </Stack>
       <Box>
@@ -146,7 +146,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
         </Link>
       </Box>
     </Flex>
-    
+
 
   );
 };

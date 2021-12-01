@@ -8,7 +8,7 @@ import { Flex, Image, Box, Stack, Heading, HStack } from '@chakra-ui/react';
 const LandingPage = () => {
     const image = "https://images.unsplash.com/photo-1625574199327-6c8a521117d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
     return (
-        <>
+        <Flex direction='column' align='center' maxW={{xl: '1200px'}} m='0 auto'>
             <Flex
                 align="center"
                 justify={{ base: "center", md: "space-around", xl: "space-between" }}
@@ -18,7 +18,6 @@ const LandingPage = () => {
                 px={8}
                 mb={16}
                 mt='200px'
-                bg='#F8F3F2'
             >
 
                 <Stack
@@ -62,9 +61,10 @@ const LandingPage = () => {
                 direction={{ base: "column-reverse", md: "row" }}
                 wrap="no-wrap"
                 minH="70vh"
+                width='100vw'
                 px={8}
                 mb={16}
-                bg='white'
+                bg='#eee2df'
                 >
                 <Box m='1em'>
                     <div className="landing-inner-product-card">
@@ -94,7 +94,7 @@ const LandingPage = () => {
                     <Image size='100%' src={tea} rounded='1rem' shadow='2xl'/>
                 </Box>
             </Flex>
-        </>
+        </Flex>
     )
 }
 

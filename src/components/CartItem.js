@@ -45,7 +45,7 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
             </div>
           );
         })
-      ) : (
+       : (
         <div>
           <h2>Your cart is empty! Show it some love and add some items!</h2>
         </div>

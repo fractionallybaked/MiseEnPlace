@@ -9,7 +9,7 @@ import { Flex } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 import GuestCheckout from "./GuestCheckout";
 
-const Cart = () => {
+const Cart = ({ setIsLoading }) => {
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
   const [total, setTotal] = useState(0);
@@ -17,22 +17,30 @@ const Cart = () => {
 
   useEffect(() => {
     async function getCart() {
-      const user = await getMyID();
-      setUserId(user.id);
+      setIsLoading(true);
+      try {
+        const user = await getMyID();
+        setUserId(user.id);
 
-      if (user.id) {
-        const userCart = await getUserCart(user.id);
-        setUserCart(userCart);
+        if (user.id) {
+          const userCart = await getUserCart(user.id);
+          setUserCart(userCart);
+        }
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setIsLoading(false);
       }
     }
-
     getCart();
+
   }, []);
 
   const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
     async function setProducts() {
+      try{
       const allProducts = await Promise.all(
         userCart.map(async (item) => {
           const productId = item.productId;
@@ -55,7 +63,10 @@ const Cart = () => {
 
       const userTotal = totalArr.reduce(add, 0);
       setTotal(userTotal);
+    }catch(err){
+      console.log(err);
     }
+  }
     setProducts();
   }, [userCart]);
 
