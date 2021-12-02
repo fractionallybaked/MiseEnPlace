@@ -138,7 +138,7 @@ module.exports = productsSeed = [
         name: "Candy Cookies",
         description: "A classic sugar cookie, topped with rainbow candy.",
         price: 1000,
-        quantity: 20,
+        quantity: 30,
         photo: "https://images.unsplash.com/photo-1541717872011-9d16b87a5551?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8Y2FuZHklMjBjb29raWVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
     },
@@ -146,7 +146,7 @@ module.exports = productsSeed = [
         name: "Iced Coffee",
         description: "Cold Brew is made from our custom blend of beans grown to steep long and cold for a super-smooth flavor.",
         price: 1200,
-        quantity: 20,
+        quantity: 80,
         photo: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aWNlZCUyMGNvZmZlZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -154,7 +154,7 @@ module.exports = productsSeed = [
         name: "Matcha Green Tea Powder",
         description: "100% USDA Certified Organic Matcha Green Tea Powder - Pure Shade-Grown Green Tea Leaf Matcha Powder - Grown Without Pesticides or Harmful Fertilizers",
         price: 1895,
-        quantity: 20,
+        quantity: 50,
         photo: "https://images.unsplash.com/photo-1582793988951-9aed5509eb97?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z3JlZW4lMjB0ZWF8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -162,7 +162,7 @@ module.exports = productsSeed = [
         name: "English Breakfast Tea",
         description: "Each sip of this beloved morning black tea unfolds to reveal the complexity of the high-grown full leaves. An elegant, time-honored classic that brings a royal nod to every cup.",
         price: 800,
-        quantity: 20,
+        quantity: 60,
         photo: "https://images.unsplash.com/photo-1580666622398-d5bffc4c9051?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YnJlYWtmYXN0JTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -170,7 +170,7 @@ module.exports = productsSeed = [
         name: "Rooibos Tea",
         description: "Rooibos Tea, USDA Organic from My Red Tea. South African, 100% Pure, Single Origin, Natural, Farmer Friendly, GMO and Caffeine Free. Sustainably farmed.",
         price: 1500,
-        quantity: 20,
+        quantity: 90,
         photo: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cm9vaWJvc3xlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -178,7 +178,7 @@ module.exports = productsSeed = [
         name: "Camomille Tea",
         description: "Time For Sleep: This herbal tea is made with whole chamomile flowers for a much sweeter rounder flavorful experience. The naturally soothing properties of chamomile come through both in the flavor and aroma for a relaxing experience.",
         price: 1200,
-        quantity: 18,
+        quantity: 180,
         photo: "https://images.unsplash.com/photo-1523920290228-4f321a939b4c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2Ftb21pbGxlJTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -186,7 +186,7 @@ module.exports = productsSeed = [
         name: "Banana Bread",
         description: "A family favorite. Dress it up with chocolate chips or walnuts.",
         price: 950,
-        quantity: 1050,
+        quantity: 150,
         photo: "https://images.unsplash.com/photo-1617319610261-ea6c6594a646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YmFuYW5hJTIwYnJlYWR8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
     },
@@ -210,7 +210,7 @@ module.exports = productsSeed = [
         name: "Chocolate Cupcakes",
         description: "Dark chocolate cupcakes with vanilla frosting.",
         price: 1300,
-        quantity: 25,
+        quantity: 45,
         photo: "https://images.unsplash.com/photo-1574085733277-851d9d856a3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZGVzc2VydHxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
     },
@@ -218,7 +218,7 @@ module.exports = productsSeed = [
         name: "Carrot Cake",
         description: "A classic carrot cake with a cream cheese frosting.",
         price: 1200,
-        quantity: 28,
+        quantity: 58,
         photo: "https://images.unsplash.com/photo-1566121933407-3c7ccdd26763?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2FrZXxlbnwwfDB8MHx8&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
     },
@@ -226,7 +226,7 @@ module.exports = productsSeed = [
         name: "Blueberry Scone",
         description: "A traditional scone with blueberries, buttermilk and lemon.",
         price: 1000,
-        quantity: 18,
+        quantity: 88,
         photo: "https://images.unsplash.com/photo-1589114471223-dec0d8d572c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2NvbmVzfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
     },
@@ -234,7 +234,7 @@ module.exports = productsSeed = [
         name: "Ginger Tea",
         description: "Ginger tea is a herbal beverage that is made from ginger root. It has a long history as a traditional herbal medicine in East Asia, South Asia, Southeast Asia and West Asia.",
         price: 1450,
-        quantity: 20,
+        quantity: 80,
         photo: "https://images.unsplash.com/34/rcaNUh3pQ9GD8w7Iy8qE__DSC0940.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Z2luZ2VyJTIwdGVhfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["beverages"]
     },
@@ -245,6 +245,38 @@ module.exports = productsSeed = [
         quantity: 50,
         photo: "https://images.unsplash.com/photo-1604413191066-4dd20bedf486?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YmlydGhkYXklMjBjYWtlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=800&q=60",
         type: ["baked goods"]
+    },
+    {
+        name: "Blackberry Macaroons",
+        description: "Blackberry flavored with berry flavored buttercream and topped with white chocolate drizzle.",
+        price: 1600,
+        quantity: 50,
+        photo: "https://images.unsplash.com/photo-1520352758561-fc3a6b70df81?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHVycGxlJTIwbWFjYXJvb25zfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        type: ["baked goods"]
+    },
+    {
+        name: "Peanut Butter Cookies",
+        description: "These cookies are full of peanut butter flavor and have the perfect balance of salty and sweet.",
+        price: 1350,
+        quantity: 70,
+        photo: "https://images.unsplash.com/photo-1573729405915-56f0b1a190a0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGVhbnV0JTIwYnV0dGVyJTIwY29va2llc3xlbnwwfDB8MHx8&auto=format&fit=crop&w=500&q=60",
+        type: ["baked goods"]
+    },
+    {
+        name: "Early Bird Coffee",
+        description: "This light roast is crisp, bright, and complex with a subtle tartness of green apple & citrus, sweet caramel syrup body and a creamy milk chocolate finish. Scientifically proven to make you more productive, or whatever. Cheers!",
+        price: 1600,
+        quantity: 50,
+        photo: "https://images.unsplash.com/photo-1599639957043-f3aa5c986398?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlJTIwYmFnfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        type: ["beverages"]
+    },
+    {
+        name: "Never Settle Coffee",
+        description: "This comfortable, yet surprisingly complex and sophisticated coffee is approachable to all. It performs well on its own for the purist or with fats such as dairy or plant based beverages, making it a true answer for all coffee needs.",
+        price: 1300,
+        quantity: 50,
+        photo: "https://images.unsplash.com/photo-1584736286279-5d85d32ba79d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Y29mZmVlJTIwYmFnfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+        type: ["beverages"]
     }
 
 ];

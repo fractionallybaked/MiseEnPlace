@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
-import { SearchBar, DropdownMenu, Hamburger, CartCount } from "./";
+import { SearchBar, DropdownMenu, Hamburger} from "./";
 
 const Navbar = ({
   isLoggedIn,
@@ -25,7 +25,7 @@ const Navbar = ({
 
   return (
     <nav>
-      <div className="hamburger-icon" onClick={() => setHamburgerOpen(true)}>
+      <div className="hamburger-icon" onClick={() =>{ setHamburgerOpen(true); toggleHamburger()}}>
         <Hamburger isOpen={hamburgerOpen}/>
       </div>
       <section className={hamburgerOpen ? "nav-links show" : "nav-links hide"}>
@@ -134,7 +134,6 @@ const Navbar = ({
         <Link to="/cart">
           <span className="material-icons">shopping_cart</span>
         </Link>
-        <CartCount />
       </section>
       <SearchBar
         searchOpen={searchOpen}
