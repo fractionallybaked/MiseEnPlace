@@ -9,7 +9,7 @@ const ItemDelete = ({ userId, productId, cartId, userCart, setUserCart }) => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
-            const deletedItem = await removeItemFromCart({
+            await removeItemFromCart({
               userId,
               productId,
               cartId,
@@ -17,15 +17,20 @@ const ItemDelete = ({ userId, productId, cartId, userCart, setUserCart }) => {
             const filteredCart = userCart.filter((e) => {
               return e.productId !== productId;
             });
-            setUserCart(filteredCart);
-            return deletedItem;
+            if (filteredCart.length) {
+              setUserCart(filteredCart);
+            } else {
+              setUserCart([]);
+            }
           } catch (err) {
             console.error(err);
             throw err;
           }
         }}
       >
-        <button className="add-to-cart" type="submit">Remove Item</button>
+        <button className="add-to-cart" type="submit">
+          Remove Item
+        </button>
       </form>
     </div>
   );

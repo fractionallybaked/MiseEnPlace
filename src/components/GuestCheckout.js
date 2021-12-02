@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const GuestCheckout = () => {
+  const [guestCart, setGuestCart] = useState([]);
+
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("GuestCart"));
+
+    setGuestCart(cart);
+  }, []);
+
+  const deleteEverything = async () => {
+    const newCart = guestCart.map((e) => {
+      localStorage.removeItem("GuestCart", e);
+    });
+    setGuestCart(newCart);
+    localStorage.setItem("GuestCart", JSON.stringify(newCart));
+  };
+
   return (
     <div>
       <form
@@ -8,7 +24,7 @@ const GuestCheckout = () => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
-            localStorage.removeItem("GuestCart");
+            deleteEverything();
             return (
               <div>
                 <h2>Order completed!</h2>

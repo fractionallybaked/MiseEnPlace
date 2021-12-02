@@ -87,20 +87,24 @@ async function addItemToCart({ productId, userId, quantity }) {
 
 async function checkoutCart(userId) {
   const userCart = await getCartByUser(userId);
-  const cartId = userCart.id;
+
   try {
-    const {
-      rows: [cart],
-    } = await client.query(
-      `
+    if (userCart.length) {
+      const {
+        rows: [cart],
+      } = await client.query(
+        `
       UPDATE cart
       SET purchased=true
-      WHERE "userId"=$1 and id=$2
+      WHERE "userId"=$1 and purchased=false
       RETURNING *
       `,
-      [userId, cartId]
-    );
-    return cart;
+        [userId]
+      );
+      return cart;
+    } else {
+      throw Error("No items in cart");
+    }
   } catch (err) {
     throw err;
   }
