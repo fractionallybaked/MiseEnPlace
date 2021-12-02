@@ -7,7 +7,6 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
-import GuestCheckout from "./GuestCheckout";
 
 const Cart = ({ setIsLoading }) => {
   const [userCart, setUserCart] = useState([]);
@@ -28,13 +27,12 @@ const Cart = ({ setIsLoading }) => {
         }
 
       } catch (err) {
-        console.log(err)
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
     }
     getCart();
-
   }, []);
 
   const [cartProducts, setCartProducts] = useState([]);
@@ -63,7 +61,9 @@ const Cart = ({ setIsLoading }) => {
         }
 
         const userTotal = totalArr.reduce(add, 0);
+
         setTotal(userTotal);
+
       } catch (err) {
         console.log(err);
       }
@@ -100,6 +100,7 @@ const Cart = ({ setIsLoading }) => {
               h="100px"
               className="checkout-container"
             >
+
               <Heading size='m'>Total: ${total.toFixed(2)} </Heading>
             </Flex>
           ) : null}
@@ -110,6 +111,7 @@ const Cart = ({ setIsLoading }) => {
               cartId={userCart.id}
             />
           ) : <GuestCheckout />}
+
         </Flex>
       </Flex>
     </Flex>

@@ -21,10 +21,11 @@ import {
   Admin,
   Account,
   SingleProductPage,
-  About
+  About,
+  OrderComplete,
 } from "./";
 import SearchResultsPage from "./SearchResultsPage";
-import { ChakraProvider, Spinner, Flex } from '@chakra-ui/react';
+import { ChakraProvider, Spinner, Flex } from "@chakra-ui/react";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,7 +54,7 @@ const App = () => {
       } catch (err) {
         console.log(err);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
     setUp();
@@ -61,6 +62,7 @@ const App = () => {
 
   return (
     <div className="App">
+
       <ChakraProvider>
         <Header />
 
@@ -91,12 +93,14 @@ const App = () => {
             <About />
           </Route>
           <Route exact path="/products/searchresults">
+
             <SearchResultsPage
               query={query}
               setQuery={setQuery}
               allProducts={allProducts}
             />
           </Route>
+
 
           <Route path="/products">
 
@@ -115,10 +119,12 @@ const App = () => {
             </div>
           </Route>
           <Route path="/login">
+
             <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
           </Route>
           <Route path="/register">
             <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
           </Route>
           <Route path="/cart">
             <Cart setIsLoading={setIsLoading} />
@@ -126,15 +132,18 @@ const App = () => {
           <Route path="/admin">
             <div className="all-products-main-container">
               {isAdmin ? (
+
                 <Admin
                   allProducts={allProducts}
                   setAllProducts={setAllProducts}
                   isAdmin={isAdmin}
                 />
+
               ) : null}
             </div>
           </Route>
           {/* <Route path="/account">
+
           <div className="all-products-main-container">
             {isLoggedIn ? null : <Account />}
           </div>
@@ -142,12 +151,14 @@ const App = () => {
 
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
+
           </Route>
           <Route exact path="/">
             <LandingPage />
           </Route>
         </Switch>
       </ChakraProvider>
+
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import React from "react";
 import { checkoutCart, removeItemFromCart } from "../api/cart";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Checkout = ({ userId, cartProducts, cartId }) => {
+  const history = useHistory();
+
   return (
     <div>
       <form
@@ -10,20 +13,7 @@ const Checkout = ({ userId, cartProducts, cartId }) => {
           event.preventDefault();
           try {
             await checkoutCart(userId);
-            cartProducts.forEach(async (p) => {
-              const itemId = p.id;
-              await removeItemFromCart({
-                userId,
-                itemId,
-                cartId,
-              });
-            });
-
-            return (
-              <div>
-                <h2>Order completed!</h2>
-              </div>
-            );
+            history.push("/ordercomplete");
           } catch (err) {
             throw err;
           }

@@ -42,10 +42,21 @@ cartRouter.post("/:userId", async (req, res, next) => {
 
 //
 
+cartRouter.patch("/:userId/checkout", async (req, res, next) => {
+  const userId = req.params.userId;
+  try {
+    const boughtCart = await checkoutCart(userId);
+    res.send(boughtCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//
+
 cartRouter.patch("/:userId", async (req, res, next) => {
   const userId = req.params.userId;
   const userCart = await getCartByUser(userId);
-  const cartId = userCart[0].id;
   const { productId, quantity } = req.body;
 
   try {
@@ -69,18 +80,6 @@ cartRouter.delete("/:userId", async (req, res, next) => {
   try {
     await deleteCartItem({ productId, userId });
     res.sendStatus(204);
-  } catch (err) {
-    next(err);
-  }
-});
-
-//
-
-cartRouter.patch("/:userId/checkout", async (req, res, next) => {
-  const userId = req.params.userId;
-  try {
-    const boughtCart = await checkoutCart(userId);
-    res.send(boughtCart);
   } catch (err) {
     next(err);
   }
