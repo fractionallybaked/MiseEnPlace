@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { updateProduct } from '../api/products';
 import { useLocation, useHistory } from 'react-router-dom';
+import {Flex} from '@chakra-ui/react';
 
 const EditProduct = ({ setAllProducts, isAdmin }) => {
     const pageLocation = useLocation();
@@ -19,7 +20,7 @@ const EditProduct = ({ setAllProducts, isAdmin }) => {
     }
 
     return (
-        <div>
+        <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
             {isAdmin
                 ? <><h2>Edit a Product</h2>
                     <form
@@ -89,7 +90,7 @@ const EditProduct = ({ setAllProducts, isAdmin }) => {
                 </>
                 : null
             }
-        </div>
+        </Flex>
     )
 }
 

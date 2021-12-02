@@ -5,7 +5,7 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 import GuestCheckout from "./GuestCheckout";
 
@@ -13,8 +13,6 @@ const Cart = ({ setIsLoading }) => {
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
   const [total, setTotal] = useState(0);
-  const [guestTotal, setGuestTotal]= useState(0);
-  const [guestCart, setGuestCart]= useState([]);
   const token = getToken();
 
   useEffect(() => {
@@ -28,7 +26,7 @@ const Cart = ({ setIsLoading }) => {
           const userCart = await getUserCart(user.id);
           setUserCart(userCart);
         }
-      
+
       } catch (err) {
         console.log(err)
       } finally {
@@ -43,70 +41,36 @@ const Cart = ({ setIsLoading }) => {
 
   useEffect(() => {
     async function setProducts() {
-      try{
-      const allProducts = await Promise.all(
-        userCart.map(async (item) => {
-          const productId = item.productId;
-          const newProduct = await getProductById(productId);
-          newProduct.quantity = item.quantity;
-          return newProduct;
-        })
-      );
-      setCartProducts(allProducts);
+      try {
+        const allProducts = await Promise.all(
+          userCart.map(async (item) => {
+            const productId = item.productId;
+            const newProduct = await getProductById(productId);
+            newProduct.quantity = item.quantity;
+            return newProduct;
+          })
+        );
+        setCartProducts(allProducts);
 
-      const totalArr = userCart.map((item) => {
-        let total = 0;
-        total += item.itemTotal * item.quantity;
-        return total / 100;
-      });
+        const totalArr = userCart.map((item) => {
+          let total = 0;
+          total += item.itemTotal * item.quantity;
+          return total / 100;
+        });
 
-      function add(accumulator, a) {
-        return accumulator + a;
+        function add(accumulator, a) {
+          return accumulator + a;
+        }
+
+        const userTotal = totalArr.reduce(add, 0);
+        setTotal(userTotal);
+      } catch (err) {
+        console.log(err);
       }
-
-      const userTotal = totalArr.reduce(add, 0);
-      setTotal(userTotal);
-    }catch(err){
-      console.log(err);
     }
-  }
     setProducts();
   }, [userCart]);
 
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("GuestCart"));
-
-    setGuestCart(cart);
-  }, []);
-
-  useEffect(() => {
-    async function setItems() {
-      const allProducts = await Promise.all(
-        guestCart.map(async (item) => {
-        
-          const {products} = await getProductById(item.id);
-          products.quantity = item.quantity;
-          return products;
-        })
-      );
-     console.log(allProducts)
-
-      const totalArr = allProducts.map((item) => {
-                  let total = 0;
-                  total += item.price * item.quantity;
-                  return total / 100;
-                });
-          
-                function add(accumulator, a) {
-                  return accumulator + a;
-                }
-          
-                const userTotal = totalArr.reduce(add, 0);
-                setGuestTotal(userTotal);
-                
-    }
-    setItems();
-  }, [guestCart]);
 
   return (
     <Flex
@@ -127,7 +91,7 @@ const Cart = ({ setIsLoading }) => {
               setUserId={setUserId}
             />
           ) : <GuestCartItem />}
-          
+
           {userCart.length ? (
             <Flex
               direction="column"
@@ -136,17 +100,9 @@ const Cart = ({ setIsLoading }) => {
               h="100px"
               className="checkout-container"
             >
-              <h3>Total: ${total.toFixed(2)} </h3>
+              <Heading size='m'>Total: ${total.toFixed(2)} </Heading>
             </Flex>
-          ) : <Flex
-          direction="column"
-          justify="center"
-          align="center"
-          h="100px"
-          className="checkout-container"
-        >
-          <h3>Total: ${guestTotal.toFixed(2)} </h3>
-        </Flex>}
+          ) : null}
           {token ? (
             <Checkout
               userId={userId}

@@ -61,18 +61,21 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
-      <Navbar
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
-        isAdmin={isAdmin}
-        setIsAdmin={setIsAdmin}
-        query={query}
-        setQuery={setQuery}
-      />
-      {
-        isLoading
-          ? <ChakraProvider>
+      <ChakraProvider>
+        <Header />
+
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          isAdmin={isAdmin}
+          setIsAdmin={setIsAdmin}
+          query={query}
+          setQuery={setQuery}
+        />
+
+        {
+          isLoading
+            ?
             <Flex justify='center' align='center' h='100vh'>
               <Spinner
                 thickness='4px'
@@ -81,80 +84,70 @@ const App = () => {
                 color='#c97c5d'
                 size='xl' />
             </Flex>
-          </ChakraProvider>
-          : null
-      }
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route exact path="/products/searchresults">
-          <div className="all-products-main-container">
+            : null
+        }
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route exact path="/products/searchresults">
             <SearchResultsPage
               query={query}
               setQuery={setQuery}
               allProducts={allProducts}
             />
-          </div>
-        </Route>
+          </Route>
 
-        <Route path="/products">
-          <AllProductsPage
-            allProducts={allProducts}
-            isAdmin={isAdmin}
-            setAllProducts={setAllProducts}
-            setIsLoading={setIsLoading} />
-        </Route>
-        <Route exact path="/product/:productId">
-          <div className="all-products-main-container">
-            <SingleProductPage
+          <Route path="/products">
+
+            <AllProductsPage
               allProducts={allProducts}
-              isAdmin={isAdmin} />
-          </div>
-        </Route>
-        <Route path="/login">
-          <ChakraProvider>
-            <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
-          </ChakraProvider>
-        </Route>
-        <Route path="/register">
-          <ChakraProvider>
-            <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-          </ChakraProvider>
-        </Route>
-        <Route path="/cart">
-          <Cart setIsLoading={setIsLoading} />
-        </Route>
-        <Route path="/admin">
-          <div className="all-products-main-container">
-            {isAdmin ? (
-              <ChakraProvider>
-              <Admin
+              isAdmin={isAdmin}
+              setAllProducts={setAllProducts}
+              setIsLoading={setIsLoading} />
+
+          </Route>
+          <Route exact path="/product/:productId">
+            <div className="all-products-main-container">
+              <SingleProductPage
                 allProducts={allProducts}
-                setAllProducts={setAllProducts}
-                isAdmin={isAdmin}
-              />
-              </ChakraProvider>
-            ) : null}
-          </div>
-        </Route>
-        {/* <Route path="/account">
+                isAdmin={isAdmin} />
+            </div>
+          </Route>
+          <Route path="/login">
+            <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
+          </Route>
+          <Route path="/register">
+            <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          </Route>
+          <Route path="/cart">
+            <Cart setIsLoading={setIsLoading} />
+          </Route>
+          <Route path="/admin">
+            <div className="all-products-main-container">
+              {isAdmin ? (
+                <Admin
+                  allProducts={allProducts}
+                  setAllProducts={setAllProducts}
+                  isAdmin={isAdmin}
+                />
+              ) : null}
+            </div>
+          </Route>
+          {/* <Route path="/account">
           <div className="all-products-main-container">
             {isLoggedIn ? null : <Account />}
           </div>
         </Route> */}
 
-        <Route path="/editproduct">
-          <div className="all-products-main-container">
+          <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
-          </div>
-        </Route>
-        <Route exact path="/">
-          <ChakraProvider>
-          <LandingPage />
-          </ChakraProvider>
-        </Route>
-      </Switch>
+          </Route>
+          <Route exact path="/">
+            <LandingPage />
+          </Route>
+        </Switch>
+      </ChakraProvider>
     </div>
   );
 };

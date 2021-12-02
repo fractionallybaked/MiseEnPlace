@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProductById } from "../api/products";
-import {Flex, HStack} from '@chakra-ui/react';
+import { Flex, HStack, Heading } from '@chakra-ui/react';
 const GuestCartItem = () => {
   const [guestCart, setGuestCart] = useState([]);
   const [guestProducts, setProducts] = useState([]);
@@ -69,18 +69,11 @@ const GuestCartItem = () => {
             <div className="single-product-card" key={item.id}>
               <Link className="single-product-link" to={`/product/${item.id}`}>
                 <img className="cart-image" src={item.photo} />
-                <h3>{item.name}</h3>
+                <Heading as='h3' size='m'>{item.name}</Heading>
                 <span className="single-product-price">
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
               </Link>
-              {/* <button className="add-to-cart"
-                onClick={() => {
-                  deleteHandle(item.id);
-                }}
-              >
-                Remove Item
-              </button> */}
               <HStack spacing='12px'>
                 <button className="plus-minus"
                   onClick={() => {
@@ -90,7 +83,7 @@ const GuestCartItem = () => {
                   <span className='material-icons'>remove</span>
                 </button>
 
-                <h3>{e.quantity}</h3>
+                <Heading as='h3' size='m'>{e.quantity}</Heading>
 
                 <button className="plus-minus"
                   onClick={() => {
@@ -100,11 +93,11 @@ const GuestCartItem = () => {
                   <span className='material-icons'>add</span>
                 </button>
                 <button className="add-to-cart"
-                onClick={() => {
-                  deleteHandle(item.id);
-                }}
-              >
-                Remove Item
+                  onClick={() => {
+                    deleteHandle(item.id);
+                  }}
+                >
+                  Remove Item
               </button>
               </HStack>
             </div>
