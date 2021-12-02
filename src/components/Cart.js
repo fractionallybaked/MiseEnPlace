@@ -7,7 +7,6 @@ import CartItem from "./CartItem";
 import Checkout from "./Checkout";
 import { Flex } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
-import GuestCheckout from "./GuestCheckout";
 
 const Cart = ({ setIsLoading }) => {
   const [userCart, setUserCart] = useState([]);
@@ -27,46 +26,45 @@ const Cart = ({ setIsLoading }) => {
           setUserCart(userCart);
         }
       } catch (err) {
-        console.log(err)
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
     }
     getCart();
-
   }, []);
 
   const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
     async function setProducts() {
-      try{
-      const allProducts = await Promise.all(
-        userCart.map(async (item) => {
-          const productId = item.productId;
-          const newProduct = await getProductById(productId);
-          newProduct.quantity = item.quantity;
-          return newProduct;
-        })
-      );
-      setCartProducts(allProducts);
+      try {
+        const allProducts = await Promise.all(
+          userCart.map(async (item) => {
+            const productId = item.productId;
+            const newProduct = await getProductById(productId);
+            newProduct.quantity = item.quantity;
+            return newProduct;
+          })
+        );
+        setCartProducts(allProducts);
 
-      const totalArr = userCart.map((item) => {
-        let total = 0;
-        total += item.itemTotal * item.quantity;
-        return total / 100;
-      });
+        const totalArr = userCart.map((item) => {
+          let total = 0;
+          total += item.itemTotal * item.quantity;
+          return total / 100;
+        });
 
-      function add(accumulator, a) {
-        return accumulator + a;
+        function add(accumulator, a) {
+          return accumulator + a;
+        }
+
+        const userTotal = totalArr.reduce(add, 0);
+        setTotal(userTotal.toFixed(2));
+      } catch (err) {
+        console.log(err);
       }
-
-      const userTotal = totalArr.reduce(add, 0);
-      setTotal(userTotal);
-    }catch(err){
-      console.log(err);
     }
-  }
     setProducts();
   }, [userCart]);
 
@@ -100,16 +98,15 @@ const Cart = ({ setIsLoading }) => {
               className="checkout-container"
             >
               <h3>Total: ${total} </h3>
+              <Checkout
+                userId={userId}
+                cartProducts={cartProducts}
+                cartId={userCart[0].id}
+                userCart={userCart}
+                setUserCart={setUserCart}
+              />
             </Flex>
           ) : null}
-          {token ? (
-            <Checkout
-              userId={userId}
-              cartProducts={cartProducts}
-              cartId={userCart.id}
-            />
-          ) : null}
-          {!token ? <GuestCheckout /> : null}
         </Flex>
       </Flex>
     </Flex>
