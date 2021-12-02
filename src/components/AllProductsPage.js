@@ -76,7 +76,6 @@ const AllProductsPage = ({ allProducts, setAllProducts, isAdmin, setIsLoading })
             isAdmin={isAdmin}
             setAllProducts={setAllProducts}
           />
-       
         </Flex>
       </Route>
 

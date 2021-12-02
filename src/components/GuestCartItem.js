@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getProductById } from "../api/products";
-
+import {Flex, HStack} from '@chakra-ui/react';
 const GuestCartItem = () => {
   const [guestCart, setGuestCart] = useState([]);
   const [guestProducts, setProducts] = useState([]);
@@ -58,7 +58,7 @@ const GuestCartItem = () => {
   };
 
   return (
-    <div>
+    <Flex direction='column' justify='center' align='center'>
       {guestCart.length ? (
         guestProducts.map((e) => {
           // console.log("E", e);
@@ -74,32 +74,39 @@ const GuestCartItem = () => {
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
               </Link>
-              <button
+              {/* <button className="add-to-cart"
                 onClick={() => {
                   deleteHandle(item.id);
                 }}
               >
-                Delete Item
-              </button>
-              <div>
-                <button
+                Remove Item
+              </button> */}
+              <HStack spacing='12px'>
+                <button className="plus-minus"
                   onClick={() => {
                     minusHandle(item.id);
                   }}
                 >
-                  -
+                  <span className='material-icons'>remove</span>
                 </button>
 
-                <p>Current Quantity: {e.quantity}</p>
+                <h3>{e.quantity}</h3>
 
-                <button
+                <button className="plus-minus"
                   onClick={() => {
                     addOneHandle(item.id);
                   }}
                 >
-                  +
+                  <span className='material-icons'>add</span>
                 </button>
-              </div>
+                <button className="add-to-cart"
+                onClick={() => {
+                  deleteHandle(item.id);
+                }}
+              >
+                Remove Item
+              </button>
+              </HStack>
             </div>
           );
         })
@@ -108,7 +115,7 @@ const GuestCartItem = () => {
           <h2>Your cart is empty! Show it some love and add some items!</h2>
         </div>
       )}
-    </div>
+    </Flex>
   );
 };
 

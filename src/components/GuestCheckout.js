@@ -19,7 +19,7 @@ const GuestCheckout = () => {
           }
         }}
       >
-        <button type="submit">Checkout Cart</button>
+        <button className="checkout-cart" type="submit">Checkout Cart</button>
       </form>
     </div>
   );

@@ -13,6 +13,8 @@ const Cart = ({ setIsLoading }) => {
   const [userCart, setUserCart] = useState([]);
   const [userId, setUserId] = useState(null);
   const [total, setTotal] = useState(0);
+  const [guestTotal, setGuestTotal]= useState(0);
+  const [guestCart, setGuestCart]= useState([]);
   const token = getToken();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const Cart = ({ setIsLoading }) => {
           const userCart = await getUserCart(user.id);
           setUserCart(userCart);
         }
+      
       } catch (err) {
         console.log(err)
       } finally {
@@ -70,12 +73,47 @@ const Cart = ({ setIsLoading }) => {
     setProducts();
   }, [userCart]);
 
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("GuestCart"));
+
+    setGuestCart(cart);
+  }, []);
+
+  useEffect(() => {
+    async function setItems() {
+      const allProducts = await Promise.all(
+        guestCart.map(async (item) => {
+        
+          const {products} = await getProductById(item.id);
+          products.quantity = item.quantity;
+          return products;
+        })
+      );
+     console.log(allProducts)
+
+      const totalArr = allProducts.map((item) => {
+                  let total = 0;
+                  total += item.price * item.quantity;
+                  return total / 100;
+                });
+          
+                function add(accumulator, a) {
+                  return accumulator + a;
+                }
+          
+                const userTotal = totalArr.reduce(add, 0);
+                setGuestTotal(userTotal);
+                
+    }
+    setItems();
+  }, [guestCart]);
+
   return (
     <Flex
       direction="column"
       align="center"
       justify="center"
-      wrap="wrap"
+      // wrap="wrap"
       mt="220px"
     >
       <Flex direction="column" align="center">
@@ -88,28 +126,34 @@ const Cart = ({ setIsLoading }) => {
               userId={userId}
               setUserId={setUserId}
             />
-          ) : null}
-          {!token ? <GuestCartItem /> : null}
-
+          ) : <GuestCartItem />}
+          
           {userCart.length ? (
             <Flex
               direction="column"
               justify="center"
               align="center"
-              h="200px"
+              h="100px"
               className="checkout-container"
             >
-              <h3>Total: ${total} </h3>
+              <h3>Total: ${total.toFixed(2)} </h3>
             </Flex>
-          ) : null}
+          ) : <Flex
+          direction="column"
+          justify="center"
+          align="center"
+          h="100px"
+          className="checkout-container"
+        >
+          <h3>Total: ${guestTotal.toFixed(2)} </h3>
+        </Flex>}
           {token ? (
             <Checkout
               userId={userId}
               cartProducts={cartProducts}
               cartId={userCart.id}
             />
-          ) : null}
-          {!token ? <GuestCheckout /> : null}
+          ) : <GuestCheckout />}
         </Flex>
       </Flex>
     </Flex>
