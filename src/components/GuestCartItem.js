@@ -147,7 +147,7 @@ const GuestCartItem = () => {
           <GuestCheckout />
         </Flex>
       ) : null}
-
+</Flex>
   );
 };
 
