@@ -108,6 +108,7 @@ const Cart = ({ setIsLoading }) => {
               userId={userId}
               cartProducts={cartProducts}
               cartId={userCart.id}
+              setUserCart={setUserCart}
             />
           ) : null}
         </Flex>
