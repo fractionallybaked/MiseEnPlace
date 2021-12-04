@@ -5,6 +5,7 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
+import {GuestCheckout} from './'
 import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 
@@ -63,7 +64,7 @@ const Cart = ({ setIsLoading }) => {
 
         setTotal(userTotal);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     setProducts();
@@ -102,7 +103,7 @@ const Cart = ({ setIsLoading }) => {
               <Heading size="m">Total: ${total.toFixed(2)} </Heading>
             </Flex>
           ) : null}
-          {token ? (
+          {token && userCart.length ? (
             <Checkout
               userId={userId}
               cartProducts={cartProducts}

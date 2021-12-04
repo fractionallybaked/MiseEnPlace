@@ -122,7 +122,6 @@ export async function checkoutCart(userId) {
         },
       }
     );
-    console.log("DATA", data);
     return data;
   } catch (err) {
     throw err;
