@@ -64,7 +64,7 @@ const Cart = ({ setIsLoading }) => {
 
         setTotal(userTotal);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     setProducts();
@@ -103,7 +103,7 @@ const Cart = ({ setIsLoading }) => {
               <Heading size="m">Total: ${total.toFixed(2)} </Heading>
             </Flex>
           ) : null}
-          {token ? (
+          {token && userCart.length ? (
             <Checkout
               userId={userId}
               cartProducts={cartProducts}
