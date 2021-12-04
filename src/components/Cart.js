@@ -5,6 +5,7 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
+import {GuestCheckout} from './'
 import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 
