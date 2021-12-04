@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { updateCart } from "../api/cart";
-import {Flex, HStack} from '@chakra-ui/react';
+import {Flex, HStack, Heading} from '@chakra-ui/react';
 const ItemUpdate = ({
   cartId,
   productId,
@@ -39,7 +39,7 @@ const ItemUpdate = ({
       >
         <span className='material-icons'>add</span>
       </button>
-      <h3>{quantity}</h3>
+      <Heading as='h3' size='m'>{quantity}</Heading>
       <button className="plus-minus"
         onClick={async (event) => {
           if (quantity > 1) {

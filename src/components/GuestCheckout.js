@@ -1,9 +1,14 @@
 import React from "react";
-import { checkoutCart, removeItemFromCart } from "../api/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Checkout = ({ userId }) => {
+const GuestCheckout = ({ guestCart, setGuestCart }) => {
   const history = useHistory();
+
+  const deleteEverything = () => {
+    const newCart = [];
+    setGuestCart(newCart);
+    localStorage.setItem("GuestCart", JSON.stringify(newCart));
+  };
 
   return (
     <div>
@@ -12,7 +17,7 @@ const Checkout = ({ userId }) => {
         onSubmit={async (event) => {
           event.preventDefault();
           try {
-            await checkoutCart(userId);
+            deleteEverything();
             history.push("/ordercomplete");
           } catch (err) {
             throw err;
@@ -27,4 +32,4 @@ const Checkout = ({ userId }) => {
   );
 };
 
-export default Checkout;
+export default GuestCheckout;
