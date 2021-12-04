@@ -97,7 +97,7 @@ async function checkoutCart(userId) {
       UPDATE cart
       SET purchased=true
       WHERE "userId"=$1 and purchased=false
-      RETURNING *
+      RETURNING *;
       `,
         [userId]
       );

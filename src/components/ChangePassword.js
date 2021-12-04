@@ -39,7 +39,7 @@ const ChangePassword = ({ isLoggedIn }) => {
                     setConPass("");
                   }
                 } catch (err) {
-                  console.log(err);
+                  console.error(err);
                 }
               }}
             >
