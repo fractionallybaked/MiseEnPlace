@@ -17,8 +17,8 @@ import {
   Avatar,
   FormControl,
   FormHelperText,
-  InputRightElement
-} from '@chakra-ui/react';
+  InputRightElement,
+} from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -70,13 +70,13 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                 handleClick();
               } catch (err) {
                 toast({
-                  title: 'Username or password is incorrect',
-                  status: 'error',
+                  title: "Username or password is incorrect",
+                  status: "error",
                   duration: 8000,
                   isClosable: true,
-                  position: 'top'
-                })
-                console.log(err);
+                  position: "top",
+                });
+                console.error(err);
               }
             }}
           >
@@ -146,8 +146,6 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
         </Link>
       </Box>
     </Flex>
-
-
   );
 };
 

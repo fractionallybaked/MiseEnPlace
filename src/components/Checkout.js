@@ -2,7 +2,7 @@ import React from "react";
 import { checkoutCart, removeItemFromCart } from "../api/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Checkout = ({ userId }) => {
+const Checkout = ({ userId, cartProducts, setUserCart, cartId }) => {
   const history = useHistory();
 
   return (
@@ -13,6 +13,11 @@ const Checkout = ({ userId }) => {
           event.preventDefault();
           try {
             await checkoutCart(userId);
+            cartProducts.map(async (e) => {
+              let productId = e.products.id;
+              await removeItemFromCart({ userId, productId, cartId });
+            });
+            setUserCart([]);
             history.push("/ordercomplete");
           } catch (err) {
             throw err;
