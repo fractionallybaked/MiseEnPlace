@@ -23,7 +23,7 @@ const AddType = ({ allProducts, setAllProducts, isAdmin }) => {
                   updatedProduct,
                 ]);
               } catch (err) {
-                console.log(err);
+                console.error(err);
               }
             }}
           >

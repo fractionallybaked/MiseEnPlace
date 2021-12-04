@@ -4,11 +4,7 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd, ItemAdd, DeleteProduct } from "./";
-<<<<<<< HEAD
-import { Flex } from "@chakra-ui/react";
-=======
 import { Flex, Heading, Text } from "@chakra-ui/react";
->>>>>>> 8b9e77cf7beb48feff7bc8d5e88f7bf9e22441f2
 
 const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
   const token = getToken();
@@ -51,34 +47,21 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
             return (
               <div className="single-product-card" key={e.id}>
                 <Link className="single-product-link" to={`/product/${e.id}`}>
-<<<<<<< HEAD
                   <img className="product-image" src={e.photo} />
-                  <h3>{e.name}</h3>
-=======
-                <img className="product-image" src={e.photo} />
-                <Heading as='h3' size='l'>{e.name}</Heading>
->>>>>>> 8b9e77cf7beb48feff7bc8d5e88f7bf9e22441f2
+                  <Heading as="h3" size="l">
+                    {e.name}
+                  </Heading>
                 </Link>
                 <div className="outerDivWrapper">
                   <div className="outerDiv">
                     <div className="scrollableContent">
-                      <Text size='m'>{e.description}</Text>
+                      <Text size="m">{e.description}</Text>
                     </div>
                   </div>
                 </div>
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-<<<<<<< HEAD
-=======
-                {!token ? (
-                  <GuestAdd
-                    productId={e.id}
-                    guestCart={guestCart}
-                    setGuestCart={setGuestCart}
-                  />
-                ) : null}
->>>>>>> 8b9e77cf7beb48feff7bc8d5e88f7bf9e22441f2
                 {token ? (
                   <ItemAdd
                     productId={e.id}
@@ -88,7 +71,11 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
                     setUserCart={setUserCart}
                   />
                 ) : (
-                  <GuestAdd productId={e.id} />
+                  <GuestAdd
+                    productId={e.id}
+                    guestCart={guestCart}
+                    setGuestCart={setGuestCart}
+                  />
                 )}
                 {isAdmin ? (
                   <Flex direction="row" align="center">

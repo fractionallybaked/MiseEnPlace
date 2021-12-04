@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { SingleProduct, Pagination } from "./";
 import { getProductById } from "../api/products";
-import {Flex, Heading} from '@chakra-ui/react';
+import { Flex, Heading } from "@chakra-ui/react";
 
-const AllProductsPage = ({ allProducts, setAllProducts, isAdmin, setIsLoading }) => {
+const AllProductsPage = ({
+  allProducts,
+  setAllProducts,
+  isAdmin,
+  setIsLoading,
+}) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
@@ -21,9 +26,9 @@ const AllProductsPage = ({ allProducts, setAllProducts, isAdmin, setIsLoading })
         }
         setProducts([...prods]);
       } catch (err) {
-        console.log(err);
-      }finally{
-        setIsLoading(false)
+        console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     }
     setUp();
@@ -62,61 +67,101 @@ const AllProductsPage = ({ allProducts, setAllProducts, isAdmin, setIsLoading })
   return (
     <Switch>
       <Route exact path="/products/bakedgoods">
-      <Flex direction='column' align='center' maxW={{xl: '1200px'}} m='0 auto'>
-        <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
-          <div className="all-prods-main-container">
-            <Heading as='h2' fontFamily='Cormorant Garamond'>Baked Goods</Heading>
-            <Pagination
-              productsPerPage={productsPerPage}
-              totalProducts={bakedGoods.length}
-              paginate={paginate}
+        <Flex
+          direction="column"
+          align="center"
+          maxW={{ xl: "1200px" }}
+          m="0 auto"
+        >
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            wrap="wrap"
+            mt="220px"
+          >
+            <div className="all-prods-main-container">
+              <Heading as="h2" fontFamily="Cormorant Garamond">
+                Baked Goods
+              </Heading>
+              <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={bakedGoods.length}
+                paginate={paginate}
+              />
+            </div>
+            <SingleProduct
+              allProducts={bakedGoods.slice(indexOfFirstProd, indexOfLastProd)}
+              isAdmin={isAdmin}
+              setAllProducts={setAllProducts}
             />
-          </div>
-          <SingleProduct
-            allProducts={bakedGoods.slice(indexOfFirstProd, indexOfLastProd)}
-            isAdmin={isAdmin}
-            setAllProducts={setAllProducts}
-          />
-        </Flex>
+          </Flex>
         </Flex>
       </Route>
 
       <Route exact path="/products/beverages">
-      <Flex direction='column' align='center' maxW={{xl: '1200px'}} m='0 auto'>
-      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
-          <div className="all-prods-main-container">
-          <Heading as='h2' fontFamily='Cormorant Garamond'>Beverages</Heading>
-            <Pagination
-              productsPerPage={productsPerPage}
-              totalProducts={beverages.length}
-              paginate={paginate}
+        <Flex
+          direction="column"
+          align="center"
+          maxW={{ xl: "1200px" }}
+          m="0 auto"
+        >
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            wrap="wrap"
+            mt="220px"
+          >
+            <div className="all-prods-main-container">
+              <Heading as="h2" fontFamily="Cormorant Garamond">
+                Beverages
+              </Heading>
+              <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={beverages.length}
+                paginate={paginate}
+              />
+            </div>
+            <SingleProduct
+              allProducts={beverages.slice(indexOfFirstProd, indexOfLastProd)}
+              isAdmin={isAdmin}
+              setAllProducts={setAllProducts}
             />
-          </div>
-          <SingleProduct
-            allProducts={beverages.slice(indexOfFirstProd, indexOfLastProd)}
-            isAdmin={isAdmin}
-            setAllProducts={setAllProducts}
-          />
-        </Flex>
+          </Flex>
         </Flex>
       </Route>
 
       <Route exact path="/products">
-      <Flex direction='column' align='center' maxW={{xl: '1200px'}} m='0 auto'>
-      <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
-          <div className="all-prods-main-container">
-          <Heading as='h2' fontFamily='Cormorant Garamond'>All Products</Heading>
-            <Pagination
-              productsPerPage={productsPerPage}
-              totalProducts={products.length}
-              paginate={paginate}
+        <Flex
+          direction="column"
+          align="center"
+          maxW={{ xl: "1200px" }}
+          m="0 auto"
+        >
+          <Flex
+            direction="column"
+            align="center"
+            justify="center"
+            wrap="wrap"
+            mt="220px"
+          >
+            <div className="all-prods-main-container">
+              <Heading as="h2" fontFamily="Cormorant Garamond">
+                All Products
+              </Heading>
+              <Pagination
+                productsPerPage={productsPerPage}
+                totalProducts={products.length}
+                paginate={paginate}
+              />
+            </div>
+            <SingleProduct
+              allProducts={currentProducts}
+              isAdmin={isAdmin}
+              setAllProducts={setAllProducts}
             />
-          </div>
-          <SingleProduct 
-          allProducts={currentProducts} 
-          isAdmin={isAdmin}
-          setAllProducts={setAllProducts} />
-        </Flex>
+          </Flex>
         </Flex>
       </Route>
     </Switch>

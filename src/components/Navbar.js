@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { clearCurrentUser, getToken } from "../auth";
-import { SearchBar, DropdownMenu, Hamburger} from "./";
+import { SearchBar, DropdownMenu, Hamburger } from "./";
 
 const Navbar = ({
   isLoggedIn,
@@ -25,13 +25,14 @@ const Navbar = ({
 
   return (
     <nav>
-<<<<<<< HEAD
-      <div className="hamburger-icon" onClick={() => setHamburgerOpen(true)}>
+      <div
+        className="hamburger-icon"
+        onClick={() => {
+          setHamburgerOpen(true);
+          toggleHamburger();
+        }}
+      >
         <Hamburger isOpen={hamburgerOpen} />
-=======
-      <div className="hamburger-icon" onClick={() =>{ setHamburgerOpen(true); toggleHamburger()}}>
-        <Hamburger isOpen={hamburgerOpen}/>
->>>>>>> 8b9e77cf7beb48feff7bc8d5e88f7bf9e22441f2
       </div>
       <section className={hamburgerOpen ? "nav-links show" : "nav-links hide"}>
         <Link

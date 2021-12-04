@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { registerUser } from "../api/users";
 import { storeUser } from "../auth";
-import { 
+import {
   useToast,
   Flex,
   Heading,
@@ -17,8 +17,8 @@ import {
   Avatar,
   FormControl,
   FormHelperText,
-  InputRightElement
-} from '@chakra-ui/react';
+  InputRightElement,
+} from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -54,57 +54,58 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <Flex
-    flexDirection="column"
-    width="100wh"
-    height="100vh"
-    backgroundColor="#eee2df"
-    justifyContent="center"
-    alignItems="center"
+    direction="column"
+    w="100wh"
+    h="100vh"
+    bg="#eee2df"
+    justify="center"
+    align="center"
   >
+    
       <Stack
-      flexDir="column"
-      mb="2"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Avatar bg="#c97c5d" />
-      <Heading color="black">Sign Up</Heading>
-      <Box minW={{ base: "90%", md: "468px" }}>
-        <form
-          onSubmit={async (event) => {
-            event.preventDefault();
-            if (password.length < 8) {
-              toast({
-                title: 'Password must be at least 8 characters',
-                status: 'error',
-                duration: 8000,
-                isClosable: true,
-                position: 'top'
-              })
-            }
-            try {
-              const results = await registerUser(userName, password);
-              if (results.user) {
-                storeUser(results.token);
-                setIsLoggedIn(true);
-                setRegistered(true);
-                handleClick();
-              } else console.log("register failed: ", results.error.message);
-              setUserName("");
-              setPassword("");
-            } catch (err) {
-              toast({
-                title: 'Username already exists',
-                status: 'error',
-                duration: 8000,
-                isClosable: true,
-                position: 'top'
-              })
-              console.log(err);
-            }
-          }}
-        >
-          <Stack
+        flexDir="column"
+        mb="2"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Avatar bg="#c97c5d" />
+        <Heading color="black">Sign Up</Heading>
+        <Box minW={{ base: "90%", md: "468px" }}>
+          <form
+            onSubmit={async (event) => {
+              event.preventDefault();
+              if (password.length < 8) {
+                toast({
+                  title: "Password must be at least 8 characters",
+                  status: "error",
+                  duration: 8000,
+                  isClosable: true,
+                  position: "top",
+                });
+              }
+              try {
+                const results = await registerUser(userName, password);
+                if (results.user) {
+                  storeUser(results.token);
+                  setIsLoggedIn(true);
+                  setRegistered(true);
+                  handleClick();
+                } else console.log("register failed: ", results.error.message);
+                setUserName("");
+                setPassword("");
+              } catch (err) {
+                toast({
+                  title: "Username already exists",
+                  status: "error",
+                  duration: 8000,
+                  isClosable: true,
+                  position: "top",
+                });
+                console.error(err);
+              }
+            }}
+          >
+            <Stack
               spacing={4}
               p="1rem"
               backgroundColor="whiteAlpha.900"
@@ -116,16 +117,16 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-          <Input
-            id="userName"
-            type="text"
-            placeholder="enter username"
-            value={userName}
-            onChange={(event) => {
-              setUserName(event.target.value);
-            }}
-          />
-</InputGroup>
+                  <Input
+                    id="userName"
+                    type="text"
+                    placeholder="enter username"
+                    value={userName}
+                    onChange={(event) => {
+                      setUserName(event.target.value);
+                    }}
+                  />
+                </InputGroup>
               </FormControl>
               <FormControl>
                 <InputGroup>
@@ -134,16 +135,16 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
                     color="gray.300"
                     children={<CFaLock color="gray.300" />}
                   />
-          <Input
-            id="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="enter password"
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-          <InputRightElement width="4.5rem">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="enter password"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                  />
+                  <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
                       {showPassword ? "Hide" : "Show"}
                     </Button>
@@ -162,8 +163,8 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
               >
                 Register
               </Button>
-              </Stack>
-        </form>
+            </Stack>
+          </form>
         </Box>
       </Stack>
       <Box>

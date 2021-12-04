@@ -136,9 +136,11 @@ const GuestCartItem = () => {
           );
         })
       ) : (
-        <div>
-          <h2>Your cart is empty! Show it some love and add some items!</h2>
-        </div>
+        <Flex direction='column' align='center' justify="center" wrap='wrap'>
+          <Heading as='h2' size='m' textAlign='center'>
+            Your cart is empty! Show it some love and add some items!
+          </Heading>
+        </Flex>
       )}
 
       {guestCart.length ? (
@@ -149,7 +151,7 @@ const GuestCartItem = () => {
           h="200px"
           className="checkout-container"
         >
-          <h3>Total: ${total} </h3>
+          <Heading size='m'>Total: ${total} </Heading>
           <GuestCheckout guestCart={guestCart} setGuestCart={setGuestCart} />
         </Flex>
       ) : null}

@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { ItemUpdate, ItemDelete } from "./";
-
-import { getToken } from "../auth";
-import { Flex, HStack, Heading } from '@chakra-ui/react';
-
+import { Flex, HStack, Heading } from "@chakra-ui/react";
 
 const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   return (
@@ -13,12 +10,13 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
         cartProducts.map((e) => {
           let item;
           e.products ? (item = e.products) : (item = e);
-
           return (
             <div className="single-product-card" key={item.id}>
               <Link className="single-product-link" to={`/product/${item.id}`}>
                 <img className="cart-image" src={item.photo} />
-                <Heading as='h3' size='m'>{item.name}</Heading>
+                <Heading as="h3" size="m">
+                  {item.name}
+                </Heading>
                 <span className="single-product-price">
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
@@ -46,9 +44,11 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
           );
         })
       ) : (
-        <div>
-          <h2>Your cart is empty! Show it some love and add some items!</h2>
-        </div>
+        <Flex direction='column' align='center' justify="center" wrap='wrap'>
+        <Heading as='h2' size='m' textAlign='center'>
+          Your cart is empty! Show it some love and add some items!
+        </Heading>
+      </Flex>
       )}
     </Flex>
   );
