@@ -9,7 +9,7 @@ const Navbar = ({
   isAdmin,
   setIsAdmin,
   query,
-  setQuery
+  setQuery,
 }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -26,7 +26,7 @@ const Navbar = ({
   return (
     <nav>
       <div className="hamburger-icon" onClick={() => setHamburgerOpen(true)}>
-        <Hamburger isOpen={hamburgerOpen}/>
+        <Hamburger isOpen={hamburgerOpen} />
       </div>
       <section className={hamburgerOpen ? "nav-links show" : "nav-links hide"}>
         <Link
@@ -74,11 +74,12 @@ const Navbar = ({
           <Link
             className={hamburgerOpen ? "link show" : "link hide"}
             onClick={() => toggleHamburger()}
-            to="/admin/createproduct"
+            to="/admin/"
           >
             Admin
           </Link>
-        ) : isLoggedIn ? (
+        ) : null}
+        {isLoggedIn ? (
           <Link
             className={hamburgerOpen ? "link show" : "link hide"}
             onClick={() => toggleHamburger()}
@@ -116,7 +117,7 @@ const Navbar = ({
             onClick={() => toggleHamburger()}
             to="/register"
           >
-            <span className='register'>Sign up</span>
+            <span className="register">Sign up</span>
           </Link>
         ) : null}
       </section>

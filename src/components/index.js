@@ -29,3 +29,6 @@ export { default as ManageUsers } from "./ManageUsers";
 export { default as Account } from "./Account";
 export { default as SingleProductPage } from "./SingleProductPage";
 export { default as About } from "./About";
+export { default as PastPurchases } from "./PastPurchases";
+export { default as ChangePassword } from "./ChangePassword";
+export { default as PurchasedProduct } from "./PurchasedProduct";
