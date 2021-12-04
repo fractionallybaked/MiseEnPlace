@@ -13,7 +13,6 @@ const Checkout = ({ userId, cartProducts, setUserCart, cartId }) => {
           event.preventDefault();
           try {
             await checkoutCart(userId);
-            console.log(cartProducts);
             cartProducts.map(async (e) => {
               let productId = e.products.id;
               await removeItemFromCart({ userId, productId, cartId });
