@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import {PastPurchases, ChangePassword} from "./";
+import { PastPurchases, ChangePassword } from "./";
 
 const Account = ({ isLoggedIn }) => {
   return (
