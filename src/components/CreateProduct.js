@@ -9,32 +9,34 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
   const [photo, setPhoto] = useState("");
   const [type, setType] = useState([]);
 
-    return (
-        <div className="create-product-main-container">
-            { isAdmin
-                ? <> <h3>Create a New Product</h3>
-                    <form
-                        className="create-product-form"
-                        onSubmit={async (e) => {
-                            e.preventDefault();
-                            try {
-                                if (!name || !description || !price || !quantity || !photo) {
-                                    alert('Please fill out all product fields');
-                                } else {
-                                    const newProduct = await createProduct(
-                                        name,
-                                        description,
-                                        price,
-                                        quantity,
-                                        photo,
-                                        [type]
-                                    );
-                                    setName('');
-                                    setDescription('');
-                                    setPrice('');
-                                    setQuantity('');
-                                    setPhoto('');
-                                    setType('');
+  return (
+    <div className="create-product-main-container">
+      {isAdmin ? (
+        <>
+          {" "}
+          <h3>Create a New Product</h3>
+          <form
+            className="create-product-form"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              try {
+                if (!name || !description || !price || !quantity || !photo) {
+                  alert("Please fill out all product fields");
+                } else {
+                  const newProduct = await createProduct(
+                    name,
+                    description,
+                    price,
+                    quantity,
+                    photo,
+                    [type]
+                  );
+                  setName("");
+                  setDescription("");
+                  setPrice("");
+                  setQuantity("");
+                  setPhoto("");
+                  setType("");
 
                   setAllProducts((prevProducts) => [
                     ...prevProducts,
@@ -42,7 +44,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
                   ]);
                 }
               } catch (err) {
-                console.log(err);
+                console.error(err);
               }
             }}
           >
@@ -96,7 +98,7 @@ const CreateProduct = ({ setAllProducts, isAdmin }) => {
             <button>Create New Product</button>
           </form>
         </>
-       : (
+      ) : (
         <div> Error: You don't have permission for this function </div>
       )}
     </div>

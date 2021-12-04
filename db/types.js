@@ -32,17 +32,17 @@ async function getTypeById(id) {
 }
 
 async function createProductType(productId, typeId) {
-  console.log("TYPE js", productId, typeId);
   try {
     await client.query(
       `
         INSERT INTO product_type("productId", "typeId")
         VALUES ($1, $2)
-`, [productId, typeId]);
-
-    } catch (error) {
-        throw error;
-    }
+`,
+      [productId, typeId]
+    );
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function destroyType(id) {

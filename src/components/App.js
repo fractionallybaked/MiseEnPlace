@@ -52,7 +52,7 @@ const App = () => {
           setIsLoggedIn(true);
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
@@ -62,7 +62,6 @@ const App = () => {
 
   return (
     <div className="App">
-
       <ChakraProvider>
         <Header />
 
@@ -75,25 +74,22 @@ const App = () => {
           setQuery={setQuery}
         />
 
-        {
-          isLoading
-            ?
-            <Flex justify='center' align='center' h='100vh'>
-              <Spinner
-                thickness='4px'
-                speed='0.65s'
-                emptyColor='rgba(238, 215, 197, 0.9)'
-                color='#c97c5d'
-                size='xl' />
-            </Flex>
-            : null
-        }
+        {isLoading ? (
+          <Flex justify="center" align="center" h="100vh">
+            <Spinner
+              thickness="4px"
+              speed="0.65s"
+              emptyColor="rgba(238, 215, 197, 0.9)"
+              color="#c97c5d"
+              size="xl"
+            />
+          </Flex>
+        ) : null}
         <Switch>
           <Route path="/about">
             <About />
           </Route>
           <Route exact path="/products/searchresults">
-
             <SearchResultsPage
               query={query}
               setQuery={setQuery}
@@ -101,30 +97,24 @@ const App = () => {
             />
           </Route>
 
-
           <Route path="/products">
-
             <AllProductsPage
               allProducts={allProducts}
               isAdmin={isAdmin}
               setAllProducts={setAllProducts}
-              setIsLoading={setIsLoading} />
-
+              setIsLoading={setIsLoading}
+            />
           </Route>
           <Route exact path="/product/:productId">
             <div className="all-products-main-container">
-              <SingleProductPage
-                allProducts={allProducts}
-                isAdmin={isAdmin} />
+              <SingleProductPage allProducts={allProducts} isAdmin={isAdmin} />
             </div>
           </Route>
           <Route path="/login">
-
             <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />
           </Route>
           <Route path="/register">
             <Register isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-
           </Route>
           <Route path="/cart">
             <Cart setIsLoading={setIsLoading} />
@@ -132,13 +122,11 @@ const App = () => {
           <Route path="/admin">
             <div className="all-products-main-container">
               {isAdmin ? (
-
                 <Admin
                   allProducts={allProducts}
                   setAllProducts={setAllProducts}
                   isAdmin={isAdmin}
                 />
-
               ) : null}
             </div>
           </Route>
@@ -151,14 +139,12 @@ const App = () => {
 
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
-
           </Route>
           <Route exact path="/">
             <LandingPage />
           </Route>
         </Switch>
       </ChakraProvider>
-
     </div>
   );
 };
