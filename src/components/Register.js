@@ -54,18 +54,18 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
 
   return (
     <Flex
-    flexDirection="column"
-    width="100wh"
-    height="100vh"
-    backgroundColor="#eee2df"
-    justifyContent="center"
-    alignItems="center"
+    direction="column"
+    w="100wh"
+    h="100vh"
+    bg="#eee2df"
+    justify="center"
+    align="center"
   >
       <Stack
       flexDir="column"
       mb="2"
-      justifyContent="center"
-      alignItems="center"
+      justify="center"
+      align="center"
     >
       <Avatar bg="#c97c5d" />
       <Heading color="black">Sign Up</Heading>
