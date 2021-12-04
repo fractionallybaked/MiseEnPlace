@@ -9,7 +9,7 @@ const PastPurchases = ({}) => {
     try {
       async function getProd() {
         let myID = await getMyID();
-        const product = await getPurchaseHistory(myID);
+        const product = await getPurchaseHistory(myID.id);
         setPurchased(product);
       }
       getProd();
