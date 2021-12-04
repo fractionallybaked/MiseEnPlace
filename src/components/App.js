@@ -139,9 +139,8 @@ const App = () => {
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
           </Route>
-          <Route path='/ordercomplete'>
+          <Route path="/ordercomplete">
             <OrderComplete />
-
           </Route>
           <Route exact path="/">
             <LandingPage />

@@ -75,7 +75,6 @@ const Cart = ({ setIsLoading }) => {
       direction="column"
       align="center"
       justify="center"
-      // wrap="wrap"
       mt="220px"
     >
       <Flex direction="column" align="center">
