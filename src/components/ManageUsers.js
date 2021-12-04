@@ -12,7 +12,7 @@ const ManageUsers = ({ isAdmin }) => {
         tmp = tmp.filter((user) => user.id !== myID.id);
         setUsers(tmp);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     setUp();
@@ -48,7 +48,7 @@ const ManageUsers = ({ isAdmin }) => {
                                     user.id
                                   );
                                 } catch (err) {
-                                  console.log(err);
+                                  console.error(err);
                                 }
                               }}
                             >
@@ -66,7 +66,7 @@ const ManageUsers = ({ isAdmin }) => {
                                 try {
                                   let res = await editUser(null, true, user.id);
                                 } catch (err) {
-                                  console.log(err);
+                                  console.error(err);
                                 }
                               }}
                             >

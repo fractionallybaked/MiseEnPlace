@@ -63,7 +63,7 @@ const Cart = ({ setIsLoading }) => {
 
         setTotal(userTotal);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
     setProducts();

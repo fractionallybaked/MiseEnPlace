@@ -1,5 +1,5 @@
 import React from "react";
-import { checkoutCart, removeItemFromCart } from "../api/cart";
+import { checkoutCart } from "../api/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Checkout = ({ userId }) => {
