@@ -47,26 +47,21 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
             return (
               <div className="single-product-card" key={e.id}>
                 <Link className="single-product-link" to={`/product/${e.id}`}>
-                <img className="product-image" src={e.photo} />
-                <Heading as='h3' size='l'>{e.name}</Heading>
+                  <img className="product-image" src={e.photo} />
+                  <Heading as="h3" size="l">
+                    {e.name}
+                  </Heading>
                 </Link>
                 <div className="outerDivWrapper">
                   <div className="outerDiv">
                     <div className="scrollableContent">
-                      <Text size='m'>{e.description}</Text>
+                      <Text size="m">{e.description}</Text>
                     </div>
                   </div>
                 </div>
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                {!token ? (
-                  <GuestAdd
-                    productId={e.id}
-                    guestCart={guestCart}
-                    setGuestCart={setGuestCart}
-                  />
-                ) : null}
                 {token ? (
                   <ItemAdd
                     productId={e.id}
@@ -75,27 +70,36 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
                     userCart={userCart}
                     setUserCart={setUserCart}
                   />
-                ) : null}
+                ) : (
+                  <GuestAdd
+                    productId={e.id}
+                    guestCart={guestCart}
+                    setGuestCart={setGuestCart}
+                  />
+                )}
                 {isAdmin ? (
-                  <Flex direction='row' align='center'>
-                  <Link
-                    to={{
-                      pathname: "/editproduct",
-                      state: {
-                        pId: e.id,
-                        pName: e.name,
-                        pDescription: e.description,
-                        pPrice: e.price,
-                        pQuantity: e.quantity,
-                        pPhoto: e.photo,
-                      },
-                    }}
-                  >
-                    <button>
-                      <span className="material-icons edit-button">edit</span>
-                    </button>
-                  </Link>
-                  <DeleteProduct productId={e.id} setAllProducts={setAllProducts} />
+                  <Flex direction="row" align="center">
+                    <Link
+                      to={{
+                        pathname: "/editproduct",
+                        state: {
+                          pId: e.id,
+                          pName: e.name,
+                          pDescription: e.description,
+                          pPrice: e.price,
+                          pQuantity: e.quantity,
+                          pPhoto: e.photo,
+                        },
+                      }}
+                    >
+                      <button>
+                        <span className="material-icons edit-button">edit</span>
+                      </button>
+                    </Link>
+                    <DeleteProduct
+                      productId={e.id}
+                      setAllProducts={setAllProducts}
+                    />
                   </Flex>
                 ) : null}
               </div>
