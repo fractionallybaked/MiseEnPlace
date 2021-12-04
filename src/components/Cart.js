@@ -26,7 +26,6 @@ const Cart = ({ setIsLoading }) => {
           const userCart = await getUserCart(user.id);
           setUserCart(userCart);
         }
-
       } catch (err) {
         console.error(err);
       } finally {
@@ -64,14 +63,12 @@ const Cart = ({ setIsLoading }) => {
         const userTotal = totalArr.reduce(add, 0);
 
         setTotal(userTotal);
-
       } catch (err) {
         console.log(err);
       }
     }
     setProducts();
   }, [userCart]);
-
 
   return (
     <Flex
@@ -91,7 +88,9 @@ const Cart = ({ setIsLoading }) => {
               userId={userId}
               setUserId={setUserId}
             />
-          ) : <GuestCartItem />}
+          ) : (
+            <GuestCartItem />
+          )}
 
           {userCart.length ? (
             <Flex
@@ -101,8 +100,7 @@ const Cart = ({ setIsLoading }) => {
               h="100px"
               className="checkout-container"
             >
-
-              <Heading size='m'>Total: ${total.toFixed(2)} </Heading>
+              <Heading size="m">Total: ${total.toFixed(2)} </Heading>
             </Flex>
           ) : null}
           {token ? (
@@ -112,7 +110,6 @@ const Cart = ({ setIsLoading }) => {
               cartId={userCart.id}
             />
           ) : null}
-
         </Flex>
       </Flex>
     </Flex>

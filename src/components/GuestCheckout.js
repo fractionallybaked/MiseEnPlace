@@ -1,18 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const GuestCheckout = () => {
-  const [guestCart, setGuestCart] = useState([]);
+const GuestCheckout = ({ guestCart, setGuestCart }) => {
+  const history = useHistory();
 
-  useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem("GuestCart"));
-
-    setGuestCart(cart);
-  }, []);
-
-  const deleteEverything = async () => {
-    const newCart = guestCart.map((e) => {
-      localStorage.removeItem("GuestCart", e);
-    });
+  const deleteEverything = () => {
+    const newCart = [];
     setGuestCart(newCart);
     localStorage.setItem("GuestCart", JSON.stringify(newCart));
   };
@@ -25,17 +18,15 @@ const GuestCheckout = () => {
           event.preventDefault();
           try {
             deleteEverything();
-            return (
-              <div>
-                <h2>Order completed!</h2>
-              </div>
-            );
+            history.push("/ordercomplete");
           } catch (err) {
             throw err;
           }
         }}
       >
-        <button className="checkout-cart" type="submit">Checkout Cart</button>
+        <button className="checkout-cart" type="submit">
+          Checkout Cart
+        </button>
       </form>
     </div>
   );
