@@ -5,7 +5,7 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 
 const Cart = ({ setIsLoading }) => {
@@ -25,6 +25,7 @@ const Cart = ({ setIsLoading }) => {
           const userCart = await getUserCart(user.id);
           setUserCart(userCart);
         }
+
       } catch (err) {
         console.error(err);
       } finally {
@@ -60,7 +61,9 @@ const Cart = ({ setIsLoading }) => {
         }
 
         const userTotal = totalArr.reduce(add, 0);
-        setTotal(userTotal.toFixed(2));
+
+        setTotal(userTotal);
+
       } catch (err) {
         console.log(err);
       }
@@ -68,12 +71,13 @@ const Cart = ({ setIsLoading }) => {
     setProducts();
   }, [userCart]);
 
+
   return (
     <Flex
       direction="column"
       align="center"
       justify="center"
-      wrap="wrap"
+      // wrap="wrap"
       mt="220px"
     >
       <Flex direction="column" align="center">
@@ -86,27 +90,28 @@ const Cart = ({ setIsLoading }) => {
               userId={userId}
               setUserId={setUserId}
             />
-          ) : null}
-          {!token ? <GuestCartItem /> : null}
+          ) : <GuestCartItem />}
 
           {userCart.length ? (
             <Flex
               direction="column"
               justify="center"
               align="center"
-              h="200px"
+              h="100px"
               className="checkout-container"
             >
-              <h3>Total: ${total} </h3>
-              <Checkout
-                userId={userId}
-                cartProducts={cartProducts}
-                cartId={userCart[0].id}
-                userCart={userCart}
-                setUserCart={setUserCart}
-              />
+
+              <Heading size='m'>Total: ${total.toFixed(2)} </Heading>
             </Flex>
           ) : null}
+          {token ? (
+            <Checkout
+              userId={userId}
+              cartProducts={cartProducts}
+              cartId={userCart.id}
+            />
+          ) : <GuestCheckout />}
+
         </Flex>
       </Flex>
     </Flex>

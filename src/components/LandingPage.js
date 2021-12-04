@@ -61,12 +61,11 @@ const LandingPage = () => {
                 direction={{ base: "column-reverse", md: "row" }}
                 wrap="no-wrap"
                 minH="70vh"
-                width='100vw'
                 px={8}
                 mb={16}
-                bg='#eee2df'
+                // bg='#eee2df'
                 >
-                <Box m='1em'>
+                <Box m='2em'>
                     <div className="landing-inner-product-card">
                         <h3>Baked Goods</h3>
                         <Link to='/products/bakedgoods'>
@@ -75,7 +74,7 @@ const LandingPage = () => {
                     </div>
                     <Image size='100%' src={cookies} rounded='1rem' shadow='2xl' />
                 </Box>
-                <Box m='1em'>
+                <Box m='2em'>
                     <div className="landing-inner-product-card">
                         <h3>Coffee</h3>
                         <Link to='/products/beverages'>
@@ -84,7 +83,7 @@ const LandingPage = () => {
                     </div>
                     <Image size='100%' src={coffee} rounded='1rem' shadow='2xl' />
                 </Box>
-                <Box m='1em'>
+                <Box m='2em'>
                     <div className="landing-inner-product-card">
                         <h3>Tea</h3>
                         <Link to='/products/beverages'>

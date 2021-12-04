@@ -1,5 +1,6 @@
 import React from 'react';
 import { SingleProduct } from './';
+import {Flex} from '@chakra-ui/react';
 
 const SearchResultsPage = ({ allProducts, query, setQuery }) => {
     const filteredProducts = allProducts.filter(e => {
@@ -16,9 +17,10 @@ const SearchResultsPage = ({ allProducts, query, setQuery }) => {
     });
 
     return (
-        <div className="search-results">
+        <Flex direction='column' align='center' justify="center" wrap='wrap' mt='220px'>
+            <h2>Search Results for "{query}"</h2>
             <SingleProduct allProducts={filteredProducts} />
-        </div>
+        </Flex>
     )
 }
 

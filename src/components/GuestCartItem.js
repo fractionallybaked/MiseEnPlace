@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { GuestCheckout } from ".";
 import { getProductById } from "../api/products";
-import { Flex } from "@chakra-ui/react";
+
+import { Flex, HStack, Heading } from '@chakra-ui/react';
 
 const GuestCartItem = () => {
   const [guestCart, setGuestCart] = useState([]);
@@ -85,7 +86,7 @@ const GuestCartItem = () => {
   };
 
   return (
-    <div>
+    <Flex direction='column' justify='center' align='center'>
       {guestCart.length ? (
         guestProducts.map((e) => {
           let item;
@@ -94,37 +95,37 @@ const GuestCartItem = () => {
             <div className="single-product-card" key={item.id}>
               <Link className="single-product-link" to={`/product/${item.id}`}>
                 <img className="cart-image" src={item.photo} />
-                <h3>{item.name}</h3>
+                <Heading as='h3' size='m'>{item.name}</Heading>
                 <span className="single-product-price">
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>
               </Link>
-              <button
-                onClick={() => {
-                  deleteHandle(item.id);
-                }}
-              >
-                Delete Item
-              </button>
-              <div>
-                <button
+              <HStack spacing='12px'>
+                <button className="plus-minus"
                   onClick={() => {
                     minusHandle(item.id);
                   }}
                 >
-                  -
+                  <span className='material-icons'>remove</span>
                 </button>
 
-                <p>Current Quantity: {e.quantity}</p>
+                <Heading as='h3' size='m'>{e.quantity}</Heading>
 
-                <button
+                <button className="plus-minus"
                   onClick={() => {
                     addOneHandle(item.id);
                   }}
                 >
-                  +
+                  <span className='material-icons'>add</span>
                 </button>
-              </div>
+                <button className="add-to-cart"
+                  onClick={() => {
+                    deleteHandle(item.id);
+                  }}
+                >
+                  Remove Item
+              </button>
+              </HStack>
             </div>
           );
         })
@@ -133,6 +134,7 @@ const GuestCartItem = () => {
           <h2>Your cart is empty! Show it some love and add some items!</h2>
         </div>
       )}
+
       {guestCart.length ? (
         <Flex
           direction="column"
@@ -145,7 +147,7 @@ const GuestCartItem = () => {
           <GuestCheckout />
         </Flex>
       ) : null}
-    </div>
+
   );
 };
 

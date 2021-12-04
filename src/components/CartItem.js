@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ItemUpdate, ItemDelete } from "./";
-import { Flex, HStack } from "@chakra-ui/react";
+
+import { getToken } from "../auth";
+import { Flex, HStack, Heading } from '@chakra-ui/react';
+
 
 const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
   return (
@@ -15,7 +18,7 @@ const CartItem = ({ cartProducts, userId, userCart, setUserCart }) => {
             <div className="single-product-card" key={item.id}>
               <Link className="single-product-link" to={`/product/${item.id}`}>
                 <img className="cart-image" src={item.photo} />
-                <h3>{item.name}</h3>
+                <Heading as='h3' size='m'>{item.name}</Heading>
                 <span className="single-product-price">
                   ${(Math.round(item.price) / 100).toFixed(2)}
                 </span>

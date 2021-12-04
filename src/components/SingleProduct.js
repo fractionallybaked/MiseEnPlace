@@ -4,7 +4,7 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd, ItemAdd, DeleteProduct } from "./";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Heading, Text } from "@chakra-ui/react";
 
 const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
   const token = getToken();
@@ -48,12 +48,12 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
               <div className="single-product-card" key={e.id}>
                 <Link className="single-product-link" to={`/product/${e.id}`}>
                 <img className="product-image" src={e.photo} />
-                <h3>{e.name}</h3>
+                <Heading as='h3' size='l'>{e.name}</Heading>
                 </Link>
                 <div className="outerDivWrapper">
                   <div className="outerDiv">
                     <div className="scrollableContent">
-                      <p>{e.description}</p>
+                      <Text size='m'>{e.description}</Text>
                     </div>
                   </div>
                 </div>
