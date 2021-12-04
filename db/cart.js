@@ -94,10 +94,10 @@ async function checkoutCart(userId) {
         rows: [cart],
       } = await client.query(
         `
-      UPDATE cart
-      SET purchased=true
-      WHERE "userId"=$1 and purchased=false
-      RETURNING *
+          UPDATE cart
+          SET purchased=true
+          WHERE "userId"=$1 and purchased=false
+          RETURNING *;
       `,
         [userId]
       );
@@ -116,10 +116,10 @@ async function getAllProductsByUser(userId) {
   try {
     const { rows: cart } = await client.query(
       `
-  SELECT *
-  FROM cart
-  WHERE "userId"=$1 AND purchased=true
-  RETURNING *;
+        SELECT *
+        FROM cart
+        WHERE "userId"=$1 AND purchased=true
+        RETURNING *;
   `,
       [userId]
     );
