@@ -4,7 +4,7 @@ import { getMyID } from "../api/users";
 import { getUserCart } from "../api/cart";
 import { getToken } from "../auth";
 import { GuestAdd, ItemAdd, DeleteProduct } from "./";
-import {Flex} from '@chakra-ui/react';
+import { Flex } from "@chakra-ui/react";
 
 const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
   const token = getToken();
@@ -25,7 +25,7 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
   }, []);
 
   return (
-    <Flex direction='row' justify='center' wrap='wrap'>
+    <Flex direction="row" justify="center" wrap="wrap">
       {allProducts.length
         ? allProducts.map((el) => {
             let e;
@@ -34,8 +34,8 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
             return (
               <div className="single-product-card" key={e.id}>
                 <Link className="single-product-link" to={`/product/${e.id}`}>
-                <img className="product-image" src={e.photo} />
-                <h3>{e.name}</h3>
+                  <img className="product-image" src={e.photo} />
+                  <h3>{e.name}</h3>
                 </Link>
                 <div className="outerDivWrapper">
                   <div className="outerDiv">
@@ -47,7 +47,6 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
                 <span className="single-product-price">
                   ${(Math.round(e.price) / 100).toFixed(2)}
                 </span>
-                {!token ? <GuestAdd productId={e.id} /> : null}
                 {token ? (
                   <ItemAdd
                     productId={e.id}
@@ -56,27 +55,32 @@ const SingleProduct = ({ allProducts, isAdmin, setAllProducts }) => {
                     userCart={userCart}
                     setUserCart={setUserCart}
                   />
-                ) : null}
+                ) : (
+                  <GuestAdd productId={e.id} />
+                )}
                 {isAdmin ? (
-                  <Flex direction='row' align='center'>
-                  <Link
-                    to={{
-                      pathname: "/editproduct",
-                      state: {
-                        pId: e.id,
-                        pName: e.name,
-                        pDescription: e.description,
-                        pPrice: e.price,
-                        pQuantity: e.quantity,
-                        pPhoto: e.photo,
-                      },
-                    }}
-                  >
-                    <button>
-                      <span className="material-icons edit-button">edit</span>
-                    </button>
-                  </Link>
-                  <DeleteProduct productId={e.id} setAllProducts={setAllProducts} />
+                  <Flex direction="row" align="center">
+                    <Link
+                      to={{
+                        pathname: "/editproduct",
+                        state: {
+                          pId: e.id,
+                          pName: e.name,
+                          pDescription: e.description,
+                          pPrice: e.price,
+                          pQuantity: e.quantity,
+                          pPhoto: e.photo,
+                        },
+                      }}
+                    >
+                      <button>
+                        <span className="material-icons edit-button">edit</span>
+                      </button>
+                    </Link>
+                    <DeleteProduct
+                      productId={e.id}
+                      setAllProducts={setAllProducts}
+                    />
                   </Flex>
                 ) : null}
               </div>

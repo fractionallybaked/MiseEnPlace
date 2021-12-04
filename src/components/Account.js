@@ -1,35 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import {} from "./";
+import React from "react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { PastPurchases, ChangePassword } from "./";
 
 const Account = ({ isLoggedIn }) => {
   return (
     <div>
       {isLoggedIn ? (
         <>
-          <nav className="admin-nav">
-            <section className="nav-links">
-              <Link to="/user/purchases">Past Purchases</Link>
-              <Link to="/user/changepassword">Change Password</Link>
-            </section>
-          </nav>
-
-          <Switch>
-            <Route exact path="/user/purchases">
-              <div className="admin-form-main-container">
+          <Tabs isFitted variant="enclosed">
+            <TabList mb="1em">
+              <Tab _selected={{ color: "white", bg: "#c97c5d" }}>
+                Past Purchases
+              </Tab>
+              <Tab _selected={{ color: "white", bg: "#c97c5d" }}>
+                Change Password
+              </Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
                 <PastPurchases isLoggedIn={isLoggedIn} />
-              </div>
-            </Route>
-
-            <Route exact path="/user/changepassword">
-              <div className="admin-form-main-container">
+              </TabPanel>
+              <TabPanel>
                 <ChangePassword isLoggedIn={isLoggedIn} />
-              </div>
-            </Route>
-          </Switch>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
         </>
       ) : (
-        <div> You must be logged in to view account information </div>
+        <div> Error: You must be logged in to view account information </div>
       )}
     </div>
   );
