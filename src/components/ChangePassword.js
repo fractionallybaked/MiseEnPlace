@@ -1,63 +1,79 @@
-// import React, { useState } from "react";
-// import { editUser, getMyID } from "../api/users";
+import React, { useState, useEffect } from "react";
+import { getMyID, editUser } from "../api/users";
 
-// const ChangePassword = ({ isLoggedIn }) => {
-//   const [password, setPassword] = useState("");
+const ChangePassword = ({ isLoggedIn }) => {
+  const [password, setPassword] = useState("");
+  const [conPass, setConPass] = useState("");
+  const [userId, setUserId] = useState("");
+  const [changed, setChanged] = useState(false);
 
-//   return (
-//     <div>
-//       {isLoggedIn ? (
-//         <div className="create-new-password-main-container">
-//           <h2>Set a New Password</h2>
-//           <form
-//             className="password-form"
-//             onSubmit={async (e) => {
-//               e.preventDefault();
-//               try {
-//                 const me = await getMyID();
-//                 const updatedProduct = await editUser(password, false, me.id);
-//                 setProductId("");
-//                 setType("");
-//                 setAllProducts((prevProduct) => [
-//                   ...prevProduct,
-//                   updatedProduct,
-//                 ]);
-//               } catch (err) {
-//                 console.log(err);
-//               }
-//             }}
-//           >
-//             <label htmlFor="product-name">Choose a Product</label>
-//             <select
-//               id="product-name"
-//               name="product-name"
-//               onChange={(e) => setProductId(e.target.value)}
-//             >
-//               {allProducts.map((e) => {
-//                 return (
-//                   <option value={e.id} key={`addType-${e.id}`}>
-//                     {e.name}
-//                   </option>
-//                 );
-//               })}
-//             </select>
-//             <label htmlFor="product-type">Add a Type</label>
-//             <input
-//               type="text"
-//               name="product-type"
-//               id="product-type"
-//               value={type}
-//               onChange={(e) => setType(e.target.value)}
-//               placeholder="Enter a type"
-//             />
-//             <button>Add type</button>
-//           </form>
-//         </div>
-//       ) : (
-//         <div>Error: You don't have permission for this function </div>
-//       )}
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    async function getID() {
+      const user = await getMyID();
+      setUserId(user.id);
+    }
+    getID();
+  }, [changed]);
 
-// export default ChangePassword;
+  return (
+    <div>
+      {isLoggedIn ? (
+        !changed ? (
+          <>
+            <h3>Create a New Password</h3>
+            <form
+              className="create-password-form"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                try {
+                  if (!password || !conPass) {
+                    alert("Please fill out all product fields");
+                  } else if (password !== conPass) {
+                    alert(
+                      "Passwords do not match, please make confirm password"
+                    );
+                  } else {
+                    await editUser(password, false, userId);
+                    setChanged(true);
+                    setPassword("");
+                    setConPass("");
+                  }
+                } catch (err) {
+                  console.error(err);
+                }
+              }}
+            >
+              <label htmlFor="new-password">Set a New Password</label>
+              <input
+                type="text"
+                id="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="New Password"
+              />
+              <div>
+                <label htmlFor="con-password">Confirm New Password</label>
+                <input
+                  type="text"
+                  id="con-password"
+                  value={conPass}
+                  onChange={(e) => setConPass(e.target.value)}
+                  placeholder="Confirm new password"
+                />
+              </div>
+              <button>Set New Password</button>
+            </form>
+          </>
+        ) : (
+          <div className="password-changed-message">
+            Password successfully changed!
+          </div>
+        )
+      ) : (
+        <div> Error: You don't have permission for this function </div>
+      )}
+    </div>
+  );
+};
+
+export default ChangePassword;

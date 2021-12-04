@@ -130,20 +130,17 @@ const App = () => {
               ) : null}
             </div>
           </Route>
-          {/* <Route path="/account">
-
-          <div className="all-products-main-container">
-            {isLoggedIn ? null : <Account />}
-          </div>
-        </Route> */}
+          <Route path="/account">
+            <div className="all-products-main-container">
+              {isLoggedIn ? <Account isLoggedIn={isLoggedIn} /> : null}
+            </div>
+          </Route>
 
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
-
           </Route>
-          <Route path='/ordercomplete'>
+          <Route path="/ordercomplete">
             <OrderComplete />
-
           </Route>
           <Route exact path="/">
             <LandingPage />
