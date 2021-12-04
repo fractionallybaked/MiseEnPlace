@@ -52,7 +52,7 @@ const App = () => {
           setIsLoggedIn(true);
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
@@ -138,6 +138,10 @@ const App = () => {
 
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
+          </Route>
+          <Route path='/ordercomplete'>
+            <OrderComplete />
+
           </Route>
           <Route exact path="/">
             <LandingPage />

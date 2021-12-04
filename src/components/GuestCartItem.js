@@ -149,7 +149,7 @@ const GuestCartItem = () => {
           h="200px"
           className="checkout-container"
         >
-          <h3>Total: ${total} </h3>
+          <Heading size='m'>Total: ${total} </Heading>
           <GuestCheckout guestCart={guestCart} setGuestCart={setGuestCart} />
         </Flex>
       ) : null}

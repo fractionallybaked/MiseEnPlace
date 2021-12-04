@@ -33,7 +33,7 @@ export async function addItemToCart({ productId, userId, quantity }) {
 
 //
 
-export async function removeItemFromCart({ userId, productId, cartId }) {
+export async function removeItemFromCart({ userId, productId }) {
   const token = getToken();
 
   try {
@@ -122,7 +122,6 @@ export async function checkoutCart(userId) {
         },
       }
     );
-    console.log("DATA", data);
     return data;
   } catch (err) {
     throw err;

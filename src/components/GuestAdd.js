@@ -5,6 +5,7 @@ const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
 
   useEffect(() => {
     const alreadyAdded = guestCart.filter((e) => {
+      console.log(e)
       return e.id === productId;
     });
     if (alreadyAdded.length) {
@@ -19,7 +20,7 @@ const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
       newItem.quantity = 1;
       setGuestCart([...guestCart, newItem]);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
