@@ -6,9 +6,11 @@ export { default as CartItem } from "./CartItem";
 export { default as ItemAdd } from "./ItemAdd";
 export { default as GuestAdd } from "./GuestAdd";
 export { default as GuestCartItem } from "./GuestCartItem";
+export { default as GuestCheckout } from "./GuestCheckout";
 export { default as ItemDelete } from "./ItemDelete";
 export { default as ItemUpdate } from "./ItemUpdate";
 export { default as Checkout } from "./Checkout";
+export { default as OrderComplete } from "./OrderComplete";
 export { default as CreateProduct } from "./CreateProduct";
 export { default as EditProduct } from "./EditProduct";
 export { default as DeleteProduct } from "./DeleteProduct";
@@ -23,12 +25,16 @@ export { default as DropdownMenu } from "./DropdownMenu";
 export { default as Pagination } from "./Pagination";
 export { default as Hamburger } from "./Hamburger";
 export { default as LandingPage } from "./LandingPage";
-export { default as CartCount } from "./CartCount";
 export { default as Admin } from "./Admin";
 export { default as ManageUsers } from "./ManageUsers";
 export { default as Account } from "./Account";
 export { default as SingleProductPage } from "./SingleProductPage";
 export { default as About } from "./About";
+<<<<<<< HEAD
 export { default as PastPurchases } from "./PastPurchases";
 export { default as ChangePassword } from "./ChangePassword";
 export { default as PurchasedProduct } from "./PurchasedProduct";
+=======
+export { default as ChangePassword } from "./ChangePassword";
+export { default as PastPurchases } from "./PastPurchases";
+>>>>>>> 8b9e77cf7beb48feff7bc8d5e88f7bf9e22441f2

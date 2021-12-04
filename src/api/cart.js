@@ -110,7 +110,7 @@ export async function updateCart({ cartId, productId, quantity, userId }) {
 export async function checkoutCart(userId) {
   const token = getToken();
   try {
-    const { data } = await axios.get(
+    const { data } = await axios.patch(
       `${BASE}/cart/${userId}/checkout`,
       {
         userId,
@@ -122,6 +122,7 @@ export async function checkoutCart(userId) {
         },
       }
     );
+    console.log("DATA", data);
     return data;
   } catch (err) {
     throw err;
