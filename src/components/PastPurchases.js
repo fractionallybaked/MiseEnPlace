@@ -10,7 +10,6 @@ const PastPurchases = ({}) => {
       async function getProd() {
         let myID = await getMyID();
         const product = await getPurchaseHistory(myID);
-        console.log(product)
         setPurchased(product);
       }
       getProd();

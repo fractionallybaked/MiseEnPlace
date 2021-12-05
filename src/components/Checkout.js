@@ -1,7 +1,6 @@
 import React from "react";
-import { checkoutCart } from "../api/cart";
+import { checkoutCart, removeItemFromCart } from "../api/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import {removeItemFromCart} from '../api/cart';
 
 const Checkout = ({ userId, cartProducts, setUserCart, cartId, setIsLoading }) => {
   const history = useHistory();
@@ -15,7 +14,6 @@ const Checkout = ({ userId, cartProducts, setUserCart, cartId, setIsLoading }) =
           setIsLoading(true);
           try {
             await checkoutCart(userId);
-            console.log(cartProducts);
             cartProducts.map(async (e) => {
               let productId = e.products.id;
               await removeItemFromCart({ userId, productId, cartId });
