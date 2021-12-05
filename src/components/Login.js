@@ -17,7 +17,7 @@ import {
   Avatar,
   FormControl,
   FormHelperText,
-  InputRightElement,
+  InputRightElement
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
@@ -39,6 +39,16 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     history.push("/");
   };
 
+  const forgotPassword=()=>{
+    toast({
+      title: 'No Worries!',
+      description: "We just sent you an email. It will have a link to reset your password.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+      position: "top"
+    })
+  }
   return (
     <Flex
       direction="column"
@@ -48,11 +58,13 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
       justify="center"
       align="center"
     >
+      
       <Stack
         flexDir="column"
         mb="2"
         justify="center"
         align="center"
+        mt='100px'
       >
         <Avatar bg="#c97c5d" />
         <Heading color="black">Log In</Heading>
@@ -123,7 +135,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="right">
-                  <Link>forgot password?</Link>
+                  <Link onClick={()=>forgotPassword()}>forgot password?</Link>
                 </FormHelperText>
               </FormControl>
               <Button

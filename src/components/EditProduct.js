@@ -49,8 +49,7 @@ const EditProduct = ({ setAllProducts, isAdmin }) => {
                 setPrice("");
                 setQuantity("");
                 setPhoto("");
-                // setType('');
-
+               
                 setAllProducts((prevProducts) => [
                   ...prevProducts,
                   editedProduct,

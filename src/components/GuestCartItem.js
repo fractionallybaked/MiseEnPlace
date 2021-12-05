@@ -4,42 +4,42 @@ import { GuestCheckout } from ".";
 import { getProductById } from "../api/products";
 import { Flex, HStack, Heading } from "@chakra-ui/react";
 
-const GuestCartItem = () => {
+const GuestCartItem = ({setIsLoading}) => {
   const [guestCart, setGuestCart] = useState([]);
   const [guestProducts, setProducts] = useState([]);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    try {
-      const totalArr = guestProducts.map((e) => {
-        if (e.products) {
-          let items = e.products;
-          let price = items.price;
-          let itemPrice = price * e.quantity;
-          return itemPrice / 100;
-        }
-      });
-      function add(accumulator, a) {
-        return accumulator + a;
+    const totalArr = guestProducts.map((e) => {
+      if (e.products) {
+        let items = e.products;
+        let price = items.price;
+        let itemPrice = price * e.quantity;
+        return itemPrice / 100;
       }
-      const userTotal = totalArr.reduce(add, 0);
-      setTotal(userTotal.toFixed(2));
-    } catch (err) {
-      throw err;
+    });
+    function add(accumulator, a) {
+      return accumulator + a;
     }
+    const userTotal = totalArr.reduce(add, 0);
+    setTotal(userTotal.toFixed(2));
   }, [guestProducts]);
 
   useEffect(() => {
     async function setItems() {
-      const allProducts = await Promise.all(
-        guestCart.map(async (item) => {
-          const productId = item.id;
-          const newProduct = await getProductById(productId);
-          newProduct.quantity = item.quantity;
-          return newProduct;
-        })
-      );
-      setProducts(allProducts);
+      try {
+        const allProducts = await Promise.all(
+          guestCart.map(async (item) => {
+            const productId = item.id;
+            const newProduct = await getProductById(productId);
+            newProduct.quantity = item.quantity;
+            return newProduct;
+          })
+        );
+        setProducts(allProducts);
+      } catch (err) {
+        console.error(err);
+      }
     }
     setItems();
   }, [guestCart]);
@@ -152,7 +152,10 @@ const GuestCartItem = () => {
           className="checkout-container"
         >
           <Heading size='m'>Total: ${total} </Heading>
-          <GuestCheckout guestCart={guestCart} setGuestCart={setGuestCart} />
+          <GuestCheckout 
+          guestCart={guestCart} 
+          setGuestCart={setGuestCart}
+          setIsLoading={setIsLoading} />
         </Flex>
       ) : null}
     </Flex>

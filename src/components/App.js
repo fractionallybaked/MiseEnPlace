@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
@@ -23,8 +22,8 @@ import {
   SingleProductPage,
   About,
   OrderComplete,
+  SearchResultsPage
 } from "./";
-import SearchResultsPage from "./SearchResultsPage";
 import { ChakraProvider, Spinner, Flex } from "@chakra-ui/react";
 
 const App = () => {
@@ -130,20 +129,17 @@ const App = () => {
               ) : null}
             </div>
           </Route>
-          {/* <Route path="/account">
-
-          <div className="all-products-main-container">
-            {isLoggedIn ? null : <Account />}
-          </div>
-        </Route> */}
+          <Route path="/account">
+            <div className="all-products-main-container">
+              {isLoggedIn ? <Account isLoggedIn={isLoggedIn} /> : null}
+            </div>
+          </Route>
 
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
-
           </Route>
           <Route path='/ordercomplete'>
             <OrderComplete />
-
           </Route>
           <Route exact path="/">
             <LandingPage />
