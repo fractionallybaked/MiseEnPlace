@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  useLocation,
 } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
@@ -23,8 +22,8 @@ import {
   SingleProductPage,
   About,
   OrderComplete,
+  SearchResultsPage
 } from "./";
-import SearchResultsPage from "./SearchResultsPage";
 import { ChakraProvider, Spinner, Flex } from "@chakra-ui/react";
 
 const App = () => {

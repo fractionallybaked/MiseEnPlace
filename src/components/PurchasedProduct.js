@@ -26,9 +26,6 @@ const PurchasedProduct = ({ allProducts }) => {
               <div>
                 Bought at: ${(Math.round(e.itemTotal) / 100).toFixed(2)}
               </div>
-              <span className="single-product-price">
-                Current Price: ${(Math.round(e.price) / 100).toFixed(2)}
-              </span>
             </div>
           );
         })

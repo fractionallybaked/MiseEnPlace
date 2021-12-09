@@ -16,13 +16,13 @@ const ChangePassword = ({ isLoggedIn }) => {
   }, [changed]);
 
   return (
-    <div>
+    <div className="create-password-main-container">
       {isLoggedIn ? (
         !changed ? (
           <>
             <h3>Create a New Password</h3>
             <form
-              className="create-password-form"
+              className="create-product-form"
               onSubmit={async (e) => {
                 e.preventDefault();
                 try {
@@ -51,16 +51,14 @@ const ChangePassword = ({ isLoggedIn }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="New Password"
               />
-              <div>
-                <label htmlFor="con-password">Confirm New Password</label>
-                <input
-                  type="text"
-                  id="con-password"
-                  value={conPass}
-                  onChange={(e) => setConPass(e.target.value)}
-                  placeholder="Confirm new password"
-                />
-              </div>
+              <label htmlFor="con-password">Confirm New Password</label>
+              <input
+                type="text"
+                id="con-password"
+                value={conPass}
+                onChange={(e) => setConPass(e.target.value)}
+                placeholder="Confirm new password"
+              />
               <button>Set New Password</button>
             </form>
           </>

@@ -86,18 +86,24 @@ async function addItemToCart({ productId, userId, quantity }) {
 //
 
 async function checkoutCart(userId) {
-  const userCart = await getCartByUser(userId);
-
   try {
+    const userCart = await getCartByUser(userId);
     if (userCart.length) {
       const {
         rows: [cart],
       } = await client.query(
         `
+<<<<<<< HEAD
       UPDATE cart
       SET purchased=true
       WHERE "userId"=$1 and purchased=false
       RETURNING *;
+=======
+          UPDATE cart
+          SET purchased=true
+          WHERE "userId"=$1 and purchased=false
+          RETURNING *;
+>>>>>>> 5842573453e3fd1d588556b0a5c3b8313894b316
       `,
         [userId]
       );
@@ -116,11 +122,10 @@ async function getAllProductsByUser(userId) {
   try {
     const { rows: cart } = await client.query(
       `
-  SELECT *
-  FROM cart
-  WHERE "userId"=$1 AND purchased=true
-  RETURNING *;
-  `,
+        SELECT *
+        FROM cart
+        WHERE "userId"=$1 and purchased=true;
+      `,
       [userId]
     );
     return cart;

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Flex, Container, Heading, Stack, Box, Image } from '@chakra-ui/react';
+import {
+     Flex, 
+     Heading, 
+     Stack, 
+     Box, 
+     Image 
+    } from '@chakra-ui/react';
 
 const About = (props) => {
     const image = "https://images.unsplash.com/photo-1597528662465-55ece5734101?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80";
@@ -11,8 +17,8 @@ const About = (props) => {
         <>
             <Box
                 w='100%'
-                h='75vh'
-                bg='#EBD8D5'
+                minH='80vh'
+                bg='#eee2df'
                 zIndex='-1'
                 position='absolute'
                 top='194' />
@@ -51,7 +57,8 @@ const About = (props) => {
                             lineHeight={1.5}
                             textAlign={["center", "center", "left", "left"]}
                         >
-                            We keep dessert fun and interesting. From top-rated favorites to classic recipes, we got you covered.
+                            We keep dessert fun and interesting. 
+                            From top-rated favorites to classic recipes, we've got you covered.
                     </Heading>
                         <Link to='/products'>
                             <button className='get-started'>
@@ -59,7 +66,7 @@ const About = (props) => {
                         </button>
                         </Link>
                     </Stack>
-                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
+                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 6, md: 0 }} mt={{ base: 4, md: 0 }}>
                         <Image src={image} size="100%" rounded="1rem" shadow="2xl" />
                     </Box>
                 </Flex>
@@ -74,7 +81,7 @@ const About = (props) => {
                     mb={16}
                     mt='200px'
                 >
-                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
+                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 6, md: 0 }}>
                         <Image src={boxImage} size="100%" rounded="1rem" shadow="2xl" />
                     </Box>
                     <Stack
@@ -122,14 +129,13 @@ const About = (props) => {
                 >
                     <Box
                         w='100%'
-                        h='75vh'
-                        bg='#EBD8D5'
+                        minH='80vh'
+                        bg='#eee2df'
                         zIndex='-1'
                         position='absolute'
-                        bottom='0'
                         left='0'
                         m='0 auto'
-                        mb={{ base: 12, md: 0 }}
+                        mb={{ base: 0, md: 0 }}
                     />
                     <Stack
                         spacing={4}
@@ -154,7 +160,7 @@ const About = (props) => {
                             lineHeight={1.5}
                             textAlign={["center", "center", "left", "left"]}
                         >
-                            Follow our easy step-by-step recipes to make your family and friends amazing desserts.
+                            Follow our easy step-by-step recipes to make fun and delicious desserts for your friends and family.
                     </Heading>
                         <Link to='/products'>
                             <button className='get-started'>
@@ -162,7 +168,7 @@ const About = (props) => {
                         </button>
                         </Link>
                     </Stack>
-                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 12, md: 0 }}>
+                    <Box w={{ base: "80%", sm: "60%", md: "50%" }} mb={{ base: 6, md: 0 }}>
                         <Image src={bakedImage} size="100%" rounded="1rem" shadow="2xl" />
                     </Box>
                 </Flex>

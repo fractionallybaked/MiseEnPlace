@@ -5,7 +5,6 @@ import { getMyID } from "../api/users";
 import { getToken } from "../auth";
 import CartItem from "./CartItem";
 import Checkout from "./Checkout";
-import {GuestCheckout} from './'
 import { Flex, Heading } from "@chakra-ui/react";
 import GuestCartItem from "./GuestCartItem";
 
@@ -71,12 +70,7 @@ const Cart = ({ setIsLoading }) => {
   }, [userCart]);
 
   return (
-    <Flex
-      direction="column"
-      align="center"
-      justify="center"
-      mt="220px"
-    >
+    <Flex direction="column" align="center" justify="center" mt="220px">
       <Flex direction="column" align="center">
         <Flex direction="row" justify="center" wrap="wrap">
           {token ? (
@@ -88,7 +82,7 @@ const Cart = ({ setIsLoading }) => {
               setUserId={setUserId}
             />
           ) : (
-            <GuestCartItem />
+            <GuestCartItem setIsLoading={setIsLoading} />
           )}
 
           {userCart.length ? (
@@ -108,6 +102,7 @@ const Cart = ({ setIsLoading }) => {
               cartProducts={cartProducts}
               cartId={userCart.id}
               setUserCart={setUserCart}
+              setIsLoading={setIsLoading}
             />
           ) : null}
         </Flex>

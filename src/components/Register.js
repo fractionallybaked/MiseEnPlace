@@ -18,6 +18,7 @@ import {
   FormControl,
   FormHelperText,
   InputRightElement,
+  Text
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 
@@ -67,6 +68,7 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
         mb="2"
         justifyContent="center"
         alignItems="center"
+        mt='100px'
       >
         <Avatar bg="#c97c5d" />
         <Heading color="black">Sign Up</Heading>
@@ -151,7 +153,7 @@ const Register = ({ isLoggedIn, setIsLoggedIn }) => {
                   </InputRightElement>
                 </InputGroup>
                 <FormHelperText textAlign="center">
-                  <Link>Password must be at least 8 characters</Link>
+                  <Text>Password must be at least 8 characters</Text>
                 </FormHelperText>
               </FormControl>
               <Button

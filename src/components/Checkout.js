@@ -2,7 +2,7 @@ import React from "react";
 import { checkoutCart, removeItemFromCart } from "../api/cart";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Checkout = ({ userId, cartProducts, setUserCart, cartId }) => {
+const Checkout = ({ userId, cartProducts, setUserCart, cartId, setIsLoading }) => {
   const history = useHistory();
 
   return (
@@ -11,6 +11,7 @@ const Checkout = ({ userId, cartProducts, setUserCart, cartId }) => {
         id="checkout-cart"
         onSubmit={async (event) => {
           event.preventDefault();
+          setIsLoading(true);
           try {
             await checkoutCart(userId);
             cartProducts.map(async (e) => {
@@ -21,11 +22,13 @@ const Checkout = ({ userId, cartProducts, setUserCart, cartId }) => {
             history.push("/ordercomplete");
           } catch (err) {
             throw err;
+          }finally{
+            setIsLoading(false);
           }
         }}
       >
         <button className="checkout-cart" type="submit">
-          Checkout Cart
+          Checkout
         </button>
       </form>
     </div>

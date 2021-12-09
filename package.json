@@ -1,6 +1,9 @@
 {
   "name": "starting_code",
   "version": "1.0.0",
+  "engines": {
+    "node": "v14.17.4"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {

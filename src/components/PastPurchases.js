@@ -14,11 +14,10 @@ const PastPurchases = ({}) => {
       }
       getProd();
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }, []);
 
-  console.log("Purchased: ", purchased);
   return <PurchasedProduct allProducts={purchased} />;
 };
 
