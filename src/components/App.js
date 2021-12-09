@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
 import { getMyID } from "../api/users";
@@ -18,8 +22,8 @@ import {
   SingleProductPage,
   About,
   OrderComplete,
+  SearchResultsPage
 } from "./";
-import SearchResultsPage from "./SearchResultsPage";
 import { ChakraProvider, Spinner, Flex } from "@chakra-ui/react";
 
 const App = () => {

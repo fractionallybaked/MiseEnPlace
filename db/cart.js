@@ -93,10 +93,17 @@ async function checkoutCart(userId) {
         rows: [cart],
       } = await client.query(
         `
+<<<<<<< HEAD
+      UPDATE cart
+      SET purchased=true
+      WHERE "userId"=$1 and purchased=false
+      RETURNING *;
+=======
           UPDATE cart
           SET purchased=true
           WHERE "userId"=$1 and purchased=false
           RETURNING *;
+>>>>>>> 5842573453e3fd1d588556b0a5c3b8313894b316
       `,
         [userId]
       );

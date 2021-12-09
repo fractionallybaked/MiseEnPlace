@@ -19,7 +19,7 @@ const GuestAdd = ({ productId, guestCart, setGuestCart }) => {
       newItem.quantity = 1;
       setGuestCart([...guestCart, newItem]);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 

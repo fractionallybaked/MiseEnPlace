@@ -22,7 +22,7 @@ const ChangePassword = ({ isLoggedIn }) => {
           <>
             <h3>Create a New Password</h3>
             <form
-              className="create-password-form"
+              className="create-product-form"
               onSubmit={async (e) => {
                 e.preventDefault();
                 try {

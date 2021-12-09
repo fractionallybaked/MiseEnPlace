@@ -20,7 +20,7 @@ p {
 }
 
 h2 {
-  font-family: "Cormorant Garamond", serif;
+    font-family: 'Cormorant Garamond', serif;
 }
 
 /*-------------- header --------------  */
@@ -265,7 +265,7 @@ a.page-link {
 }
 
 a.page-link.active {
-  background: #c97c5d;
+    background: #c97c5d;
 }
 
 a.page-link:hover {
@@ -568,3 +568,4 @@ a.page-link:hover {
     width: 300px;
   }
 }
+
