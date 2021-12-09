@@ -21,7 +21,7 @@ const ManageUsers = ({ isAdmin }) => {
 
   return (
     <div className="all-users-main-container">
-      <h3>Manage Users</h3>
+      <h3 className="manage-users-heading">Manage Users</h3>
       {isAdmin ? (
         <div className="all-users">
           {users.length
