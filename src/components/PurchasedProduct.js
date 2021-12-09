@@ -2,13 +2,25 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Flex } from "@chakra-ui/react";
 
-const PurchasedProduct = ({ allProducts }) => {
+const PurchasedProduct = ({ allProducts, boughtAt }) => {
   return (
     <Flex direction="row" justify="center" wrap="wrap">
       {allProducts.length ? (
         allProducts.map((el) => {
           let e;
           el.products ? (e = el.products) : (e = el);
+          let bought = boughtAt.map((item) => {
+            if (item.productId === e.id) {
+              return item.itemTotal;
+            }
+          });
+
+          let last = 0;
+          for (let i = 0; i < bought.length; i++) {
+            if (bought[i]) {
+              last = bought[i];
+            }
+          }
 
           return (
             <div className="single-product-card" key={e.id}>
@@ -23,9 +35,7 @@ const PurchasedProduct = ({ allProducts }) => {
                   </div>
                 </div>
               </div>
-              <div>
-                Bought at: ${(Math.round(e.itemTotal) / 100).toFixed(2)}
-              </div>
+              <div>Bought at: ${(Math.round(last) / 100).toFixed(2)}</div>
             </div>
           );
         })
