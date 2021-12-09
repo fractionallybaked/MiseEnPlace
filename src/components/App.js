@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { getAllProducts } from "../api/products";
 import { getMyID } from "../api/users";
@@ -22,7 +18,8 @@ import {
   SingleProductPage,
   About,
   OrderComplete,
-  SearchResultsPage
+  SearchResultsPage,
+  CheckoutForm,
 } from "./";
 import { ChakraProvider, Spinner, Flex } from "@chakra-ui/react";
 
@@ -138,9 +135,13 @@ const App = () => {
           <Route path="/editproduct">
             <EditProduct setAllProducts={setAllProducts} isAdmin={isAdmin} />
           </Route>
+          <Route path="/checkoutform">
+            <CheckoutForm />
+          </Route>
           <Route path="/ordercomplete">
             <OrderComplete />
           </Route>
+
           <Route exact path="/">
             <LandingPage />
           </Route>

@@ -10,6 +10,7 @@ export { default as GuestCheckout } from "./GuestCheckout";
 export { default as ItemDelete } from "./ItemDelete";
 export { default as ItemUpdate } from "./ItemUpdate";
 export { default as Checkout } from "./Checkout";
+export { default as CheckoutForm } from "./CheckoutForm";
 export { default as OrderComplete } from "./OrderComplete";
 export { default as CreateProduct } from "./CreateProduct";
 export { default as EditProduct } from "./EditProduct";
