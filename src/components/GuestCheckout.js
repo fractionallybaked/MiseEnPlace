@@ -19,7 +19,7 @@ const GuestCheckout = ({ setGuestCart, setIsLoading }) => {
           setIsLoading(true);
           try {
             deleteEverything();
-            history.push("/ordercomplete");
+            history.push("/checkoutform");
           } catch (err) {
             throw err;
           } finally {
