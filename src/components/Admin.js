@@ -1,13 +1,6 @@
 import React from "react";
 import { CreateProduct, AddType, ManageUsers } from "./";
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Flex,
-} from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 const Admin = ({ allProducts, setAllProducts, isAdmin }) => {
   return (
