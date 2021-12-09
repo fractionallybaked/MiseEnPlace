@@ -16,7 +16,7 @@ const ChangePassword = ({ isLoggedIn }) => {
   }, [changed]);
 
   return (
-    <div className="create-product-main-container">
+    <div className="create-password-main-container">
       {isLoggedIn ? (
         !changed ? (
           <>
@@ -51,16 +51,14 @@ const ChangePassword = ({ isLoggedIn }) => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="New Password"
               />
-              <div>
-                <label htmlFor="con-password">Confirm New Password</label>
-                <input
-                  type="text"
-                  id="con-password"
-                  value={conPass}
-                  onChange={(e) => setConPass(e.target.value)}
-                  placeholder="Confirm new password"
-                />
-              </div>
+              <label htmlFor="con-password">Confirm New Password</label>
+              <input
+                type="text"
+                id="con-password"
+                value={conPass}
+                onChange={(e) => setConPass(e.target.value)}
+                placeholder="Confirm new password"
+              />
               <button>Set New Password</button>
             </form>
           </>

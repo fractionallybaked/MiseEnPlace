@@ -18,7 +18,6 @@ const PastPurchases = ({}) => {
     }
   }, []);
 
-  console.log("Purchased: ", purchased);
   return <PurchasedProduct allProducts={purchased} />;
 };
 

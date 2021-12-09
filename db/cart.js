@@ -86,9 +86,8 @@ async function addItemToCart({ productId, userId, quantity }) {
 //
 
 async function checkoutCart(userId) {
-  const userCart = await getCartByUser(userId);
-
   try {
+    const userCart = await getCartByUser(userId);
     if (userCart.length) {
       const {
         rows: [cart],
@@ -125,9 +124,8 @@ async function getAllProductsByUser(userId) {
       `
         SELECT *
         FROM cart
-        WHERE "userId"=$1 AND purchased=true
-        RETURNING *;
-  `,
+        WHERE "userId"=$1 and purchased=true;
+      `,
       [userId]
     );
     return cart;

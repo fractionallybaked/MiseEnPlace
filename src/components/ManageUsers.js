@@ -3,20 +3,21 @@ import { getAllUsers, editUser, getMyID } from "../api/users";
 
 const ManageUsers = ({ isAdmin }) => {
   const [users, setUsers] = useState({});
+  const [myId, setMyId] = useState({});
 
   useEffect(() => {
     async function setUp() {
       try {
         let tmp = await getAllUsers();
-        let myID = await getMyID();
-        tmp = tmp.filter((user) => user.id !== myID.id);
+        setMyId(await getMyID());
+        tmp = tmp.filter((user) => user.id !== myId.id);
         setUsers(tmp);
       } catch (err) {
         console.error(err);
       }
     }
     setUp();
-  }, [isAdmin, users]);
+  }, []);
 
   return (
     <div className="all-users-main-container">
@@ -42,11 +43,12 @@ const ManageUsers = ({ isAdmin }) => {
                               className="account-type-change-button"
                               onClick={async () => {
                                 try {
-                                  let res = await editUser(
-                                    null,
-                                    false,
-                                    user.id
+                                  await editUser(null, false, user.id);
+                                  let tmp = await getAllUsers();
+                                  tmp = tmp.filter(
+                                    (user) => user.id !== myId.id
                                   );
+                                  setUsers(tmp);
                                 } catch (err) {
                                   console.error(err);
                                 }
@@ -64,7 +66,12 @@ const ManageUsers = ({ isAdmin }) => {
                               className="account-type-change-button"
                               onClick={async () => {
                                 try {
-                                  let res = await editUser(null, true, user.id);
+                                  await editUser(null, true, user.id);
+                                  let tmp = await getAllUsers();
+                                  tmp = tmp.filter(
+                                    (user) => user.id !== myId.id
+                                  );
+                                  setUsers(tmp);
                                 } catch (err) {
                                   console.error(err);
                                 }
