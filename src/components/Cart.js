@@ -88,7 +88,7 @@ const Cart = ({ setIsLoading }) => {
               setUserId={setUserId}
             />
           ) : (
-            <GuestCartItem />
+            <GuestCartItem setIsLoading={setIsLoading} />
           )}
 
           {userCart.length ? (
@@ -108,6 +108,7 @@ const Cart = ({ setIsLoading }) => {
               cartProducts={cartProducts}
               cartId={userCart.id}
               setUserCart={setUserCart}
+              setIsLoading={setIsLoading}
             />
           ) : null}
         </Flex>

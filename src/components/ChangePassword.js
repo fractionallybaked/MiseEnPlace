@@ -16,13 +16,13 @@ const ChangePassword = ({ isLoggedIn }) => {
   }, [changed]);
 
   return (
-    <div>
+    <div className="create-product-main-container">
       {isLoggedIn ? (
         !changed ? (
           <>
             <h3>Create a New Password</h3>
             <form
-              className="create-password-form"
+              className="create-product-form"
               onSubmit={async (e) => {
                 e.preventDefault();
                 try {

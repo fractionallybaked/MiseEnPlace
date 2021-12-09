@@ -6,7 +6,6 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Flex,
 } from "@chakra-ui/react";
 
 const Admin = ({ allProducts, setAllProducts, isAdmin }) => {

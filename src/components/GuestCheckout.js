@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const GuestCheckout = ({ guestCart, setGuestCart }) => {
+const GuestCheckout = ({ setGuestCart, setIsLoading }) => {
   const history = useHistory();
 
   const deleteEverything = () => {
@@ -16,16 +16,19 @@ const GuestCheckout = ({ guestCart, setGuestCart }) => {
         id="checkout-cart"
         onSubmit={async (event) => {
           event.preventDefault();
+          setIsLoading(true);
           try {
             deleteEverything();
             history.push("/ordercomplete");
           } catch (err) {
             throw err;
+          } finally {
+            setIsLoading(false);
           }
         }}
       >
         <button className="checkout-cart" type="submit">
-          Checkout Cart
+          Checkout
         </button>
       </form>
     </div>

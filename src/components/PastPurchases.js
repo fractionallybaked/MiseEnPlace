@@ -9,12 +9,12 @@ const PastPurchases = ({}) => {
     try {
       async function getProd() {
         let myID = await getMyID();
-        const product = await getPurchaseHistory(myID.id);
+        const product = await getPurchaseHistory(myID);
         setPurchased(product);
       }
       getProd();
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   }, []);
 
