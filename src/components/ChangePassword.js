@@ -45,7 +45,7 @@ const ChangePassword = ({ isLoggedIn }) => {
             >
               <label htmlFor="new-password">Set a New Password</label>
               <input
-                type="text"
+                type="password"
                 id="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -53,7 +53,7 @@ const ChangePassword = ({ isLoggedIn }) => {
               />
               <label htmlFor="con-password">Confirm New Password</label>
               <input
-                type="text"
+                type="password"
                 id="con-password"
                 value={conPass}
                 onChange={(e) => setConPass(e.target.value)}
